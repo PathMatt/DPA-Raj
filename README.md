@@ -14,7 +14,10 @@ offline.
 - Right arrow, Space, Enter, Page Down or click: next. Left arrow or Page Up: back.
 - If a zoom or animation is playing, the next press finishes it instead of advancing.
 - Going back jumps straight to the finished state of the earlier slide.
-- `F` toggles fullscreen. Home and End jump to the first and last slide.
+- `F` toggles fullscreen.
+- Type is set like a map: Overpass (from the Highway Gothic road-sign lineage)
+  for labels and headings, Overpass Mono for coordinates and distances, and
+  Source Serif 4 italic for water and quotes. Fonts are vendored in `assets/fonts`. Home and End jump to the first and last slide.
 - `#12` in the URL opens slide 12.
 
 ## How the zoom works

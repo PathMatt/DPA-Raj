@@ -36,7 +36,7 @@
   function inAnyNest(x, y, pad) { return NESTS.some(n => inEllipse(x, y, n, pad)); }
   function label(g, text, w, h, size) {
     g.save();
-    g.font = `${size}px "Courier New", monospace`;
+    g.font = `600 ${size}px "Overpass", sans-serif`;
     g.textAlign = 'right'; g.textBaseline = 'bottom';
     g.fillStyle = 'rgba(22,22,22,.42)';
     g.fillText(text, w - size * 0.8, h - size * 0.6);
@@ -241,12 +241,12 @@
     g.fillStyle = '#f2f1ec'; g.fillRect(6, 6, lx - 6, H - 12);
     g.fillStyle = 'rgba(22,22,22,.06)';
     for (let i = 0; i < 4000; i++) g.fillRect(6 + r() * (lx - 12), 6 + r() * (H - 12), 2, 2);
-    g.fillStyle = '#161616'; g.font = '52px "Courier New", monospace'; g.textBaseline = 'top';
+    g.fillStyle = '#161616'; g.font = '500 52px "Overpass Mono", monospace'; g.textBaseline = 'top';
     g.fillText('PV26-001', 60, 120);
-    g.font = '40px "Courier New", monospace';
+    g.font = '400 40px "Overpass Mono", monospace';
     g.fillText('A1 · H&E', 60, 210);
     g.fillStyle = '#9c423c'; g.fillText('[accession]', 60, 290);
-    g.fillStyle = 'rgba(22,22,22,.45)'; g.font = '28px "Courier New", monospace';
+    g.fillStyle = 'rgba(22,22,22,.45)'; g.font = '600 26px "Overpass", sans-serif';
     g.fillText('PLACEHOLDER', 60, H - 90);
     // coverslip
     const [cx0, cy0] = px(-14, -11), [cx1, cy1] = px(36, 11);

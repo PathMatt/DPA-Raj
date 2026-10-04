@@ -6,22 +6,25 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#fafaf8">
   <title>Better Together · Pathology Visions 2026</title>
+  <link rel="stylesheet" href="assets/fonts.css">
   <style>
-    :root { color-scheme: light; --paper: #fafaf8; --ink: #161616; --muted: #6b6b64; --faint: #b0b0a8; --line: rgba(22,22,22,.14); --rust: #9c423c; --veil: 1; }
+    :root { color-scheme: light; --sans: "Overpass", "Helvetica Neue", Arial, sans-serif; --mono: "Overpass Mono", ui-monospace, Menlo, monospace; --serif: "Source Serif 4", Georgia, serif; --water: #47698c; --paper: #fafaf8; --ink: #161616; --muted: #6b6b64; --faint: #b0b0a8; --line: rgba(22,22,22,.14); --rust: #9c423c; --veil: 1; }
     * { box-sizing: border-box; }
     html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: var(--paper); }
-    body { display: grid; place-items: center; color: var(--ink); font-family: "Courier New", "Liberation Mono", Courier, monospace; -webkit-font-smoothing: antialiased; }
+    body { display: grid; place-items: center; color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
     .deck { width: min(100vw, 177.777778vh); width: min(100vw, 177.777778dvh); aspect-ratio: 16 / 9; position: relative; container-type: inline-size; overflow: hidden; background: var(--paper); user-select: none; }
     #world { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
     .veil { position: absolute; inset: 0; background: var(--paper); opacity: var(--veil); transition: opacity 700ms ease; pointer-events: none; }
 
     /* type */
     h1, h2, h3, p, ol, ul, figure { margin: 0; font-weight: 400; }
-    .kicker { margin-bottom: 1.1cqw; font-size: .95cqw; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-    .h-xl { font-size: 6.6cqw; line-height: 1.04; letter-spacing: -.065em; }
-    .h-l { font-size: 3.5cqw; line-height: 1.12; letter-spacing: -.05em; }
-    .h-m { font-size: 2.55cqw; line-height: 1.22; letter-spacing: -.045em; }
-    .body { font-size: 1.5cqw; line-height: 1.55; letter-spacing: -.02em; }
+    .kicker { margin-bottom: 1.1cqw; font-size: .82cqw; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+    .h-xl { font-size: 7cqw; line-height: 1; font-weight: 300; letter-spacing: -.035em; }
+    .h-l { font-size: 3.5cqw; line-height: 1.1; font-weight: 300; letter-spacing: -.025em; }
+    .h-m { font-size: 2.5cqw; line-height: 1.2; font-weight: 400; letter-spacing: -.02em; }
+    .body { font-size: 1.45cqw; line-height: 1.5; }
+    .mono, .ledger .km, .stat-big, .scale-label, .scale-mag, .coords, .bar-label b, .cohort-count, .reach b, .compare td + td { font-family: var(--mono); }
+    .serif { font-family: var(--serif); font-style: italic; }
     .small { font-size: 1.08cqw; line-height: 1.5; color: var(--muted); }
     .note { font-size: .82cqw; line-height: 1.5; color: var(--muted); }
     .tbd { color: var(--rust); }
@@ -42,17 +45,17 @@
     /* HUD */
     .hud { position: absolute; inset: 0; pointer-events: none; }
     .chip { background: rgba(250,250,248,.9); padding: .55cqw .8cqw; }
-    .route { position: absolute; left: 4%; top: 5%; display: flex; gap: 2.4cqw; font-size: .9cqw; letter-spacing: .12em; opacity: 0; transition: opacity 500ms; }
+    .route { position: absolute; left: 4%; top: 5%; display: flex; gap: 2.4cqw; font-size: .78cqw; font-weight: 600; letter-spacing: .18em; opacity: 0; transition: opacity 500ms; }
     .route.is-on { opacity: 1; }
     .route span { position: relative; color: var(--faint); padding-bottom: .45cqw; }
     .route span + span::before { content: "→"; position: absolute; left: -1.75cqw; color: var(--faint); }
     .route span.is-done { color: var(--ink); }
-    .route span.is-here { color: var(--ink); font-weight: 700; }
+    .route span.is-here { color: var(--ink); font-weight: 800; }
     .route span.is-here::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--rust); }
     .scale { position: absolute; right: 4%; top: 5%; display: grid; justify-items: end; gap: .45cqw; opacity: 0; transition: opacity 500ms; }
     .scale.is-on { opacity: 1; }
     .scale-row { display: flex; align-items: flex-end; gap: 1.1cqw; }
-    .scale-mag { font-size: 1.7cqw; letter-spacing: -.05em; line-height: 1; min-width: 3.5em; text-align: right; }
+    .scale-mag { font-size: 1.6cqw; letter-spacing: -.04em; line-height: 1; min-width: 3.5em; text-align: right; }
     .scale-mag:empty { display: none; }
     .scale-meter { display: grid; justify-items: start; gap: .3cqw; }
     .scale-label { font-size: .9cqw; }
@@ -60,11 +63,28 @@
     .coords { font-size: .78cqw; color: var(--muted); letter-spacing: .04em; }
 
     /* title */
-    .title-wrap { position: absolute; left: 8%; right: 8%; top: 33%; }
-    .title-sub { margin-top: 2.2cqw; max-width: 46cqw; }
-    .title-foot { position: absolute; left: 8%; right: 8%; bottom: 8%; display: flex; justify-content: space-between; font-size: 1.05cqw; color: var(--muted); }
-    .cursor { display: inline-block; width: .55em; height: .9em; margin-left: .06em; vertical-align: -.08em; background: currentColor; animation: blink 1060ms step-end infinite; }
-    @keyframes blink { 50% { opacity: 0; } }
+    /* title: a map cartouche */
+    .cartouche { position: absolute; left: 6%; right: 6%; top: 13%; bottom: 17%; border: 1.5px solid var(--ink); background: rgba(250,250,248,.72); padding: 3.6cqw 4.4cqw 3cqw; display: flex; flex-direction: column; }
+    .cartouche::before { content: ""; position: absolute; inset: .5cqw; border: 1px solid rgba(22,22,22,.45); pointer-events: none; }
+    .grat { position: absolute; left: 0; right: 0; height: .7cqw; background: repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 4.4cqw); }
+    .grat.top { top: -.85cqw; } .grat.bottom { bottom: -.85cqw; }
+    .corner { position: absolute; font-family: var(--mono); font-size: .72cqw; color: var(--muted); letter-spacing: .04em; }
+    .corner.tl { left: 0; top: -2.2cqw; } .corner.tr { right: 0; top: -2.2cqw; }
+    .carto-head { display: flex; justify-content: space-between; }
+    .title-word { margin-top: auto; }
+    .title-sub { margin-top: 1.6cqw; max-width: 50cqw; font-size: 1.6cqw; }
+    .carto-legend { margin-top: auto; display: flex; align-items: flex-end; gap: 3.2cqw; padding-top: 2cqw; border-top: 1px solid var(--line); }
+    .north { width: 3.4cqw; height: 4.4cqw; overflow: visible; }
+    .north text { font-family: var(--sans); font-weight: 700; font-size: 9px; fill: var(--ink); }
+    .sbar { display: grid; gap: .45cqw; }
+    .sbar-blocks { display: flex; width: 16cqw; height: .55cqw; border: 1px solid var(--ink); }
+    .sbar-blocks span { flex: 1; transition: background 200ms; }
+    .sbar-blocks span.on:nth-child(odd) { background: var(--ink); }
+    .sbar-labels { display: flex; justify-content: space-between; width: 17cqw; margin-left: -.5cqw; font-family: var(--mono); font-size: .72cqw; color: var(--muted); }
+    .carto-coord { font-family: var(--mono); font-size: 1.05cqw; letter-spacing: .02em; }
+    .carto-coord small { display: block; font-family: var(--sans); font-size: .72cqw; font-weight: 600; letter-spacing: .2em; color: var(--muted); margin-bottom: .4cqw; }
+    .carto-legend .legend-note { margin-left: auto; text-align: right; font-size: .9cqw; color: var(--muted); line-height: 1.5; }
+    .title-foot { position: absolute; left: 6%; right: 6%; bottom: 7.5%; display: flex; justify-content: space-between; font-size: .95cqw; color: var(--muted); letter-spacing: .02em; }
 
     /* disclosures */
     .disc-table { width: 62cqw; border-collapse: collapse; font-size: 1.4cqw; margin-top: 3cqw; }
@@ -91,14 +111,15 @@
 
     /* ledger during a handoff */
     .ledger { left: 4%; bottom: 6%; width: 34%; }
-    .ledger .km { font-size: 4.6cqw; letter-spacing: -.07em; line-height: 1; margin: .6cqw 0 1cqw; font-variant-numeric: tabular-nums; }
+    .ledger .km { font-size: 4.2cqw; letter-spacing: -.06em; font-weight: 300; line-height: 1; margin: .6cqw 0 1cqw; font-variant-numeric: tabular-nums; }
     .ledger .km small { font-size: 1.6cqw; letter-spacing: 0; margin-left: .5cqw; }
     .ledger-rows { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: 2cqw; row-gap: .3cqw; font-size: 1.1cqw; }
     .ledger-rows span:nth-child(odd) { color: var(--muted); }
 
     /* station cards */
     .station { left: 4%; top: 28%; width: 40%; padding: 2.6cqw 2.8cqw; }
-    .station .num { font-size: 1cqw; letter-spacing: .16em; color: var(--rust); margin-bottom: 1.4cqw; }
+    .station .num { font-size: .85cqw; font-weight: 700; letter-spacing: .22em; color: var(--rust); margin-bottom: 1.4cqw; }
+    .station .q { font-family: var(--serif); font-style: italic; }
     .station .who { margin-top: 1cqw; font-size: 1.45cqw; }
     .station .q { margin-top: 2.4cqw; font-size: 1.9cqw; letter-spacing: -.04em; line-height: 1.3; }
 
@@ -139,7 +160,7 @@
     .bar-fill.is-rust { background: var(--rust); min-width: 2px; }
     .finding { display: grid; grid-template-columns: 1.45fr 1fr; gap: 3.5cqw; position: absolute; left: 8%; right: 8%; top: 14%; bottom: 9%; }
     .finding .ph { height: 100%; }
-    .finding blockquote { margin: 0 0 2cqw; font-size: 2.1cqw; line-height: 1.3; letter-spacing: -.04em; }
+    .finding blockquote { margin: 0 0 2cqw; font-family: var(--serif); font-style: italic; font-size: 2.3cqw; line-height: 1.28; letter-spacing: -.01em; }
     .kv { display: grid; gap: 1.4cqw; }
     .kv p { font-size: 1.25cqw; line-height: 1.45; }
 
@@ -182,13 +203,13 @@
     .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2cqw; margin-top: 3.2cqw; }
     .timeline div { border-top: 1.5px solid var(--ink); padding-top: 1.1cqw; }
     .timeline .when { font-size: .9cqw; letter-spacing: .14em; color: var(--rust); margin-bottom: 1cqw; }
-    .timeline .quote { font-size: 1.35cqw; line-height: 1.4; letter-spacing: -.02em; min-height: 6.5em; }
+    .timeline .quote { font-family: var(--serif); font-style: italic; font-size: 1.5cqw; line-height: 1.38; min-height: 6em; }
     .timeline .today { font-size: 1.02cqw; line-height: 1.5; color: var(--muted); margin-top: 1.2cqw; }
 
     /* status, panel, close, backup */
     .status-rows > div { display: grid; grid-template-columns: 16cqw 1fr; gap: 2cqw; padding: 1.6cqw 0; border-top: 1px solid var(--line); font-size: 1.45cqw; line-height: 1.45; }
     .status-rows .tag { font-size: .95cqw; letter-spacing: .14em; text-transform: uppercase; padding-top: .3cqw; }
-    .questions { list-style: none; padding: 0; margin-top: 3cqw; display: grid; gap: 3cqw; font-size: 2.3cqw; line-height: 1.3; letter-spacing: -.04em; max-width: 70cqw; }
+    .questions { list-style: none; padding: 0; margin-top: 3cqw; display: grid; gap: 3cqw; font-size: 2.4cqw; font-weight: 300; line-height: 1.3; letter-spacing: -.02em; max-width: 70cqw; }
     .names { display: flex; gap: 3.5cqw; position: absolute; left: 8%; bottom: 9%; font-size: 1.1cqw; }
     .names span { display: grid; gap: .3cqw; }
     .names small { color: var(--muted); font-size: .9cqw; }
@@ -200,7 +221,7 @@
     .three p { font-size: 1.1cqw; line-height: 1.55; color: var(--muted); }
     .backup-tag { position: absolute; right: 4%; top: 5.5%; font-size: .85cqw; letter-spacing: .14em; color: var(--muted); }
 
-    @media (prefers-reduced-motion: reduce) { .veil, .slide, .slide.is-active, .reveal { transition: none; } .cursor { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .veil, .slide, .slide.is-active, .reveal { transition: none; } }
   </style>
 </head>
 <body>
@@ -260,10 +281,22 @@
 
     <!-- 00 · title -->
     <section class="slide" id="s-title" aria-label="Title">
-      <div class="title-wrap">
-        <p class="kicker">Pathology Visions 2026 · Workshop</p>
-        <h1 class="h-xl"><span id="typed" data-text="Better Together">Better Together</span><span class="cursor"></span></h1>
-        <p class="body title-sub">One case, followed from a single cell to the other side of the world.</p>
+      <div class="cartouche" id="cartouche">
+        <span class="grat top"></span><span class="grat bottom"></span>
+        <span class="corner tl" data-corner="lat"></span><span class="corner tr" data-corner="lon"></span>
+        <div class="carto-head"><p class="kicker">Pathology Visions 2026 · Workshop</p><p class="kicker">Sheet PV26-001</p></div>
+        <h1 class="h-xl title-word" id="title-word">Better Together</h1>
+        <p class="title-sub">One case, followed from a single cell to the other side of the world.</p>
+        <div class="carto-legend">
+          <svg class="north" viewBox="-17 -24 34 44" aria-hidden="true">
+            <text x="0" y="-15" text-anchor="middle">N</text>
+            <circle r="12" fill="none" stroke="#161616" stroke-width=".6"/>
+            <g id="needle"><path d="M0 -11 L3.4 0 L0 11 L-3.4 0Z" fill="none" stroke="#161616" stroke-width=".8"/><path d="M0 -11 L3.4 0 L-3.4 0Z" fill="#161616"/></g>
+          </svg>
+          <div class="sbar"><div class="sbar-blocks" id="sbar"><span></span><span></span><span></span><span></span></div><div class="sbar-labels"><span>0</span><span>25</span><span>50</span><span>75</span><span>100 µm</span></div></div>
+          <p class="carto-coord"><small>START</small><span id="title-coord">39.3300° N · 83.0000° W</span></p>
+          <p class="legend-note">Magnification 40×<br>Destinations 4 · Glass shipped 0</p>
+        </div>
       </div>
       <footer class="title-foot"><span>Rajendra Singh · Archana Shenoy · Swati Satturwar · Matthew Hanna · Junya Fukuoka</span><span>PV26</span></footer>
     </section>

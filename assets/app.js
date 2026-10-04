@@ -124,7 +124,7 @@
   Object.entries(CONFIG.images).forEach(([k, src]) => {
     if (!src) return;
     const img = new Image();
-    img.onload = () => { TEX[k] = img; paintThumbs(); };
+    img.onload = () => { TEX[k] = img; TEX['_' + k] = img; paintThumbs(); };
     img.src = src;
   });
 
@@ -226,7 +226,11 @@
     if (mA > 0) drawMarks(cx, cy, k * mm, mA);
   }
 
-  function font(px, weight = 400) { return `${weight} ${px * U}px "Courier New", Courier, monospace`; }
+  const FAMILY = { sans: '"Overpass", "Helvetica Neue", Arial, sans-serif', mono: '"Overpass Mono", Menlo, monospace', serif: 'italic "Source Serif 4", Georgia, serif' };
+  function font(px, weight = 400, family = 'sans') {
+    return family === 'serif' ? `italic ${weight} ${px * U}px ${FAMILY.serif.replace('italic ', '')}` : `${weight} ${px * U}px ${FAMILY[family]}`;
+  }
+  const track = em => { if ('letterSpacing' in ctx) ctx.letterSpacing = em ? `${em}em` : '0px'; };
   function tagLabel(x, y, tag, text, color, alpha, anchor = 'left') {
     ctx.font = font(15);
     const tagW = tag ? ctx.measureText(tag + ' ').width : 0;
@@ -239,7 +243,7 @@
     ctx.fillStyle = 'rgba(250,250,248,.94)';
     ctx.fillRect(bx, by, tw + pad * 2, h);
     ctx.textBaseline = 'middle';
-    if (tag) { ctx.font = font(15, 700); ctx.fillStyle = color; ctx.fillText(tag, bx + pad, y + 1 * U); }
+    if (tag) { ctx.font = font(15, 800); ctx.fillStyle = color; ctx.fillText(tag, bx + pad, y + 1 * U); }
     ctx.font = font(15); ctx.fillStyle = INK; ctx.fillText(text, bx + pad + tagW, y + 1 * U);
     ctx.globalAlpha = 1;
   }
@@ -261,7 +265,7 @@
           ctx.arc(X(m.x), Y(m.y), m.r * kmm, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * local);
           ctx.stroke();
           if (m.type === 'num' && local > 0.6) {
-            ctx.font = font(15, 700); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            ctx.font = font(15, 800); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
             const lx = X(m.x) - (m.r * kmm + 12 * U), ly = Y(m.y) - (m.r * kmm + 4 * U);
             ctx.fillStyle = 'rgba(250,250,248,.94)'; ctx.fillRect(lx - 9 * U, ly - 11 * U, 18 * U, 22 * U);
             ctx.fillStyle = def.color; ctx.fillText(String(m.n), lx, ly + 1 * U); ctx.textAlign = 'left';
@@ -415,16 +419,39 @@
       ctx.fillStyle = here ? RUST : INK; ctx.strokeStyle = PAPER; ctx.lineWidth = 2 * U;
       ctx.beginPath(); ctx.arc(q[0], q[1], (here ? 5 : 4) * U, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
       const text = s.name.toUpperCase();
-      ctx.font = font(here ? 15 : 13, here ? 700 : 400);
+      ctx.font = font(here ? 14 : 12, here ? 800 : 600); track(0.14);
       const tw = ctx.measureText(text).width, lx = q[0] + 12 * U, ly = q[1] - 12 * U;
       const box = [lx - 4 * U, ly - 11 * U, tw + 8 * U, 22 * U];
       if (placed.some(b => !(box[0] > b[0] + b[2] || box[0] + box[2] < b[0] || box[1] > b[1] + b[3] || box[1] + box[3] < b[1]))) continue;
       placed.push(box);
       ctx.fillStyle = 'rgba(250,250,248,.85)'; ctx.fillRect(...box);
-      ctx.fillStyle = INK; ctx.textBaseline = 'middle'; ctx.fillText(text, lx, ly + 1 * U);
+      ctx.fillStyle = INK; ctx.textBaseline = 'middle'; ctx.fillText(text, lx, ly + 1.5 * U);
     }
+    track(0);
     ctx.restore();
     return placed;
+  }
+
+  // Water, set the way printed maps set it: italic serif, blue, letter-spaced.
+  const WATER = [
+    { name: 'Ohio River', lon: -83.95, lat: 38.66, size: 13, min: 90e3, max: 900e3 },
+    { name: 'Lake Erie', lon: -81.4, lat: 42.15, size: 15, min: 150e3, max: 2.5e6, track: 0.12 },
+    { name: 'Lake Michigan', lon: -87.1, lat: 43.6, size: 15, min: 300e3, max: 2.5e6, track: 0.12 },
+    { name: 'East China Sea', lon: 127.9, lat: 32.15, size: 16, min: 300e3, max: 6e6, track: 0.16 },
+    { name: 'Sea of Japan', lon: 133.8, lat: 39.5, size: 16, min: 900e3, max: 9e6, track: 0.16 },
+    { name: 'Pacific Ocean', lon: -165, lat: 32, size: 20, min: 4e6, max: 1e9, track: 0.3 },
+  ];
+  function drawWater(alpha) {
+    const w = S.cam.w;
+    ctx.save(); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#47698c';
+    for (const l of WATER) {
+      const a = alpha * Math.min(clamp01(lg(w / l.min) / 0.25), clamp01(lg(l.max / w) / 0.25));
+      if (a <= 0) continue;
+      const q = P([l.lon, l.lat]); if (!q) continue;
+      ctx.globalAlpha = a * 0.85; ctx.font = font(l.size, 400, 'serif'); track(l.track || 0.06);
+      ctx.fillText(l.name, q[0], q[1]);
+    }
+    track(0); ctx.restore();
   }
 
   // Reference cities, the way a web map labels them: smaller and greyer than the sites.
@@ -437,7 +464,7 @@
     const a = alpha * clamp01((1.4e6 - w) / 0.6e6) * clamp01(lg(w / 20e3));
     if (a <= 0) return;
     const siteDots = [...shown].map(k => P(geo(SITES[k]))).filter(Boolean);
-    ctx.save(); ctx.globalAlpha = a; ctx.font = font(12); ctx.textBaseline = 'middle';
+    ctx.save(); ctx.globalAlpha = a; ctx.font = font(12.5, 500); ctx.textBaseline = 'middle';
     const list = GEO.ctx.places.filter(p => p[3] >= minPop && !shown.has(SITE_CITIES[p[0]])).sort((x, y) => y[3] - x[3]);
     for (const [name, lon, lat] of list) {
       const q = P([lon, lat]);
@@ -462,7 +489,7 @@
     const gridA = 1 - clamp01(lg(w / 3e3));
     if (gridA > 0 && L0) drawGrid(L0[0], L0[1], k, gridA);
     const mapA = clamp01(lg(w / 1500));
-    if (mapA > 0) drawMap(mapA);
+    if (mapA > 0) { drawMap(mapA); drawWater(mapA); }
     if (w < 60 && L0) drawMicro(L0[0], L0[1], k);
     const siteA = clamp01(lg(w / 0.4));
     if (siteA > 0) { drawRoutes(now, siteA); const placed = drawSites(now, siteA); drawPlaces(placed, mapA); }
@@ -602,9 +629,25 @@
     });
   }
   function setBars(t) { $$('#s-arrival [data-bar]').forEach(el => { el.style.width = (+el.dataset.bar * t) + '%'; }); }
-  function setTyped(n) {
-    const el = $('#typed'), text = el.dataset.text;
-    el.textContent = text.slice(0, n);
+  // The title as a map cartouche: the frame and title settle, the compass needle
+  // swings and comes to rest on north, the scale bar fills, the coordinates count in.
+  const fmtCoord = (lat, lon) => `${Math.abs(lat).toFixed(4)}° ${lat >= 0 ? 'N' : 'S'} · ${Math.abs(lon).toFixed(4)}° ${lon >= 0 ? 'E' : 'W'}`;
+  const dms = (v, pos, neg) => { const a = Math.abs(v), d = Math.floor(a), m = Math.floor((a - d) * 60), sec = Math.round(((a - d) * 60 - m) * 60); return `${d}°${String(m).padStart(2, '0')}′${String(sec).padStart(2, '0')}″ ${v >= 0 ? pos : neg}`; };
+  $('[data-corner="lat"]').textContent = dms(C.lat, 'N', 'S');
+  $('[data-corner="lon"]').textContent = dms(C.lon, 'E', 'W');
+  function setTitle(t) {
+    const word = $('#title-word'), sub = $('#s-title .title-sub'), legend = $('#s-title .carto-legend'), frame = $('#cartouche');
+    const e1 = d3.easeCubicOut(clamp01(t / 0.55));
+    frame.style.opacity = clamp01(t / 0.2);
+    word.style.opacity = e1; word.style.letterSpacing = `${0.32 - 0.355 * e1}em`;
+    sub.style.opacity = clamp01((t - 0.35) / 0.25);
+    legend.style.opacity = clamp01((t - 0.25) / 0.2);
+    const tn = clamp01((t - 0.25) / 0.75);
+    const angle = tn >= 1 ? 0 : 80 * Math.exp(-4.2 * tn) * Math.cos(11 * tn);
+    $('#needle').setAttribute('transform', `rotate(${angle.toFixed(2)})`);
+    $$('#sbar span').forEach((el, i) => el.classList.toggle('on', t >= 0.4 + i * 0.1));
+    const ec = d3.easeCubicOut(clamp01((t - 0.3) / 0.6));
+    $('#title-coord').textContent = fmtCoord(C.lat * ec, C.lon * ec);
   }
 
   // ---------- steps ----------
@@ -614,7 +657,7 @@
     flight(VIEWS[view], dur, { rho, onStep: f => { S.packet.f = f; S.routes[key] = f; }, done: () => { S.packet = null; S.routes[key] = 1; } });
   };
   const STEPS = [
-    { slide: 's-title', veil: 0.9, view: 'lab40', enter: () => { const n = $('#typed').dataset.text.length; setTyped(0); tween(500, n * 85, t => setTyped(Math.round(t * n))); } },
+    { slide: 's-title', veil: 0.9, view: 'lab40', enter: () => { setTitle(0); tween(300, 3200, setTitle); } },
     { slide: 's-disclosures', veil: 1, view: 'lab40' },
     { slide: 's-case', veil: 0, view: 'lab40', at: 'community', scale: true, marks: ['community'], captionDelay: 2400,
       enter: () => { S.cam = { ...VIEWS.lab4 }; S.marks.community = 0; flight(VIEWS.lab40, 3000, { rho: 1 }); tween(2700, 900, t => { S.marks.community = t; }); } },
@@ -688,7 +731,7 @@
       el.classList.toggle('is-here', st.home ? i === 0 : i === hereIdx);
     });
     // finished DOM states
-    setBars(1); setTyped(99);
+    setBars(1); setTitle(1);
     $('#cohort-stage').classList.toggle('is-filtered', st.slide === 's-cohort' && st.stage === 1);
     $('[data-total-km]').textContent = Math.round(TOTAL_KM).toLocaleString();
     $$('[data-km]').forEach(el => { const s = el.closest('.slide').id.slice(-1); const r = ROUTES[+s - 1]; if (r) el.textContent = Math.round(r.km).toLocaleString(); });
@@ -740,6 +783,11 @@
   });
 
   // ---------- start ----------
+  Promise.all(['400 20px "Overpass"', '400 20px "Overpass Mono"'].map(f => document.fonts.load(f))).then(() => {
+    TEX.slide = TISSUE.slide(); TEX.field40 = TISSUE.field40(); TEX.field4 = TISSUE.field4();
+    Object.entries(CONFIG.images).forEach(([k, src]) => { if (src && TEX['_' + k]) TEX[k] = TEX['_' + k]; });
+    paintThumbs();
+  }).catch(() => {});
   window.addEventListener('resize', resize);
   resize();
   paintThumbs();

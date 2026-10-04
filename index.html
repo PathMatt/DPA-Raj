@@ -132,7 +132,22 @@
     .ws-tile > .ph, .ws-tile > canvas, .ws-tile > .ihc { flex: 1; min-height: 0; width: 100%; }
     .ws-tile figcaption { font-size: .85cqw; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
     .t-photo { grid-area: photo; } .t-slide { grid-area: slide; } .t-hist { grid-area: hist; } .t-prior { grid-area: prior; } .t-gross { grid-area: gross; } .t-ihc { grid-area: ihc; } .t-mol { grid-area: mol; } .t-notes { grid-area: notes; }
-    .t-slide canvas { display: block; object-fit: cover; }
+    .ws-osd { position: relative; overflow: hidden; background: #fff; flex: 1; min-height: 0; pointer-events: auto; cursor: grab; outline: none; }
+    .ws-osd > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 400ms; }
+    .ws-osd.is-live > img { opacity: 0; }
+    .ws-osd .openseadragon-container { position: absolute !important; inset: 0; }
+    .rv-open { position: absolute; right: 4%; top: 14.5%; border: 1.5px solid var(--ink); font: 600 .78cqw/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--ink); cursor: pointer; pointer-events: auto; opacity: 0; visibility: hidden; transition: opacity 400ms; padding: .7cqw 1cqw; }
+    .rv-open.is-on { opacity: 1; visibility: visible; }
+    .rv-open b, .reviewer-bar button b { font-family: var(--mono); font-weight: 500; margin-left: .5em; padding: .1em .45em; border: 1px solid currentColor; }
+    .reviewer { position: absolute; inset: 0; z-index: 20; background: var(--paper); display: flex; flex-direction: column; }
+    .reviewer[hidden] { display: none; }
+    .reviewer-bar { display: flex; align-items: center; gap: 1.2cqw; padding: 1cqw 1.6cqw; border-bottom: 1px solid var(--line); }
+    .rv-title { font-size: 1.05cqw; margin-right: auto; }
+    .rv-title .muted { color: var(--muted); }
+    .rv-mag { font-family: var(--mono); font-size: 1.3cqw; min-width: 4em; text-align: right; }
+    .reviewer-bar button { font: 600 .82cqw/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; background: transparent; border: 1.5px solid var(--ink); color: var(--ink); padding: .6cqw .9cqw; cursor: pointer; }
+    .reviewer-bar button[data-rv="in"], .reviewer-bar button[data-rv="out"] { font-size: 1.2cqw; width: 2.6cqw; padding: .4cqw 0; letter-spacing: 0; }
+    .reviewer-view { flex: 1; position: relative; background: #fff; }
     .ihc { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6cqw; }
     .hist-list { flex: 1; border: 1.5px dashed rgba(22,22,22,.32); padding: 1cqw; font-size: .95cqw; line-height: 1.7; list-style: none; margin: 0; }
     .hist-list span { color: var(--muted); }
@@ -227,9 +242,8 @@
 <body>
   <!--
     CONFIG: every placeholder that is not inline text lives here.
-    - images: drop real files into assets/case/ and point to them. The 40x crop
-      must be 0.5 mm wide, the 4x crop 5 mm wide, the slide photo 76 mm wide,
-      each centred on the same spot (the feature). Leave '' to use the drawn placeholder.
+    - The slide is a stand-in whole-slide image (SOPHIE SN_0023, CC0) set up in
+      assets/tissue.js. See README for swapping in the real case.
     - sites.community: set the real location and name of the referring hospital.
     - pollUrl / moduleUrl: when set, a real QR code is drawn.
     - learners: illustrative only. Replace with real learner locations.
@@ -238,7 +252,6 @@
     window.CONFIG = {
       pollUrl: '',
       moduleUrl: '',
-      images: { field40: '', field4: '', slide: '' },
       sites: {
         community:  { name: '[Community hospital]', short: 'Community', lon: -83.00, lat: 39.33 },
         cincinnati: { name: "Cincinnati Children's", short: 'Cincinnati', lon: -84.5020, lat: 39.1406 },
@@ -277,6 +290,20 @@
         </div>
         <span class="coords" id="coords"></span>
       </div>
+      <button class="chip rv-open" id="rv-open" type="button">Open slide <b>V</b></button>
+    </div>
+
+    <div class="reviewer" id="reviewer" hidden>
+      <div class="reviewer-bar">
+        <p class="kicker" style="margin:0">Slide viewer</p>
+        <p class="rv-title">SN_0023 · Spitz nevus · <span class="muted">stand-in for PV26-001 · SOPHIE dataset, CC0</span></p>
+        <span class="rv-mag" id="rv-mag">40×</span>
+        <button type="button" data-rv="out" aria-label="Zoom out">−</button>
+        <button type="button" data-rv="in" aria-label="Zoom in">+</button>
+        <button type="button" data-rv="home">Whole slide</button>
+        <button type="button" data-rv="close">Close <b>V</b></button>
+      </div>
+      <div class="reviewer-view" id="rv-view"></div>
     </div>
 
     <!-- 00 · title -->
@@ -325,6 +352,7 @@
         <h2 class="h-m">Scalp lesion in a 14-year-old</h2>
         <p class="body"><span class="tbd">[biopsy type · clinical note]</span></p>
         <p class="body">The pathologist keeps coming back to one feature.</p>
+        <p class="note" style="margin-top:1.2cqw">Stand-in slide: Spitz nevus, head and neck, 8-year-old. SOPHIE dataset SN_0023 (CC0), Mosquera-Zamudio et al., Sci Data 2023.</p>
       </div>
     </section>
 
@@ -379,7 +407,7 @@
         <div class="ws-bar"><span>PV26-001 · Scalp · 14 y · Cincinnati Children's</span><span class="tbd">[replace with a real screenshot or screen recording]</span></div>
         <div class="ws-grid">
           <figure class="ws-tile t-photo"><div class="ph">[Clinical photograph]</div><figcaption>Clinical photo</figcaption></figure>
-          <figure class="ws-tile t-slide"><canvas id="ws-canvas" width="1400" height="900"></canvas><figcaption>H&amp;E · levels 1–3 · any scanner</figcaption></figure>
+          <figure class="ws-tile t-slide"><div class="ws-osd" id="ws-viewer" tabindex="-1"><img src="assets/wsi/field40.jpg" alt="H&amp;E, 40x field of the stand-in Spitz nevus"></div><figcaption>H&amp;E · live slide · drag to pan, scroll to zoom</figcaption></figure>
           <figure class="ws-tile t-hist"><ul class="hist-list"><li><span>Age</span> 14</li><li><span>Site</span> scalp</li><li class="tbd">[duration]</li><li class="tbd">[change over time]</li><li class="tbd">[family history]</li></ul><figcaption>History</figcaption></figure>
           <figure class="ws-tile t-prior"><div class="ph">[Prior biopsies, side by side]</div><figcaption>Priors</figcaption></figure>
           <figure class="ws-tile t-gross"><div class="ph">[Gross description and images]</div><figcaption>Gross</figcaption></figure>
@@ -506,7 +534,7 @@
           <p class="small" style="margin-top:.8cqw">share the features that matter here.</p>
           <p class="body tbd" style="margin-top:1.6cqw">[What happened to them, and what that told Cincinnati]</p>
         </div>
-        <p class="note" style="margin-top:auto">Shared the way CHTN shares research images across its six divisions. Tiles are illustrative.</p>
+        <p class="note" style="margin-top:auto">Shared the way CHTN shares research images across its six divisions. Tiles are crops of the stand-in slide, for illustration.</p>
       </div>
     </section>
 
@@ -728,6 +756,7 @@
   <script src="assets/vendor/d3.min.js"></script>
   <script src="assets/vendor/topojson-client.min.js"></script>
   <script src="assets/vendor/qrcode.js"></script>
+  <script src="assets/vendor/openseadragon.min.js"></script>
   <script src="assets/tissue.js"></script>
   <script src="assets/app.js"></script>
 </body>

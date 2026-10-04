@@ -49,18 +49,18 @@
   const TOTAL_KM = ROUTES.reduce((s, r) => s + r.km, 0);
   $$('[data-dist="pittsburgh-nagasaki"]').forEach(el => { el.textContent = (Math.round(ROUTES[3].km / 100) * 100).toLocaleString(); });
 
-  // Annotations on the 40x field, in mm from its centre (y down).
-  const F = TISSUE.FEATURE;
+  // Annotations on the opening 40x field, in mm from its centre (y down). They sit
+  // on real structures in the stand-in slide; the labels are placeholders.
   const MARKS = {
-    community: { color: INK, items: [{ type: 'circle', x: F.x, y: F.y, r: 0.013, label: '[the feature]', dx: 0.02, dy: -0.012 }] },
+    community: { color: INK, items: [{ type: 'circle', x: 0.0925, y: 0.0045, r: 0.022, label: '[the feature]', dx: 0.03, dy: -0.012 }] },
     cincinnati: { color: RUST, tag: 'CIN', items: [
-      { type: 'num', n: 1, x: 0.03, y: 0.04, r: 0.008 },
-      { type: 'num', n: 2, x: 0.1, y: 0.048, r: 0.008 },
-      { type: 'num', n: 3, x: 0.12, y: -0.068, r: 0.008, label: '[features 1–3]', dx: 0.014, dy: -0.004 },
+      { type: 'num', n: 1, x: 0.045, y: -0.0465, r: 0.009, label: '[features 1–3]', dx: 0.014, dy: -0.004 },
+      { type: 'num', n: 2, x: 0.155, y: -0.0665, r: 0.009 },
+      { type: 'num', n: 3, x: 0.010, y: 0.0635, r: 0.009 },
     ] },
-    columbus: { color: RUST, tag: 'OSU', items: [{ type: 'rect', x0: 0.13, y0: 0.05, x1: 0.215, y1: 0.12, label: '[area that changed the read]', dx: 0.085, dy: -0.014, anchor: 'right' }] },
-    pittsburgh: { color: RUST, tag: 'UPMC', items: [{ type: 'ellipse', x: 0.06, y: -0.01, rx: 0.105, ry: 0.082, dash: true, label: '[n] cases share this pattern', dx: -0.04, dy: 0.088 }] },
-    nagasaki: { color: RUST, tag: 'NGS', items: [{ type: 'pin', x: 0.0, y: -0.1, label: '[teaching note]', dx: 0.006, dy: -0.011 }] },
+    columbus: { color: RUST, tag: 'OSU', items: [{ type: 'rect', x0: 0.095, y0: 0.07, x1: 0.185, y1: 0.12, label: '[area that changed the read]', dx: 0.09, dy: -0.014, anchor: 'right' }] },
+    pittsburgh: { color: RUST, tag: 'UPMC', items: [{ type: 'ellipse', x: 0.055, y: -0.0065, rx: 0.105, ry: 0.09, dash: true, label: '[n] cases share this pattern', dx: -0.04, dy: -0.098 }] },
+    nagasaki: { color: RUST, tag: 'NGS', items: [{ type: 'pin', x: 0.0, y: 0.1, label: '[teaching note]', dx: 0.006, dy: -0.011 }] },
   };
 
   // ---------- geography ----------
@@ -120,13 +120,59 @@
     });
 
   // ---------- textures ----------
-  const TEX = { field40: TISSUE.field40(), field4: TISSUE.field4(), slide: TISSUE.slide() };
-  Object.entries(CONFIG.images).forEach(([k, src]) => {
-    if (!src) return;
-    const img = new Image();
-    img.onload = () => { TEX[k] = img; TEX['_' + k] = img; paintThumbs(); };
-    img.src = src;
-  });
+  const loadImage = src => { const im = new Image(); im.src = src; return im; };
+  const TEX = { glass: TISSUE.glass(), overview: loadImage('assets/wsi/overview.jpg'), field40: loadImage('assets/wsi/field40.jpg'), sprite: loadImage('assets/wsi/cohort.jpg') };
+  const ready = im => im.complete && im.naturalWidth > 0;
+
+  // ---------- the slide's tile pyramid, drawn straight into the camera ----------
+  const tileCache = new Map(), tileQueue = [];
+  let tileFlight = 0, frameNo = 0;
+  function requestTile(L, x, y, want) {
+    const key = `${L}/${x}_${y}`;
+    let t = tileCache.get(key);
+    if (!t) { t = { key, L, img: null, state: 0, want: 0, queued: false }; tileCache.set(key, t); }
+    t.want = Math.max(t.want, want);
+    if (t.state === 0 && !t.queued) { t.queued = true; tileQueue.push(t); }
+    return t;
+  }
+  function pumpTiles() {
+    if (!tileQueue.length) return;
+    tileQueue.sort((a, b) => b.want - a.want || b.L - a.L);
+    while (tileFlight < 12 && tileQueue.length) {
+      const t = tileQueue.shift(); t.queued = false;
+      if (frameNo - t.want > 30) continue;      // scrolled past; can be asked for again
+      t.state = 1; tileFlight++;
+      const im = new Image();
+      im.onload = () => { t.img = im; t.state = 2; tileFlight--; };
+      im.onerror = () => { t.state = 3; tileFlight--; };   // blank glass tiles were left out of the pyramid
+      im.src = `${TISSUE.tiles}/${t.key}.jpg`;
+    }
+  }
+  function levelInfo(L) {
+    const f = Math.pow(2, L - TISSUE.maxLevel);
+    return { f, nx: Math.ceil(Math.ceil(TISSUE.CROP.w * f) / 512), ny: Math.ceil(Math.ceil(TISSUE.CROP.h * f) / 512) };
+  }
+  // cx, cy: screen position of the opening field's centre; kmm: screen px per mm
+  function drawTiles(cx, cy, kmm, { draw = true, want = frameNo } = {}) {
+    const T = TISSUE, s = kmm * T.MPP;         // screen px per level-0 px
+    if (s * DPR < 1 / 40) return;               // the overview image is already sharp enough
+    const top = Math.min(T.maxLevel, Math.max(8, T.maxLevel + Math.ceil(Math.log2(s * DPR))));
+    const ox = cx + (T.CROP.x - T.CENTRE.x) * s, oy = cy + (T.CROP.y - T.CENTRE.y) * s;
+    for (let L = Math.max(8, top - 3); L <= top; L++) {
+      const { f, nx, ny } = levelInfo(L), ts = 512 / f * s;
+      const x0 = Math.max(0, Math.floor(-ox / ts)), x1 = Math.min(nx - 1, Math.floor((W - ox) / ts));
+      const y0 = Math.max(0, Math.floor(-oy / ts)), y1 = Math.min(ny - 1, Math.floor((H - oy) / ts));
+      if (x1 < x0 || y1 < y0 || (x1 - x0 + 1) * (y1 - y0 + 1) > 220) continue;
+      for (let ty = y0; ty <= y1; ty++) for (let tx = x0; tx <= x1; tx++) {
+        const t = (L === top || L === top - 2) ? requestTile(L, tx, ty, want) : tileCache.get(`${L}/${tx}_${ty}`);
+        if (draw && t && t.state === 2) ctx.drawImage(t.img, ox + tx * ts, oy + ty * ts, t.img.width / f * s + 0.6, t.img.height / f * s + 0.6);
+      }
+    }
+  }
+  // Warm the cache along the opening zoom so the first pull-back is sharp.
+  function prefetchOpening() {
+    for (let w = 0.00045; w < 0.02; w *= 2) drawTiles(W / 2, H / 2, W / (w * 1000), { draw: false, want: 1e9 });
+  }
 
   // ---------- state ----------
   const S = {
@@ -202,19 +248,19 @@
   }
 
   function drawMicro(cx, cy, k) {
-    const T = TISSUE, mm = 0.001;
-    const slideW = T.SLIDE.w * mm * k;
-    if (slideW < 2) return;
-    // the slide fades into a dot once it is a few pixels wide
-    drawLayer(TEX.slide, T.SLIDE.w * mm, T.SLIDE.h * mm, cx, cy, k, clamp01((slideW - 4 * U) / (14 * U)));
-    const w4 = T.FIELD4.w * mm * k;
-    drawLayer(TEX.field4, T.FIELD4.w * mm, T.FIELD4.h * mm, cx, cy, k, clamp01((w4 / W - 0.05) / 0.12));
-    const w40 = T.FIELD40.w * mm * k;
-    drawLayer(TEX.field40, T.FIELD40.w * mm, T.FIELD40.h * mm, cx, cy, k, clamp01((w40 / W - 0.1) / 0.2));
+    const T = TISSUE, kmm = k * 0.001, G = T.GLASS;
+    const glassW = G.w * kmm;
+    if (glassW < 2) return;
+    // the glass fades into a dot once it is a few pixels wide
+    const ga = clamp01((glassW - 4 * U) / (14 * U));
+    drawLayer(TEX.glass, G.w / 1000, G.h / 1000, cx + G.cx * kmm, cy + G.cy * kmm, k, ga);
+    const O = T.OVERVIEW;
+    if (ready(TEX.overview)) drawLayer(TEX.overview, O[2] / 1000, O[3] / 1000, cx + (O[0] + O[2] / 2) * kmm, cy + (O[1] + O[3] / 2) * kmm, k, ga);
+    drawTiles(cx, cy, kmm);
     // as the slide shrinks it turns into tiles: the case becoming data
-    const tA = Math.min(clamp01((slideW - 70 * U) / (90 * U)), clamp01((900 * U - slideW) / (400 * U)));
+    const tA = Math.min(clamp01((glassW - 70 * U) / (90 * U)), clamp01((900 * U - glassW) / (400 * U)));
     if (tA > 0) {
-      const sw = slideW, sh = T.SLIDE.h * mm * k, x0 = cx - sw / 2, y0 = cy - sh / 2, n = 28, st = sw / n;
+      const sw = glassW, sh = G.h * kmm, x0 = cx + G.cx * kmm - sw / 2, y0 = cy + G.cy * kmm - sh / 2, n = 28, st = sw / n;
       ctx.strokeStyle = `rgba(156,66,60,${0.45 * tA})`; ctx.lineWidth = 1;
       ctx.beginPath();
       for (let i = 0; i <= n; i++) { ctx.moveTo(x0 + i * st, y0); ctx.lineTo(x0 + i * st, y0 + sh); }
@@ -222,8 +268,8 @@
       ctx.stroke();
     }
     // annotations, only once the 40x field is large enough to read
-    const mA = clamp01((w40 / W - 0.45) / 0.3);
-    if (mA > 0) drawMarks(cx, cy, k * mm, mA);
+    const mA = clamp01((T.FIELD40.w * kmm / W - 0.45) / 0.3);
+    if (mA > 0) drawMarks(cx, cy, kmm, mA);
   }
 
   const FAMILY = { sans: '"Overpass", "Helvetica Neue", Arial, sans-serif', mono: '"Overpass Mono", Menlo, monospace', serif: 'italic "Source Serif 4", Georgia, serif' };
@@ -480,6 +526,7 @@
   }
 
   function render(now) {
+    frameNo++;
     ctx.fillStyle = PAPER; ctx.fillRect(0, 0, W, H);
     if (S.spin) { S.cam.lon = S.spinLon - (now - S.spinFrom) / 1000 * 3; }
     setProjection();
@@ -493,6 +540,7 @@
     if (w < 60 && L0) drawMicro(L0[0], L0[1], k);
     const siteA = clamp01(lg(w / 0.4));
     if (siteA > 0) { drawRoutes(now, siteA); const placed = drawSites(now, siteA); drawPlaces(placed, mapA); }
+    pumpTiles();
     updateHUD();
   }
 
@@ -588,38 +636,93 @@
 
   // ---------- DOM helpers ----------
   function paintThumbs() {
-    const c = $('#ws-canvas'), g = c.getContext('2d'), img = TEX.field40;
-    const iw = img.naturalWidth || img.width, ih = img.naturalHeight || img.height;
-    const s = Math.max(c.width / iw, c.height / ih);
-    g.drawImage(img, (c.width - iw * s) / 2, (c.height - ih * s) / 2, iw * s, ih * s);
-    buildCohort();
+    if (ready(TEX.field40) && ready(TEX.sprite)) buildCohort();
   }
-  let cohortBuilt = false;
+  [TEX.field40, TEX.sprite].forEach(im => im.addEventListener('load', paintThumbs));
+  // The collection: crops of the stand-in slide, one of them the case.
   function buildCohort() {
     const grid = $('#cohort-grid'); grid.innerHTML = '';
     const cols = 18, rows = 12, r = d3.randomLcg(42), caseIndex = 6 * cols + 9;
-    const src = TEX.field4, iw = src.naturalWidth || src.width, ih = src.naturalHeight || src.height;
     const matches = new Set();
     while (matches.size < 17) { const i = Math.floor(r() * cols * rows); if (i !== caseIndex) matches.add(i); }
     for (let i = 0; i < cols * rows; i++) {
-      const c = document.createElement('canvas'); c.width = 96; c.height = 72;
+      const c = document.createElement('canvas'); c.width = 128; c.height = 96;
       const g = c.getContext('2d');
       if (i === caseIndex) {
-        const f = TEX.field40, fw = f.naturalWidth || f.width, fh = f.naturalHeight || f.height;
-        g.drawImage(f, fw * 0.25, fh * 0.12, fw * 0.5, fh * 0.75, 0, 0, 96, 72);
+        const f = TEX.field40;
+        g.drawImage(f, f.naturalWidth * 0.3, f.naturalHeight * 0.15, f.naturalWidth * 0.5, f.naturalHeight * 0.667, 0, 0, 128, 96);
         c.className = 'is-case';
       } else {
-        const f = TEX.field40, fw = f.naturalWidth || f.width, fh = f.naturalHeight || f.height;
-        const z = 0.18 + r() * 0.3, sw = fw * z, sh = sw * 0.75;
-        g.filter = `hue-rotate(${(r() - 0.5) * 40}deg) saturate(${0.6 + r() * 0.7}) brightness(${0.92 + r() * 0.16})`;
-        g.translate(48, 36); g.rotate(Math.floor(r() * 4) * Math.PI / 2); g.translate(-48, -36);
-        g.drawImage(f, r() * (fw - sw), r() * (fh - sh), sw, sh, 0, 0, 96, 72);
+        const cell = Math.floor(r() * 48), sx = (cell % 8) * 256, sy = Math.floor(cell / 8) * 192;
+        g.filter = `hue-rotate(${(r() - 0.5) * 24}deg) saturate(${0.75 + r() * 0.5}) brightness(${0.94 + r() * 0.12})`;
+        if (r() < 0.5) { g.translate(128, 96); g.rotate(Math.PI); }
+        g.drawImage(TEX.sprite, sx, sy, 256, 192, 0, 0, 128, 96);
         if (matches.has(i)) c.className = 'is-match';
       }
       grid.appendChild(c);
     }
-    cohortBuilt = true;
   }
+
+  // ---------- slide viewers (OpenSeadragon) ----------
+  // The same tile pyramid, as a live viewer: in the Cincinnati workspace, and
+  // full screen on any tissue view with V.
+  const fieldRect = (wMm, aspect) => {
+    const T = TISSUE, wPx = wMm / T.MPP, hPx = wPx / aspect;
+    const cx = T.CENTRE.x - T.CROP.x, cy = T.CENTRE.y - T.CROP.y;
+    return new OpenSeadragon.Rect((cx - wPx / 2) / T.CROP.w, (cy - hPx / 2) / T.CROP.w, wPx / T.CROP.w, hPx / T.CROP.w);
+  };
+  function makeViewer(el, onReady) {
+    const v = OpenSeadragon({
+      element: el, tileSources: TISSUE.dzi, drawer: 'canvas', prefixUrl: '',
+      showNavigationControl: false, showNavigator: false, animationTime: 0.6, springStiffness: 7,
+      maxZoomPixelRatio: 2, visibilityRatio: 0.5, constrainDuringPan: true, immediateRender: true,
+      gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true },
+    });
+    v.addOnceHandler('open', () => onReady && onReady(v));
+    return v;
+  }
+  let wsViewer = null;
+  function initWorkspaceViewer() {
+    if (wsViewer) return;
+    const el = $('#ws-viewer');
+    wsViewer = makeViewer(el, v => {
+      const r = el.getBoundingClientRect();
+      v.viewport.fitBounds(fieldRect(0.6, r.width / r.height), true);
+      v.addOnceHandler('tile-drawn', () => el.classList.add('is-live'));
+    });
+  }
+  const rv = { el: $('#reviewer'), viewer: null };
+  function rvMag() {
+    if (!rv.viewer || !rv.viewer.world.getItemAt(0)) return;
+    // same definition as the deck's readout: 40x when the screen spans 0.45 mm
+    const wMm = rv.viewer.viewport.getBounds(true).width * TISSUE.CROP.w * TISSUE.MPP, m = 40 * 0.45 / wMm;
+    $('#rv-mag').textContent = `${m.toFixed(m >= 9.5 ? 0 : 1)}×`;
+  }
+  function openReviewer() {
+    finishAll();
+    rv.el.hidden = false;
+    const fit = v => {
+      const r = $('#rv-view').getBoundingClientRect();
+      if (S.cam.w < 0.02) v.viewport.fitBounds(fieldRect(S.cam.w * 1000, r.width / r.height), true);
+      else v.viewport.goHome(true);
+      rvMag();
+    };
+    if (!rv.viewer) {
+      rv.viewer = makeViewer($('#rv-view'), fit);
+      rv.viewer.addHandler('animation', rvMag);
+    } else fit(rv.viewer);
+    setTimeout(() => rv.viewer.canvas && rv.viewer.canvas.focus(), 50);
+  }
+  function closeReviewer() { rv.el.hidden = true; deck.focus && deck.focus(); }
+  rv.el.addEventListener('click', e => {
+    e.stopPropagation();
+    const b = e.target.closest('[data-rv]'); if (!b || !rv.viewer) return;
+    const vp = rv.viewer.viewport, a = b.dataset.rv;
+    if (a === 'in') vp.zoomBy(1.6); else if (a === 'out') vp.zoomBy(1 / 1.6); else if (a === 'home') vp.goHome(); else if (a === 'close') closeReviewer();
+    vp.applyConstraints();
+  });
+  $('#rv-open').addEventListener('click', e => { e.stopPropagation(); openReviewer(); });
+
   function drawQRs() {
     $$('[data-qr]').forEach(el => {
       const url = el.dataset.qr === 'poll' ? CONFIG.pollUrl : CONFIG.moduleUrl;
@@ -668,7 +771,7 @@
     { slide: 's-send1', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true, route: 'r1', enter: send('r1', 'cincinnati', 3800, 1.3) },
     { slide: 's-card1', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true },
     { slide: 's-workspace', veil: 1, at: 'cincinnati',
-      enter: () => { const h = $('#s-workspace .ws-heading'); h.style.opacity = 0; domZoom($('#s-workspace .ws-frame'), $('#s-workspace .t-slide'), 2200, 500); tween(2500, 600, t => { h.style.opacity = t; h.style.transform = 'none'; }); } },
+      enter: () => { const h = $('#s-workspace .ws-heading'); h.style.opacity = 0; domZoom($('#s-workspace .ws-frame'), $('#s-workspace .t-slide'), 2200, 500, initWorkspaceViewer); tween(2500, 600, t => { h.style.opacity = t; h.style.transform = 'none'; }); } },
     { slide: 's-diff', stage: 0, veil: 1, at: 'cincinnati' },
     { slide: 's-diff', stage: 1, veil: 1, at: 'cincinnati' },
     { slide: 's-send2', veil: 0, view: 'columbus', at: 'columbus', scale: true, route: 'r2', enter: send('r2', 'columbus', 3800, 1.4) },
@@ -739,6 +842,8 @@
     $('#cohort-grid').classList.add('is-settled');
     $$('.slide.is-waiting').forEach(el => el.classList.remove('is-waiting'));
     const h = $('#s-workspace .ws-heading'); h.style.opacity = 1; h.style.transform = 'none';
+    if (st.slide === 's-workspace') initWorkspaceViewer();
+    $('#rv-open').classList.toggle('is-on', st.view === 'lab40' && st.veil < 0.5);
   }
 
   function show(st) {
@@ -767,13 +872,19 @@
 
   document.addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (!rv.el.hidden) {
+      if (e.key === 'Escape' || e.key === 'v' || e.key === 'V') { e.preventDefault(); closeReviewer(); }
+      return;                                   // everything else belongs to the viewer
+    }
+    if (e.key === 'v' || e.key === 'V') { openReviewer(); return; }
+    if (e.key.startsWith('Arrow') && e.target.closest && e.target.closest('.ws-osd')) return;  // panning the workspace viewer
     if (['ArrowRight', 'PageDown', ' ', 'Enter', 'ArrowDown'].includes(e.key)) { e.preventDefault(); next(); }
     else if (['ArrowLeft', 'PageUp', 'Backspace', 'ArrowUp'].includes(e.key)) { e.preventDefault(); prev(); }
     else if (e.key === 'Home') go(0, false);
     else if (e.key === 'End') go(STEPS.length - 1, false);
     else if (e.key === 'f' || e.key === 'F') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
   });
-  deck.addEventListener('click', e => { if (!e.target.closest('a')) next(); });
+  deck.addEventListener('click', e => { if (!e.target.closest('a, .ws-osd, #reviewer, #rv-open')) next(); });
   let touchX = null;
   deck.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
   deck.addEventListener('touchend', e => {
@@ -783,13 +894,10 @@
   });
 
   // ---------- start ----------
-  Promise.all(['400 20px "Overpass"', '400 20px "Overpass Mono"'].map(f => document.fonts.load(f))).then(() => {
-    TEX.slide = TISSUE.slide(); TEX.field40 = TISSUE.field40(); TEX.field4 = TISSUE.field4();
-    Object.entries(CONFIG.images).forEach(([k, src]) => { if (src && TEX['_' + k]) TEX[k] = TEX['_' + k]; });
-    paintThumbs();
-  }).catch(() => {});
+  Promise.all(['400 20px "Overpass"', '400 20px "Overpass Mono"'].map(f => document.fonts.load(f))).then(() => { TEX.glass = TISSUE.glass(); }).catch(() => {});
   window.addEventListener('resize', resize);
   resize();
+  prefetchOpening();
   paintThumbs();
   drawQRs();
   const start = parseInt(location.hash.slice(1), 10);

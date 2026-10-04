@@ -19,6 +19,9 @@ offline.
   for labels and headings, Overpass Mono for coordinates and distances, and
   Source Serif 4 italic for water and quotes. Fonts are vendored in `assets/fonts`. Home and End jump to the first and last slide.
 - `#12` in the URL opens slide 12.
+- `V` on any tissue view opens a full-screen slide viewer at the same spot
+  (drag to pan, scroll to zoom, Escape or `V` to close). The H&E tile in the
+  Cincinnati workspace is also a live viewer.
 
 ## How the zoom works
 
@@ -50,8 +53,17 @@ the top right are computed from the same value.
   and name, the poll and teaching-module URLs (a real QR code is drawn when
   set), the case images, and the learner locations on the globe, which are
   illustrative until replaced.
-- The tissue is drawn procedurally and labelled PLACEHOLDER. See
-  `assets/case/README.md` for the image sizes that replace it.
+- The tissue is a real whole-slide image used as a stand-in: SN_0023 from the
+  SOPHIE Spitzoid tumour dataset (Spitz nevus, head and neck, 8-year-old),
+  CC0, Mosquera-Zamudio A et al. Sci Data 2023;10:704
+  (doi:10.1038/s41597-023-02585-2). The tiled section is in `assets/wsi/`
+  (Deep Zoom, 512 px JPEG tiles, blank glass tiles skipped, ~50 MB), with a
+  whole-slide overview, the 40x still and a crop sprite for the cohort grid.
+- To swap in the real case: build a Deep Zoom pyramid of the section
+  (`vips dzsave section.tif assets/wsi/sn0023 --tile-size 512 --overlap 0
+  --suffix '.jpg[Q=72]' --skip-blanks 6`), replace the overview and 40x
+  still, and update `SCAN`, `CENTRE` and `CROP` in `assets/tissue.js`
+  (level-0 pixels; `CENTRE` is the middle of the opening 40x field).
 - Annotation positions on the 40x field are in `MARKS` in `assets/app.js`,
   in millimetres from the field centre.
 
@@ -60,6 +72,7 @@ the top right are computed from the same value.
 - Map: Natural Earth via world-atlas and us-atlas, plus Natural Earth highways,
   rivers, populated places and the Great Lakes, clipped to the Ohio Valley and
   Kyushu (`assets/geo/context.json`).
-- d3 v7, topojson-client and qrcode-generator are vendored in `assets/vendor`.
+- d3 v7, topojson-client, qrcode-generator and OpenSeadragon 6 are vendored
+  in `assets/vendor`.
 - Elmore JG et al. BMJ 2017;357:j2813 (doi:10.1136/bmj.j2813): accuracy 25%,
   40% and 43% for classes II to IV.

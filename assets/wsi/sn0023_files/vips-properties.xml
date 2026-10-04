@@ -1,0 +1,365 @@
+<?xml version="1.0"?>
+<image xmlns="http://www.vips.ecs.soton.ac.uk//dzsave" date="2026-10-03T20:29:25.704283-07" version="8.18.2">
+  <properties>
+    <property>
+      <name>width</name>
+      <value type="gint">21700</value>
+    </property>
+    <property>
+      <name>height</name>
+      <value type="gint">20100</value>
+    </property>
+    <property>
+      <name>bands</name>
+      <value type="gint">4</value>
+    </property>
+    <property>
+      <name>xoffset</name>
+      <value type="gint">-28500</value>
+    </property>
+    <property>
+      <name>yoffset</name>
+      <value type="gint">-1900</value>
+    </property>
+    <property>
+      <name>xres</name>
+      <value type="gdouble">4000</value>
+    </property>
+    <property>
+      <name>yres</name>
+      <value type="gdouble">4000</value>
+    </property>
+    <property>
+      <name>vips-loader</name>
+      <value type="VipsRefString">openslideload</value>
+    </property>
+    <property>
+      <name>slide-level</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>tile-width</name>
+      <value type="gint">1024</value>
+    </property>
+    <property>
+      <name>tile-height</name>
+      <value type="gint">1024</value>
+    </property>
+    <property>
+      <name>openslide.associated.macro.height</name>
+      <value type="VipsRefString">3260</value>
+    </property>
+    <property>
+      <name>openslide.associated.macro.width</name>
+      <value type="VipsRefString">1028</value>
+    </property>
+    <property>
+      <name>openslide.comment</name>
+      <value type="VipsRefString">level=0 mag=40 quality=90</value>
+    </property>
+    <property>
+      <name>openslide.level-count</name>
+      <value type="VipsRefString">9</value>
+    </property>
+    <property>
+      <name>openslide.level[0].downsample</name>
+      <value type="VipsRefString">1</value>
+    </property>
+    <property>
+      <name>openslide.level[0].height</name>
+      <value type="VipsRefString">26368</value>
+    </property>
+    <property>
+      <name>openslide.level[0].tile-height</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[0].tile-width</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[0].width</name>
+      <value type="VipsRefString">55008</value>
+    </property>
+    <property>
+      <name>openslide.level[1].downsample</name>
+      <value type="VipsRefString">2</value>
+    </property>
+    <property>
+      <name>openslide.level[1].height</name>
+      <value type="VipsRefString">13184</value>
+    </property>
+    <property>
+      <name>openslide.level[1].tile-height</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[1].tile-width</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[1].width</name>
+      <value type="VipsRefString">27504</value>
+    </property>
+    <property>
+      <name>openslide.level[2].downsample</name>
+      <value type="VipsRefString">4</value>
+    </property>
+    <property>
+      <name>openslide.level[2].height</name>
+      <value type="VipsRefString">6592</value>
+    </property>
+    <property>
+      <name>openslide.level[2].tile-height</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[2].tile-width</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[2].width</name>
+      <value type="VipsRefString">13752</value>
+    </property>
+    <property>
+      <name>openslide.level[3].downsample</name>
+      <value type="VipsRefString">8</value>
+    </property>
+    <property>
+      <name>openslide.level[3].height</name>
+      <value type="VipsRefString">3296</value>
+    </property>
+    <property>
+      <name>openslide.level[3].tile-height</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[3].tile-width</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[3].width</name>
+      <value type="VipsRefString">6880</value>
+    </property>
+    <property>
+      <name>openslide.level[4].downsample</name>
+      <value type="VipsRefString">16</value>
+    </property>
+    <property>
+      <name>openslide.level[4].height</name>
+      <value type="VipsRefString">1648</value>
+    </property>
+    <property>
+      <name>openslide.level[4].tile-height</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[4].tile-width</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[4].width</name>
+      <value type="VipsRefString">3440</value>
+    </property>
+    <property>
+      <name>openslide.level[5].downsample</name>
+      <value type="VipsRefString">32</value>
+    </property>
+    <property>
+      <name>openslide.level[5].height</name>
+      <value type="VipsRefString">824</value>
+    </property>
+    <property>
+      <name>openslide.level[5].tile-height</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[5].tile-width</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[5].width</name>
+      <value type="VipsRefString">1720</value>
+    </property>
+    <property>
+      <name>openslide.level[6].downsample</name>
+      <value type="VipsRefString">64</value>
+    </property>
+    <property>
+      <name>openslide.level[6].height</name>
+      <value type="VipsRefString">416</value>
+    </property>
+    <property>
+      <name>openslide.level[6].tile-height</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[6].tile-width</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[6].width</name>
+      <value type="VipsRefString">864</value>
+    </property>
+    <property>
+      <name>openslide.level[7].downsample</name>
+      <value type="VipsRefString">128</value>
+    </property>
+    <property>
+      <name>openslide.level[7].height</name>
+      <value type="VipsRefString">208</value>
+    </property>
+    <property>
+      <name>openslide.level[7].tile-height</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[7].tile-width</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[7].width</name>
+      <value type="VipsRefString">432</value>
+    </property>
+    <property>
+      <name>openslide.level[8].downsample</name>
+      <value type="VipsRefString">256</value>
+    </property>
+    <property>
+      <name>openslide.level[8].height</name>
+      <value type="VipsRefString">104</value>
+    </property>
+    <property>
+      <name>openslide.level[8].tile-height</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[8].tile-width</name>
+      <value type="VipsRefString">1024</value>
+    </property>
+    <property>
+      <name>openslide.level[8].width</name>
+      <value type="VipsRefString">216</value>
+    </property>
+    <property>
+      <name>openslide.mpp-x</name>
+      <value type="VipsRefString">0.25</value>
+    </property>
+    <property>
+      <name>openslide.mpp-y</name>
+      <value type="VipsRefString">0.25</value>
+    </property>
+    <property>
+      <name>openslide.objective-power</name>
+      <value type="VipsRefString">40</value>
+    </property>
+    <property>
+      <name>openslide.quickhash-1</name>
+      <value type="VipsRefString">bbb3b8bb98badc9a31820fbeb9c4976b775be000366d5f8d6f362ecfeeffbaea</value>
+    </property>
+    <property>
+      <name>openslide.vendor</name>
+      <value type="VipsRefString">ventana</value>
+    </property>
+    <property>
+      <name>tiff.DateTime</name>
+      <value type="VipsRefString">2018-11-12 12:17:02</value>
+    </property>
+    <property>
+      <name>tiff.ImageDescription</name>
+      <value type="VipsRefString">level=0 mag=40 quality=90</value>
+    </property>
+    <property>
+      <name>tiff.Make</name>
+      <value type="VipsRefString">Ventana Medical Systems</value>
+    </property>
+    <property>
+      <name>tiff.Model</name>
+      <value type="VipsRefString">iScan HT</value>
+    </property>
+    <property>
+      <name>tiff.ResolutionUnit</name>
+      <value type="VipsRefString">inch</value>
+    </property>
+    <property>
+      <name>tiff.Software</name>
+      <value type="VipsRefString">C:\Program Files\Ventana Medical Systems Inc\iScanHT\bif2img.exe  v0.1</value>
+    </property>
+    <property>
+      <name>ventana.BuildDate</name>
+      <value type="VipsRefString">24/01/2018 10:36:58</value>
+    </property>
+    <property>
+      <name>ventana.BuildVersion</name>
+      <value type="VipsRefString">1.1.1.0</value>
+    </property>
+    <property>
+      <name>ventana.FocusMode</name>
+      <value type="VipsRefString">0</value>
+    </property>
+    <property>
+      <name>ventana.FocusQuality</name>
+      <value type="VipsRefString">3</value>
+    </property>
+    <property>
+      <name>ventana.LabelBoundary</name>
+      <value type="VipsRefString">1227</value>
+    </property>
+    <property>
+      <name>ventana.Magnification</name>
+      <value type="VipsRefString">40</value>
+    </property>
+    <property>
+      <name>ventana.Mode</name>
+      <value type="VipsRefString">brightfield</value>
+    </property>
+    <property>
+      <name>ventana.ScanDate</name>
+      <value type="VipsRefString">12/11/2018 12:15:36</value>
+    </property>
+    <property>
+      <name>ventana.ScanMode</name>
+      <value type="VipsRefString">1</value>
+    </property>
+    <property>
+      <name>ventana.ScanRes</name>
+      <value type="VipsRefString">0.25</value>
+    </property>
+    <property>
+      <name>ventana.ScannerModel</name>
+      <value type="VipsRefString">iScan HT</value>
+    </property>
+    <property>
+      <name>ventana.ShowLabel</name>
+      <value type="VipsRefString">1</value>
+    </property>
+    <property>
+      <name>ventana.UnitNumber</name>
+      <value type="VipsRefString">BI15N7210</value>
+    </property>
+    <property>
+      <name>ventana.Z-layers</name>
+      <value type="VipsRefString">1</value>
+    </property>
+    <property>
+      <name>ventana.Z-spacing</name>
+      <value type="VipsRefString">0</value>
+    </property>
+    <property>
+      <name>slide-associated-images</name>
+      <value type="VipsRefString">macro</value>
+    </property>
+    <property>
+      <name>resolution-unit</name>
+      <value type="VipsRefString">in</value>
+    </property>
+    <property>
+      <name>orientation</name>
+      <value type="gint">1</value>
+    </property>
+    <property>
+      <name>vips-sequential</name>
+      <value type="gint">1</value>
+    </property>
+  </properties>
+</image>

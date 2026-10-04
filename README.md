@@ -19,6 +19,12 @@ offline.
   for labels and headings, Overpass Mono for coordinates and distances, and
   Source Serif 4 italic for water and quotes. Fonts are vendored in `assets/fonts`. Home and End jump to the first and last slide.
 - `#12` in the URL opens slide 12.
+- Whenever the slide is on screen at 40x (the opening case, both votes, the
+  return home and the final diagnosis) the stage is a slide viewer: drag to
+  move, scroll or pinch to zoom, double-click to zoom in, `+`/`-` to zoom and
+  `0` to reset. Clicks don't advance on those views; arrow keys and clickers
+  do. The view carries between those steps and eases back to the planned
+  field before the next camera move.
 - `V` on any tissue view opens a full-screen slide viewer at the same spot
   (drag to pan, scroll to zoom, Escape or `V` to close). The H&E tile in the
   Cincinnati workspace is also a live viewer.

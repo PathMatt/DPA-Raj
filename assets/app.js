@@ -183,6 +183,7 @@
     learners: 0,
     spin: false, spinFrom: 0, spinLon: 0,
     showSites: true,
+    pan: { x: 0, y: 0 },     // mm: how far the viewer has been dragged from the planned field
   };
 
   // ---------- projection ----------
@@ -537,7 +538,7 @@
     if (gridA > 0 && L0) drawGrid(L0[0], L0[1], k, gridA);
     const mapA = clamp01(lg(w / 1500));
     if (mapA > 0) { drawMap(mapA); drawWater(mapA); }
-    if (w < 60 && L0) drawMicro(L0[0], L0[1], k);
+    if (w < 60 && L0) drawMicro(L0[0] - S.pan.x * k * 0.001, L0[1] - S.pan.y * k * 0.001, k);
     const siteA = clamp01(lg(w / 0.4));
     if (siteA > 0) { drawRoutes(now, siteA); const placed = drawSites(now, siteA); drawPlaces(placed, mapA); }
     pumpTiles();
@@ -587,6 +588,7 @@
   }
   function finishAll() { while (running.length) { const a = running.shift(); a.fn(1); a.done && a.done(); } }
 
+  let flying = 0;
   // van Wijk & Nuij smooth zoom in one dimension. Same maths as d3.interpolateZoom,
   // but written with asinh so it stays finite when the widths differ by 10^11
   // (d3's log(sqrt(b*b+1) - b) underflows to log(0) at those ratios).
@@ -611,12 +613,13 @@
     const d = d3.geoDistance(a, b) * R;
     const zi = smoothZoom(d, from.w, to.w, opts.rho || 1.4);
     const gi = d3.geoInterpolate(a, b);
+    flying++;
     tween(opts.delay || 0, dur, t => {
       const e = (opts.ease || ease)(t), [x, w] = zi(e);
       const f = d > 1e-9 ? Math.min(1, Math.max(0, x / d)) : e, [lon, lat] = gi(f);
       S.cam = { lon, lat, w };
       opts.onStep && opts.onStep(f, e);
-    }, opts.done);
+    }, () => { flying = Math.max(0, flying - 1); opts.done && opts.done(); });
   }
 
   // Zoom a DOM element out from one of its children, scaling about a fixed point.
@@ -843,7 +846,10 @@
     $$('.slide.is-waiting').forEach(el => el.classList.remove('is-waiting'));
     const h = $('#s-workspace .ws-heading'); h.style.opacity = 1; h.style.transform = 'none';
     if (st.slide === 's-workspace') initWorkspaceViewer();
+    S.pan = { x: 0, y: 0 };
     $('#rv-open').classList.toggle('is-on', st.view === 'lab40' && st.veil < 0.5);
+    $('#rv-hint').classList.toggle('is-on', st.view === 'lab40' && st.veil < 0.5);
+    deck.classList.toggle('is-interactive', st.view === 'lab40' && st.veil < 0.5);
   }
 
   function show(st) {
@@ -855,14 +861,24 @@
   function go(i, animate) {
     i = Math.max(0, Math.min(STEPS.length - 1, i));
     finishAll();
-    const prev = current, fromCam = { ...S.cam };
+    const prev = current, fromCam = { ...S.cam }, fromPan = { ...S.pan };
     index = i; current = STEPS[i];
     show(current);
     applyState(current);
+    const panned = fromPan.x || fromPan.y || Math.abs(fromCam.w - VIEWS.lab40.w) > 1e-9;
+    if (prev.view === 'lab40' && current.view === 'lab40' && fromCam.w < 0.02 && !(animate && current.enter)) {
+      S.cam = fromCam; S.pan = fromPan;          // stay where the viewer was left
+    }
     // an animation plays only when stepping forward into a new state, and starts
     // from wherever the camera was
     if (animate && current.enter && !(prev.slide === current.slide && prev.stage === current.stage)) {
-      S.cam = fromCam; current.enter();
+      S.cam = fromCam;
+      if (panned && fromCam.w < 0.02) {
+        // ease back to the planned field before the camera moves on
+        S.pan = fromPan;
+        tween(0, 900, t => { const e = ease(t); S.pan = { x: fromPan.x * (1 - e), y: fromPan.y * (1 - e) }; });
+      }
+      current.enter();
       if (current.captionDelay && !RM) { const el = $('#' + current.slide); el.classList.add('is-waiting'); tween(current.captionDelay, 1, () => {}, () => el.classList.remove('is-waiting')); }
     }
     history.replaceState(null, '', '#' + (i + 1));
@@ -884,13 +900,66 @@
     else if (e.key === 'End') go(STEPS.length - 1, false);
     else if (e.key === 'f' || e.key === 'F') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
   });
-  deck.addEventListener('click', e => { if (!e.target.closest('a, .ws-osd, #reviewer, #rv-open')) next(); });
+  // ---------- the stage as a slide viewer ----------
+  // On tissue views the canvas is the viewer: drag to move, scroll or pinch to
+  // zoom, double-click to zoom in. Clicks don't advance there; keys and clickers do.
+  const interactive = () => current.view === 'lab40' && current.veil < 0.5 && S.cam.w < 0.02 && !flying && rv.el.hidden;
+  const LIMITS = { min: 0.00008, max: 0.016 };   // screen width in metres: ~225x to the whole section
+  function clampPan(x, y) {
+    const [l, t, w, h] = TISSUE.TILES;
+    return { x: Math.min(l + w, Math.max(l, x)), y: Math.min(t + h, Math.max(t, y)) };
+  }
+  function zoomAt(clientX, clientY, f) {
+    const r = deck.getBoundingClientRect(), sx = clientX - r.left - r.width / 2, sy = clientY - r.top - r.height / 2;
+    const before = S.cam.w * 1000 / r.width;                   // mm per screen px
+    const w = Math.min(LIMITS.max, Math.max(LIMITS.min, S.cam.w * f));
+    const after = w * 1000 / r.width;
+    S.pan = clampPan(S.pan.x + sx * (before - after), S.pan.y + sy * (before - after));
+    S.cam = { ...S.cam, w };
+  }
+  const onStage = e => !e.target.closest('.panel, button, a, .ws-osd, #reviewer');
+  let drag = null;
+  deck.addEventListener('pointerdown', e => {
+    if (!interactive() || !onStage(e) || e.button > 0) return;
+    finishAll();
+    drag = { id: e.pointerId, x: e.clientX, y: e.clientY, pan: { ...S.pan }, moved: false };
+    deck.setPointerCapture(e.pointerId); deck.classList.add('is-dragging');
+  });
+  deck.addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (Math.hypot(dx, dy) > 3) drag.moved = true;
+    const mmPerPx = S.cam.w * 1000 / deck.getBoundingClientRect().width;
+    S.pan = clampPan(drag.pan.x - dx * mmPerPx, drag.pan.y - dy * mmPerPx);
+  });
+  const endDrag = () => { drag = null; deck.classList.remove('is-dragging'); };
+  deck.addEventListener('pointerup', endDrag);
+  deck.addEventListener('pointercancel', endDrag);
+  deck.addEventListener('wheel', e => {
+    if (!interactive() || !onStage(e)) return;
+    e.preventDefault();
+    zoomAt(e.clientX, e.clientY, Math.exp((e.ctrlKey ? 0.01 : 0.0018) * e.deltaY));
+  }, { passive: false });
+  deck.addEventListener('dblclick', e => { if (interactive() && onStage(e)) zoomAt(e.clientX, e.clientY, 0.5); });
+  document.addEventListener('keydown', e => {
+    if (!interactive() || e.metaKey || e.ctrlKey) return;
+    const r = deck.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    if (e.key === '+' || e.key === '=') zoomAt(cx, cy, 1 / 1.5);
+    else if (e.key === '-' || e.key === '_') zoomAt(cx, cy, 1.5);
+    else if (e.key === '0') { S.pan = { x: 0, y: 0 }; S.cam = { ...VIEWS.lab40 }; }
+  });
+
+  deck.addEventListener('click', e => {
+    if (e.target.closest('a, .ws-osd, #reviewer, #rv-open')) return;
+    if (current.view === 'lab40' && current.veil < 0.5 && onStage(e)) return;   // the stage is a viewer here
+    next();
+  });
   let touchX = null;
   deck.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
   deck.addEventListener('touchend', e => {
     if (touchX === null) return;
     const dx = e.changedTouches[0].clientX - touchX; touchX = null;
-    if (Math.abs(dx) > 40) dx < 0 ? next() : prev();
+    if (Math.abs(dx) > 40 && !(current.view === 'lab40' && current.veil < 0.5)) dx < 0 ? next() : prev();
   });
 
   // ---------- start ----------

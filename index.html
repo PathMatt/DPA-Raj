@@ -239,6 +239,69 @@
     .three p { font-size: 1.1cqw; line-height: 1.55; color: var(--muted); }
     .backup-tag { position: absolute; right: 4%; top: 5.5%; font-size: .85cqw; letter-spacing: .14em; color: var(--muted); }
 
+    /* title stops */
+    .stops { list-style: none; padding: 0; margin: 2.2cqw 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2cqw; counter-reset: s; }
+    .stops li { border-top: 1.5px solid var(--ink); padding-top: .8cqw; display: grid; gap: .3cqw; counter-increment: s; }
+    .stops b { font-size: .82cqw; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; }
+    .stops b::before { content: "0" counter(s) " · "; color: var(--rust); }
+    .stops span { font-size: .95cqw; color: var(--muted); }
+    .cartouche .title-word { margin-top: 2.4cqw; }
+    .plain-list { margin: 2.2cqw 0 0; padding-left: 1.2cqw; max-width: 62cqw; font-size: 1.08cqw; line-height: 1.7; color: var(--muted); }
+    .facts { display: grid; grid-template-columns: auto 1fr; gap: .45cqw 1.4cqw; margin: 1.2cqw 0 0; font-size: 1.15cqw; }
+    .facts dt { font-size: .78cqw; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); padding-top: .2cqw; }
+    .facts dd { margin: 0; }
+    .options li { font-size: 1.5cqw; }
+    /* second read */
+    .stat-hero { font-family: var(--mono); font-weight: 300; font-size: 8cqw; letter-spacing: -.06em; line-height: 1; margin-top: 1cqw; }
+    .split-bar { display: flex; gap: 3px; height: 1.6cqw; margin-top: 3cqw; max-width: 72cqw; }
+    .split-bar span:nth-child(1) { background: var(--ink); } .split-bar span:nth-child(2) { background: var(--rust); } .split-bar span:nth-child(3) { background: #d9a49c; }
+    .split-legend { display: grid; grid-template-columns: 56fr 35fr 9fr; max-width: 72cqw; gap: 3px; margin-top: .8cqw; font-size: 1cqw; color: var(--muted); }
+    .split-legend b { display: block; font-family: var(--mono); font-weight: 400; font-size: 2.2cqw; color: var(--ink); letter-spacing: -.04em; }
+    .split-legend div:nth-child(3) { white-space: nowrap; }
+    /* overview */
+    .four { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2cqw; margin-top: 3cqw; }
+    .four div { border-top: 1.5px solid var(--ink); padding-top: 1.1cqw; }
+    .four .num { font-size: .8cqw; font-weight: 700; letter-spacing: .2em; color: var(--rust); text-transform: uppercase; }
+    .four h3 { font-size: 1.6cqw; margin: .8cqw 0 .3cqw; letter-spacing: -.01em; }
+    .four .who { font-size: 1.05cqw; color: var(--muted); }
+    .four .q { font-family: var(--serif); font-style: italic; font-size: 1.45cqw; line-height: 1.35; margin-top: 1.4cqw; }
+    /* demo steps */
+    .demo-head { position: absolute; left: 4%; right: 4%; top: 5%; display: flex; justify-content: space-between; align-items: baseline; }
+    .demo-head .kicker { margin: 0; }
+    .demo-head .kicker b { color: var(--rust); font-weight: 800; margin-right: .8em; }
+    .demo-rail { position: absolute; left: 4%; top: 15%; width: 19%; list-style: none; margin: 0; padding: 0; display: grid; gap: .25cqw; }
+    .demo-rail li { display: grid; grid-template-columns: 2.4cqw 1fr; padding: .62cqw 0 .62cqw .9cqw; border-left: 2px solid var(--line); font-size: 1.05cqw; color: var(--faint); transition: color 300ms, border-color 300ms; }
+    .demo-rail li b { font-family: var(--mono); font-weight: 400; font-size: .85cqw; padding-top: .1cqw; }
+    .demo-rail li.is-done { color: var(--muted); }
+    .demo-rail li.is-here { color: var(--ink); border-left-color: var(--rust); font-weight: 700; }
+    .demo-rail li.is-here b { color: var(--rust); }
+    .demo-main { position: absolute; left: 27%; right: 4%; top: 13.5%; bottom: 6%; display: flex; flex-direction: column; gap: 1.6cqw; transition: opacity 260ms ease; }
+    .demo-main.is-swapping { opacity: 0; }
+    .demo-quote { font-family: var(--serif); font-style: italic; font-size: 2.3cqw; line-height: 1.25; letter-spacing: -.01em; margin: 0; min-height: 2.5em; }
+    .demo-screen { flex: 1; min-height: 0; border: 1.5px solid var(--ink); display: flex; flex-direction: column; background: #fff; }
+    .demo-chrome { display: flex; align-items: center; gap: .5cqw; padding: .55cqw .9cqw; border-bottom: 1px solid var(--line); font-size: .82cqw; color: var(--muted); }
+    .demo-chrome i { width: .55cqw; height: .55cqw; border-radius: 50%; border: 1px solid var(--faint); }
+    .demo-chrome span { margin-left: .6cqw; }
+    .demo-chrome em { margin-left: auto; font-style: normal; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--rust); font-size: .72cqw; }
+    .demo-screen .ph { flex: 1; margin: 1cqw; font-size: 1.15cqw; padding: 3cqw 6cqw; line-height: 1.5; }
+    .demo-screen img { flex: 1; min-height: 0; width: 100%; object-fit: contain; }
+    .demo-foot { position: absolute; right: 4%; bottom: 2.2%; font-size: .78cqw; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+    /* believe + status */
+    .beliefs { list-style: none; padding: 0; margin: 2.6cqw 0 0; display: grid; gap: 0; counter-reset: b; }
+    .beliefs li { counter-increment: b; display: grid; grid-template-columns: 3.4cqw 26cqw 1fr; gap: 1.6cqw; padding: 1.15cqw 0; border-top: 1px solid var(--line); align-items: baseline; }
+    .beliefs li::before { content: "0" counter(b); font-family: var(--mono); color: var(--rust); font-size: 1cqw; }
+    .beliefs h3 { font-size: 1.45cqw; }
+    .beliefs p { font-size: 1.12cqw; color: var(--muted); line-height: 1.45; }
+    .status-table { width: 100%; max-width: 78cqw; border-collapse: collapse; margin-top: 2.4cqw; font-size: 1.18cqw; }
+    .status-table th { text-align: left; font-weight: 600; font-size: .78cqw; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); padding-bottom: .8cqw; }
+    .status-table td { padding: .8cqw 2cqw .8cqw 0; border-top: 1px solid var(--line); vertical-align: top; }
+    .status-table td:first-child { width: 15cqw; font-size: .82cqw; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding-top: 1cqw; }
+    .compare td:first-child { width: auto; }
+    /* speaker notes */
+    .notes { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; max-height: 34%; overflow: auto; background: rgba(22,22,22,.92); color: #f2f2ed; padding: 1.2cqw 4%; font-size: 1.1cqw; line-height: 1.5; }
+    .notes .kicker { color: #b9b9b0; }
+    .notes[hidden] { display: none; }
+
     @media (prefers-reduced-motion: reduce) { .veil, .slide, .slide.is-active, .reveal { transition: none; } }
   </style>
 </head>
@@ -247,7 +310,7 @@
     CONFIG: every placeholder that is not inline text lives here.
     - The slide is a stand-in whole-slide image (SOPHIE SN_0023, CC0) set up in
       assets/tissue.js. See README for swapping in the real case.
-    - sites.community: set the real location and name of the referring hospital.
+    - sites: the four stops. The case starts at Cincinnati Children's.
     - pollUrl / moduleUrl: when set, a real QR code is drawn.
     - learners: illustrative only. Replace with real learner locations.
   -->
@@ -256,7 +319,6 @@
       pollUrl: '',
       moduleUrl: '',
       sites: {
-        community:  { name: '[Community hospital]', short: 'Community', lon: -83.00, lat: 39.33 },
         cincinnati: { name: "Cincinnati Children's", short: 'Cincinnati', lon: -84.5020, lat: 39.1406 },
         columbus:   { name: 'The Ohio State University', short: 'Columbus', lon: -83.0171, lat: 39.9952 },
         pittsburgh: { name: 'UPMC Pittsburgh', short: 'Pittsburgh', lon: -79.9617, lat: 40.4420 },
@@ -280,7 +342,6 @@
 
     <div class="hud" aria-hidden="true">
       <div class="route chip" id="route">
-        <span data-site="community">COMMUNITY</span>
         <span data-site="cincinnati">CINCINNATI</span>
         <span data-site="columbus">COLUMBUS</span>
         <span data-site="pittsburgh">PITTSBURGH</span>
@@ -300,7 +361,7 @@
     <div class="reviewer" id="reviewer" hidden>
       <div class="reviewer-bar">
         <p class="kicker" style="margin:0">Slide viewer</p>
-        <p class="rv-title">SN_0023 · Spitz nevus · <span class="muted">stand-in for PV26-001 · SOPHIE dataset, CC0</span></p>
+        <p class="rv-title">PV26-001 · <span class="muted">stand-in slide: SOPHIE SN_0023, a Spitz nevus, CC0, until the case's own H&amp;E is added</span></p>
         <span class="rv-mag" id="rv-mag">40×</span>
         <button type="button" data-rv="out" aria-label="Zoom out">−</button>
         <button type="button" data-rv="in" aria-label="Zoom in">+</button>
@@ -310,14 +371,20 @@
       <div class="reviewer-view" id="rv-view"></div>
     </div>
 
-    <!-- 00 · title -->
+    <!-- ============ Opening ============ -->
     <section class="slide" id="s-title" aria-label="Title">
       <div class="cartouche" id="cartouche">
         <span class="grat top"></span><span class="grat bottom"></span>
         <span class="corner tl" data-corner="lat"></span><span class="corner tr" data-corner="lon"></span>
         <div class="carto-head"><p class="kicker">Pathology Visions 2026 · Workshop</p><p class="kicker">Sheet PV26-001</p></div>
         <h1 class="h-xl title-word" id="title-word">Better Together</h1>
-        <p class="title-sub">One case, followed from a single cell to the other side of the world.</p>
+        <p class="title-sub">One case, followed from a single slide in Cincinnati to the other side of the world.</p>
+        <ol class="stops">
+          <li><b>Cincinnati</b><span>Care · Archana Shenoy</span></li>
+          <li><b>Columbus</b><span>Consult · Swati Satturwar</span></li>
+          <li><b>Pittsburgh</b><span>Discover · Matthew Hanna</span></li>
+          <li><b>Nagasaki</b><span>Teach · Junya Fukuoka</span></li>
+        </ol>
         <div class="carto-legend">
           <svg class="north" viewBox="-17 -24 34 44" aria-hidden="true">
             <text x="0" y="-15" text-anchor="middle">N</text>
@@ -325,138 +392,129 @@
             <g id="needle"><path d="M0 -11 L3.4 0 L0 11 L-3.4 0Z" fill="none" stroke="#161616" stroke-width=".8"/><path d="M0 -11 L3.4 0 L-3.4 0Z" fill="#161616"/></g>
           </svg>
           <div class="sbar"><div class="sbar-blocks" id="sbar"><span></span><span></span><span></span><span></span></div><div class="sbar-labels"><span>0</span><span>25</span><span>50</span><span>75</span><span>100 µm</span></div></div>
-          <p class="carto-coord"><small>START</small><span id="title-coord">39.3300° N · 83.0000° W</span></p>
-          <p class="legend-note">Magnification 40×<br>Destinations 4 · Glass shipped 0</p>
+          <p class="carto-coord"><small>START</small><span id="title-coord">39.1406° N · 84.5020° W</span></p>
+          <p class="legend-note">Magnification 40×<br>Sites 4 · Handoffs 3 · Glass shipped 0</p>
         </div>
       </div>
-      <footer class="title-foot"><span>Rajendra Singh · Archana Shenoy · Swati Satturwar · Matthew Hanna · Junya Fukuoka</span><span>PV26</span></footer>
+      <footer class="title-foot"><span>Moderated by Rajendra Singh · PathPresenter</span><span>PV26</span></footer>
     </section>
 
-    <!-- disclosures -->
     <section class="slide" id="s-disclosures" aria-label="Disclosures">
       <div class="content">
         <p class="kicker">Before the case</p>
         <h2 class="h-l">Disclosures</h2>
         <table class="disc-table">
           <tr><th>Speaker</th><th>Relationship to PathPresenter</th></tr>
-          <tr><td>Rajendra Singh</td><td>Founder</td></tr>
+          <tr><td>Rajendra Singh</td><td>Founder and board member</td></tr>
           <tr><td>Matthew Hanna</td><td>Senior advisor</td></tr>
           <tr><td>Swati Satturwar</td><td class="tbd">[to confirm]</td></tr>
           <tr><td>Junya Fukuoka</td><td class="tbd">[to confirm]</td></tr>
           <tr><td>Archana Shenoy</td><td class="tbd">[to confirm]</td></tr>
         </table>
-        <p class="small" style="margin-top:2.4cqw;max-width:62cqw">This is a sponsored session, and every institution on this stage uses PathPresenter. The case is de-identified. The handoffs between sites were re-enacted on the platform for today.</p>
+        <ul class="plain-list">
+          <li>This is a sponsored session, and every institution on this stage uses PathPresenter.</li>
+          <li>The case is de-identified.</li>
+          <li>The handoffs between sites were re-enacted on the platform for today.</li>
+        </ul>
       </div>
     </section>
 
-    <!-- 40x: the community hospital -->
+    <!-- 40x in Cincinnati -->
     <section class="slide" id="s-case" aria-label="The case at 40x">
       <div class="panel caption">
-        <p class="kicker">Case PV26-001 · Community hospital</p>
-        <h2 class="h-m">Scalp lesion in a 14-year-old</h2>
-        <p class="body"><span class="tbd">[biopsy type · clinical note]</span></p>
-        <p class="body">The pathologist keeps coming back to one feature.</p>
-        <p class="note" style="margin-top:1.2cqw">Stand-in slide: Spitz nevus, head and neck, 8-year-old. SOPHIE dataset SN_0023 (CC0), Mosquera-Zamudio et al., Sci Data 2023.</p>
+        <p class="kicker">Case PV26-001 · Cincinnati Children's</p>
+        <h2 class="h-m">Round blue cells in a <span class="tbd">[age]</span>-year-old</h2>
+        <dl class="facts">
+          <dt>Site</dt><dd class="tbd">[site]</dd>
+          <dt>Specimen</dt><dd class="tbd">[biopsy or excision]</dd>
+          <dt>Presentation</dt><dd class="tbd">[clinical note]</dd>
+        </dl>
+        <p class="body" style="margin-top:1.2cqw">Every pathologist in this room has had this case on their desk.</p>
+        <p class="note" style="margin-top:1cqw">On screen: a stand-in slide (SOPHIE SN_0023, a Spitz nevus, CC0) until the case's own H&amp;E is added.</p>
       </div>
     </section>
 
-    <!-- vote 1 -->
-    <section class="slide" id="s-vote1" data-stage="0" aria-label="Vote 1">
+    <section class="slide" id="s-vote1" aria-label="Vote 1">
       <div class="panel vote">
-        <p class="kicker">Vote 1 of 2 · You are the first consultant</p>
+        <p class="kicker">Vote 1 of 2 · Before anyone helps</p>
         <h2 class="h-l">What is your read?</h2>
         <ol class="options">
-          <li><b>A</b>Spitz nevus</li>
-          <li><b>B</b>Atypical Spitz tumor</li>
-          <li><b>C</b>Spitzoid melanoma</li>
+          <li><b>A</b>Melanoma</li>
+          <li><b>B</b>Lymphoma</li>
+          <li><b>C</b>Merkel cell carcinoma</li>
+          <li><b>D</b>Desmoplastic small round cell tumor</li>
         </ol>
-        <div class="vote-foot">
-          <div class="qr ph" data-qr="poll">[QR code to the poll]</div>
-          <div class="reveal s1">
-            <p class="small tbd">[Live result, vote 1]</p>
-            <p class="stat-big" style="margin-top:1cqw">25–43%</p>
-            <p class="small" style="margin-top:.6cqw">of reads matched the expert reference, from moderately dysplastic nevi to early invasive melanoma.</p>
-            <p class="note" style="margin-top:.6cqw">Elmore et al., BMJ 2017;357:j2813</p>
-          </div>
+        <div class="vote-foot"><div class="qr ph" data-qr="poll">[QR code to the poll]</div></div>
+      </div>
+    </section>
+
+    <section class="slide" id="s-second" aria-label="Why a second read matters">
+      <div class="content">
+        <p class="kicker">Why a second read matters</p>
+        <p class="stat-hero">More than 40%</p>
+        <p class="body" style="max-width:60cqw;margin-top:1cqw">of first sarcoma diagnoses were changed at expert second review, in a population-based study of 1,463 patients.</p>
+        <div class="split-bar" aria-hidden="true"><span style="flex:56"></span><span style="flex:35"></span><span style="flex:8"></span></div>
+        <div class="split-legend">
+          <div><b>56%</b>Full agreement</div>
+          <div><b>35%</b>Grade or subtype changed</div>
+          <div><b>8%</b>Complete discordance</div>
         </div>
+        <p class="note" style="margin-top:2cqw">Ray-Coquard et al., Ann Oncol 2012;23:2442–9 · Rhône-Alpes, Veneto and Aquitaine</p>
       </div>
     </section>
 
-    <!-- zoom out #1: powers of ten -->
-    <section class="slide" id="s-zoom1" aria-label="Zoom out"></section>
-
-    <!-- handoff 1 -->
-    <section class="slide" id="s-send1" aria-label="To Cincinnati">
-      <div class="panel ledger">
-        <p class="kicker">Community hospital → Cincinnati Children's</p>
-        <p class="km"><span data-km>0</span><small>km</small></p>
-        <div class="ledger-rows"><span>Sent as</span><span>whole-slide images</span><span>With it</span><span class="tbd">[requisition, clinical photos]</span><span>Glass shipped</span><span>0</span></div>
+    <section class="slide" id="s-overview" aria-label="How we'll present">
+      <div class="content">
+        <p class="kicker">How we'll present</p>
+        <h2 class="h-m">One case, four stops, no glass</h2>
+        <div class="four">
+          <div><p class="num">01 · Care</p><h3>Cincinnati Children's</h3><p class="who">Archana Shenoy</p><p class="q">What do I need before I sign this out?</p></div>
+          <div><p class="num">02 · Consult</p><h3>Ohio State</h3><p class="who">Swati Satturwar</p><p class="q">Can someone else help?</p></div>
+          <div><p class="num">03 · Discover</p><h3>UPMC</h3><p class="who">Matthew Hanna</p><p class="q">Have we seen this before?</p></div>
+          <div><p class="num">04 · Teach</p><h3>Nagasaki University</h3><p class="who">Junya Fukuoka</p><p class="q">How do we teach what we learned?</p></div>
+        </div>
+        <p class="small" style="margin-top:2.6cqw">Each speaker shows the platform live, from their own chair. The case moves on at the end of every segment.</p>
       </div>
     </section>
 
-    <!-- station 1 -->
+    <!-- ============ 01 · Care, Cincinnati ============ -->
     <section class="slide" id="s-card1" aria-label="Cincinnati Children's">
       <div class="panel station">
         <p class="num">01 · CARE</p>
         <h2 class="h-l">Cincinnati Children's</h2>
         <p class="who">Dr. Archana Shenoy</p>
-        <p class="q">What does the rest of the case tell us?</p>
+        <p class="q">What do I need before I sign this out?</p>
       </div>
     </section>
 
-    <!-- the whole case -->
     <section class="slide" id="s-workspace" aria-label="The whole case">
       <h2 class="h-m ws-heading reveal">The whole case, in one place</h2>
       <div class="ws-frame">
-        <div class="ws-bar"><span>PV26-001 · Scalp · 14 y · Cincinnati Children's</span><span class="tbd">[replace with a real screenshot or screen recording]</span></div>
+        <div class="ws-bar"><span>PV26-001 · Cincinnati Children's</span><span class="tbd">[replace with a real screenshot or screen recording]</span></div>
         <div class="ws-grid">
-          <figure class="ws-tile t-photo"><div class="ph">[Clinical photograph]</div><figcaption>Clinical photo</figcaption></figure>
-          <figure class="ws-tile t-slide"><div class="ws-osd" id="ws-viewer" tabindex="-1"><img src="assets/wsi/field40.jpg" alt="H&amp;E, 40x field of the stand-in Spitz nevus"></div><figcaption>H&amp;E · live slide · drag to pan, scroll to zoom</figcaption></figure>
-          <figure class="ws-tile t-hist"><ul class="hist-list"><li><span>Age</span> 14</li><li><span>Site</span> scalp</li><li class="tbd">[duration]</li><li class="tbd">[change over time]</li><li class="tbd">[family history]</li></ul><figcaption>History</figcaption></figure>
-          <figure class="ws-tile t-prior"><div class="ph">[Prior biopsies, side by side]</div><figcaption>Priors</figcaption></figure>
-          <figure class="ws-tile t-gross"><div class="ph">[Gross description and images]</div><figcaption>Gross</figcaption></figure>
-          <figure class="ws-tile t-ihc"><div class="ihc"><div class="ph">[stain 1]</div><div class="ph">[stain 2]</div><div class="ph">[stain 3]</div><div class="ph">[stain 4]</div></div><figcaption>Immunohistochemistry</figcaption></figure>
-          <figure class="ws-tile t-mol"><div class="ph">[Molecular result]</div><figcaption>Molecular</figcaption></figure>
-          <figure class="ws-tile t-notes"><div class="ph">[Annotations and discussion]</div><figcaption>Notes</figcaption></figure>
+          <figure class="ws-tile t-photo"><div class="ph">[Clinical images or imaging]</div><figcaption>Clinical</figcaption></figure>
+          <figure class="ws-tile t-slide"><div class="ws-osd" id="ws-viewer" tabindex="-1"><img src="assets/wsi/field40.jpg" alt="H&amp;E, 40x field of the stand-in slide"></div><figcaption>H&amp;E · live slide · drag to pan, scroll to zoom</figcaption></figure>
+          <figure class="ws-tile t-hist"><ul class="hist-list"><li><span>Age</span> <span class="tbd">[age]</span></li><li><span>Site</span> <span class="tbd">[site]</span></li><li class="tbd">[presentation]</li><li class="tbd">[history]</li></ul><figcaption>History</figcaption></figure>
+          <figure class="ws-tile t-prior"><div class="ph">[Prior material, side by side]</div><figcaption>Priors</figcaption></figure>
+          <figure class="ws-tile t-gross"><div class="ph">[Gross photos]</div><figcaption>Gross</figcaption></figure>
+          <figure class="ws-tile t-ihc"><div class="ihc"><div class="ph">Keratin</div><div class="ph">CK20</div><div class="ph">Synaptophysin</div><div class="ph">SOX10</div><div class="ph">CD45</div><div class="ph">Desmin</div><div class="ph">WT1</div></div><figcaption>Stains ordered</figcaption></figure>
+          <figure class="ws-tile t-mol"><div class="ph">[AI result on the slide]</div><figcaption>AI in the viewer</figcaption></figure>
+          <figure class="ws-tile t-notes"><div class="ph">[Fellow's questions and replies]</div><figcaption>Notes</figcaption></figure>
         </div>
       </div>
     </section>
 
-    <!-- what moved the differential -->
-    <section class="slide" id="s-diff" data-stage="0" aria-label="What moved the differential">
-      <div class="content">
-        <p class="kicker">Cincinnati Children's · Dr. Archana Shenoy</p>
-        <h2 class="h-m">What I saw, and what moved the differential</h2>
-        <div class="cols">
-          <div>
-            <p class="label-sm">What bothers me</p>
-            <ol class="numbered"><li class="tbd">[feature]</li><li class="tbd">[feature]</li><li class="tbd">[feature]</li></ol>
-          </div>
-          <div>
-            <table class="table">
-              <tr><th>Study</th><th>Result</th><th>What it meant</th></tr>
-              <tr class="tbd"><td>[immunostain]</td><td>[result]</td><td>[meaning]</td></tr>
-              <tr class="tbd"><td>[immunostain]</td><td>[result]</td><td>[meaning]</td></tr>
-              <tr class="tbd"><td>[molecular]</td><td>[result]</td><td>[meaning]</td></tr>
-              <tr class="tbd"><td>[clinical]</td><td>[detail]</td><td>[meaning]</td></tr>
-            </table>
-            <p class="small" style="margin-top:1.4cqw">The levels and stains I ordered came back into the same case.</p>
-          </div>
-        </div>
-        <p class="h-m closing-line reveal s1">I still wouldn't sign this out alone. I asked Ohio State.</p>
-      </div>
-    </section>
+    <section class="slide demo" id="s-demo-cin" data-demo="cin" data-stage="0" aria-label="Care demo"></section>
 
-    <!-- handoff 2 -->
-    <section class="slide" id="s-send2" aria-label="To Columbus">
+    <section class="slide" id="s-send1" aria-label="To Columbus">
       <div class="panel ledger">
-        <p class="kicker">Cincinnati → Columbus</p>
+        <p class="kicker">Leg 1 of 3 · Cincinnati → Columbus</p>
         <p class="km"><span data-km>0</span><small>km</small></p>
-        <div class="ledger-rows"><span>Files converted</span><span>0</span><span>Glass shipped</span><span>0</span></div>
+        <div class="ledger-rows"><span>Sent as</span><span>whole-slide images</span><span>Files converted</span><span>0</span><span>Glass shipped</span><span>0</span></div>
       </div>
     </section>
 
-    <!-- station 2 -->
+    <!-- ============ 02 · Consult, Columbus ============ -->
     <section class="slide" id="s-card2" aria-label="Ohio State">
       <div class="panel station">
         <p class="num">02 · CONSULT</p>
@@ -466,57 +524,29 @@
       </div>
     </section>
 
-    <!-- arrival -->
-    <section class="slide" id="s-arrival" aria-label="It arrived as it was sent">
+    <section class="slide demo" id="s-demo-osu" data-demo="osu" data-stage="0" aria-label="Consult demo"></section>
+
+    <section class="slide" id="s-arrival" aria-label="From a day to half an hour">
       <div class="content">
         <p class="kicker">Ohio State · Dr. Swati Satturwar</p>
-        <h2 class="h-m">It arrived the way it was sent</h2>
-        <div class="cols">
-          <ul class="checks">
-            <li>Cincinnati's scanner format, opened as it was</li>
-            <li>Clinical history and images attached</li>
-            <li>Archana's annotations still on the slides</li>
-            <li>A direct line to the referring pathologist</li>
-          </ul>
-          <div>
-            <div class="bars">
-              <div><div class="bar-label"><span>Glass, by courier</span><b>23 hours</b></div><div class="bar-track"><div class="bar-fill" data-bar="100"></div></div></div>
-              <div><div class="bar-label"><span>Whole-slide images</span><b>30 minutes</b></div><div class="bar-track"><div class="bar-fill is-rust" data-bar="2.2"></div></div></div>
-            </div>
-            <p class="small" style="margin-top:2.2cqw">Wooster Community Hospital to Ohio State: average referral time down 97.8%.</p>
-            <p class="note" style="margin-top:.6cqw">OSU Wexner community pathology consult program, presented Sept 2025, publication pending <span class="tbd">[confirm with Swati]</span></p>
-          </div>
+        <h2 class="h-m">From a day to half an hour</h2>
+        <div class="bars" style="margin-top:4cqw;max-width:62cqw">
+          <div><div class="bar-label"><span>Glass, by courier</span><b>23 h</b></div><div class="bar-track"><div class="bar-fill" data-bar="100"></div></div></div>
+          <div><div class="bar-label"><span>Whole-slide images</span><b>30 min</b></div><div class="bar-track"><div class="bar-fill is-rust" data-bar="2.2"></div></div></div>
         </div>
+        <p class="small" style="margin-top:2.4cqw">Wooster Community Hospital to Ohio State: average referral time down 97.8%. <span class="tbd">[Confirm source and wording with Swati]</span></p>
       </div>
     </section>
 
-    <!-- Swati's finding -->
-    <section class="slide" id="s-finding" aria-label="The finding">
-      <div class="finding">
-        <div class="ph">[The field Swati annotated, full width]</div>
-        <div>
-          <p class="kicker">Ohio State · the second read</p>
-          <blockquote>“Here is the area that changed my interpretation.”</blockquote>
-          <div class="kv">
-            <p><span class="label-sm">Finding</span><br><span class="tbd">[Swati's finding]</span></p>
-            <p><span class="label-sm">Requested</span><br><span class="tbd">[stain or level, and why]</span></p>
-            <p><span class="label-sm">How it came back</span><br><span class="tbd">[who cut it, where it was scanned, how long it took]</span></p>
-          </div>
-          <p class="small" style="margin-top:2cqw">The signed opinion and its annotations went back to Cincinnati. The case stays in the archive for the next time it's needed.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- handoff 3 -->
-    <section class="slide" id="s-send3" aria-label="To Pittsburgh">
+    <section class="slide" id="s-send2" aria-label="To Pittsburgh">
       <div class="panel ledger">
-        <p class="kicker">Columbus → Pittsburgh</p>
+        <p class="kicker">Leg 2 of 3 · Columbus → Pittsburgh</p>
         <p class="km"><span data-km>0</span><small>km</small></p>
-        <div class="ledger-rows"><span>Into</span><span>a shared research collection</span><span>Glass shipped</span><span>0</span></div>
+        <div class="ledger-rows"><span>Into</span><span>a shared research collection</span><span>Hard drives shipped</span><span>0</span><span>Glass shipped</span><span>0</span></div>
       </div>
     </section>
 
-    <!-- station 3 -->
+    <!-- ============ 03 · Discover, Pittsburgh ============ -->
     <section class="slide" id="s-card3" aria-label="UPMC">
       <div class="panel station">
         <p class="num">03 · DISCOVER</p>
@@ -526,46 +556,31 @@
       </div>
     </section>
 
-    <!-- the cohort -->
-    <section class="slide" id="s-cohort" data-stage="0" aria-label="The shared collection">
-      <h2 class="h-m ws-heading">One case in a shared collection</h2>
+    <section class="slide demo" id="s-demo-upmc" data-demo="upmc" data-stage="0" aria-label="Discover demo"></section>
+
+    <section class="slide" id="s-cohort" data-stage="0" aria-label="The cohort">
+      <h2 class="h-m ws-heading">One case in 35 sites' worth of data</h2>
       <div class="cohort-stage" id="cohort-stage"><div class="cohort-grid" id="cohort-grid"></div></div>
       <div class="cohort-side">
-        <p class="body">Which cases look like this one, and what happened to them?</p>
+        <p class="body serif" style="font-size:1.7cqw">“Every small round blue cell tumor with a CK20 result, across 35 sites.”</p>
         <div class="reveal s1">
-          <div class="chips"><span>Diagnosis</span><span>Site</span><span>Age</span><span>Molecular alteration</span><span>Stains</span><span>Clinical context</span></div>
+          <div class="chips"><span>Small round blue cell tumor</span><span>CK20 result</span><span>All 35 sites</span><span>Any scanner</span><span>Within each data use agreement</span></div>
           <p class="cohort-count tbd">[n] cases</p>
-          <p class="small" style="margin-top:.8cqw">share the features that matter here.</p>
-          <p class="body tbd" style="margin-top:1.6cqw">[What happened to them, and what that told Cincinnati]</p>
+          <p class="small" style="margin-top:.8cqw">Seconds, not months of chart review. The traveling case is among them.</p>
         </div>
-        <p class="note" style="margin-top:auto">Shared the way CHTN shares research images across its six divisions. Tiles are crops of the stand-in slide, for illustration.</p>
+        <p class="note" style="margin-top:auto">ADC Alliance, PathPresenter Research. Tiles are crops of the stand-in slide, for illustration.</p>
       </div>
     </section>
 
-    <!-- AI -->
-    <section class="slide" id="s-ai" aria-label="Where AI fits">
-      <div class="content">
-        <p class="kicker">UPMC · Dr. Matthew Hanna</p>
-        <h2 class="h-m">Where AI fits in this case</h2>
-        <div class="rows">
-          <div><span>Models trained on the shared collection</span><span class="tbd">[status]</span></div>
-          <div><span>Validated at other institutions</span><span class="tbd">[status]</span></div>
-          <div><span>Results shown in the viewer, next to the slide</span><span class="tbd">[status]</span></div>
-        </div>
-        <p class="note" style="margin-top:2cqw">Pilot and in-development tools are not used for diagnosis.</p>
-      </div>
-    </section>
-
-    <!-- handoff 4 -->
-    <section class="slide" id="s-send4" aria-label="To Nagasaki">
+    <section class="slide" id="s-send3" aria-label="To Nagasaki">
       <div class="panel ledger">
-        <p class="kicker">Pittsburgh → Nagasaki · across the Pacific</p>
+        <p class="kicker">Leg 3 of 3 · Pittsburgh → Nagasaki</p>
         <p class="km"><span data-km>0</span><small>km</small></p>
-        <div class="ledger-rows"><span>Into</span><span>a teaching collection</span><span>Glass shipped</span><span>0</span></div>
+        <div class="ledger-rows"><span>Into</span><span>a teaching collection</span><span>Across</span><span>the Pacific</span><span>Glass shipped</span><span>0</span></div>
       </div>
     </section>
 
-    <!-- station 4 -->
+    <!-- ============ 04 · Teach, Nagasaki ============ -->
     <section class="slide" id="s-card4" aria-label="Nagasaki University">
       <div class="panel station">
         <p class="num">04 · TEACH</p>
@@ -575,68 +590,50 @@
       </div>
     </section>
 
-    <!-- teaching -->
-    <section class="slide" id="s-teach" aria-label="Teaching from the case">
-      <div class="content">
-        <p class="kicker">Nagasaki University · Dr. Junya Fukuoka</p>
-        <h2 class="h-m">Teaching from the case itself</h2>
-        <p class="body" style="margin-top:1.8cqw;max-width:72cqw">The case started with one child in Ohio. Learners <span data-dist="pittsburgh-nagasaki">11,000</span> km away open the same slide, with Cincinnati's marks, Columbus's opinion and Pittsburgh's cohort layered on it.</p>
-        <div class="formats">
-          <div><h3>Lecture</h3><p>A presentation with the live slide inside it</p></div>
-          <div><h3>Course</h3><p>A digital slide box learners open at their own pace</p></div>
-          <div><h3>Conference</h3><p>A hybrid case conference with room for everyone</p></div>
-          <div><h3>Quiz</h3><p>The case as a question, answered on the slide</p></div>
-        </div>
-        <div class="reach">
-          <div><b>[n]</b>learners</div><div><b>[n]</b>institutions</div><div><b>[n]</b>countries</div>
-        </div>
-        <p class="note" style="margin-top:1.6cqw">Its first learner was Archana's fellow, who previewed the case and drafted a report before sign-out.</p>
-      </div>
-    </section>
+    <section class="slide demo" id="s-demo-ngs" data-demo="ngs" data-stage="0" aria-label="Teach demo"></section>
 
-    <!-- the world -->
-    <section class="slide" id="s-world" aria-label="The journey">
+    <!-- ============ Close ============ -->
+    <section class="slide" id="s-world" aria-label="The whole journey">
       <div class="panel ledger">
-        <p class="kicker">The whole journey</p>
+        <p class="kicker">The whole journey · one case, four sites</p>
         <p class="km"><span data-total-km>0</span><small>km</small></p>
-        <div class="ledger-rows"><span>Handoffs</span><span>4</span><span>Pathologists</span><span>5</span><span>Glass shipped</span><span>0</span></div>
-        <p class="note" style="margin-top:1.2cqw">Learner locations are illustrative. <span class="tbd">[replace with real data]</span></p>
+        <div class="ledger-rows"><span>Sites</span><span>4</span><span>Handoffs</span><span>3</span><span>Glass shipped</span><span>0</span></div>
+        <p class="note" style="margin-top:1.2cqw">Great-circle distances, summed. Learner locations are illustrative. <span class="tbd">[replace with real data]</span></p>
       </div>
     </section>
 
-    <!-- vote 2 -->
     <section class="slide" id="s-vote2" aria-label="Vote 2">
       <div class="content">
-        <p class="kicker">Vote 2 of 2</p>
+        <p class="kicker">Vote 2 of 2 · After four sites</p>
         <h2 class="h-l">Would you change your read?</h2>
         <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:3cqw">
-          <ol class="options" style="margin:0"><li><b>A</b>Spitz nevus</li><li><b>B</b>Atypical Spitz tumor</li><li><b>C</b>Spitzoid melanoma</li></ol>
-          <div class="qr ph" data-qr="poll" style="width:14cqw;height:14cqw">[Same QR as vote 1]</div>
+          <ol class="options" style="margin:0"><li><b>A</b>Melanoma</li><li><b>B</b>Lymphoma</li><li><b>C</b>Merkel cell carcinoma</li><li><b>D</b>Desmoplastic small round cell tumor</li></ol>
+          <div class="qr ph" data-qr="poll" style="width:14cqw;height:14cqw">[Same QR code as vote 1]</div>
         </div>
       </div>
     </section>
 
-    <!-- compare -->
     <section class="slide" id="s-compare" aria-label="Vote comparison">
       <div class="content">
-        <p class="kicker">Same room, thirty minutes later</p>
+        <p class="kicker">Same room, <span class="tbd">[__]</span> minutes later</p>
         <h2 class="h-m">How the room read it</h2>
         <table class="compare">
           <tr><th>Read</th><th>Vote 1</th><th>Vote 2</th></tr>
-          <tr><td>A · Spitz nevus</td><td class="tbd">[__]%</td><td class="tbd">[__]%</td></tr>
-          <tr><td>B · Atypical Spitz tumor</td><td class="tbd">[__]%</td><td class="tbd">[__]%</td></tr>
-          <tr><td>C · Spitzoid melanoma</td><td class="tbd">[__]%</td><td class="tbd">[__]%</td></tr>
+          <tr><td>A · Melanoma</td><td class="tbd">[__]%</td><td class="tbd">[__]%</td></tr>
+          <tr><td>B · Lymphoma</td><td class="tbd">[__]%</td><td class="tbd">[__]%</td></tr>
+          <tr><td>C · Merkel cell carcinoma</td><td class="tbd">[__]%</td><td class="tbd">[__]%</td></tr>
+          <tr><td>D · Desmoplastic small round cell tumor</td><td class="tbd">[__]%</td><td class="tbd">[__]%</td></tr>
         </table>
+        <p class="body serif" style="margin-top:2cqw;font-size:1.8cqw">Evidence, not a feeling.</p>
       </div>
     </section>
 
-    <!-- home -->
-    <section class="slide" id="s-home" aria-label="Back home">
+    <section class="slide" id="s-home" aria-label="Back in Cincinnati">
       <div class="panel caption">
-        <p class="kicker">Back at the community hospital</p>
+        <p class="kicker">Back in Cincinnati</p>
         <h2 class="h-m">The same field, with four sites' work on it</h2>
         <ul class="legend">
-          <li><b>CIN</b>Archana's three features</li>
+          <li><b>CIN</b>Archana's annotations and her fellow's questions</li>
           <li><b>OSU</b>The area that changed Swati's read</li>
           <li><b>UPMC</b>The cohort that matched</li>
           <li><b>NGS</b>The teaching note</li>
@@ -644,19 +641,16 @@
       </div>
     </section>
 
-    <!-- final diagnosis -->
     <section class="slide" id="s-final" aria-label="Final diagnosis">
       <div class="panel vote">
         <p class="kicker">Case PV26-001 · Final diagnosis</p>
         <h2 class="h-m tbd">[Final diagnosis, as signed out]</h2>
         <div class="rule"></div>
         <p class="label-sm">Teaching points</p>
-        <ol class="numbered" style="font-size:1.3cqw"><li class="tbd">[the feature that mattered]</li><li class="tbd">[what the consult and the cohort added]</li><li class="tbd">[what to do with the next case like this]</li></ol>
-        <p class="small" style="margin-top:auto">At tumor board it was presented from the case itself, with every annotation intact. <span class="tbd">[screenshot]</span></p>
+        <ol class="numbered" style="font-size:1.3cqw"><li class="tbd">[The feature that mattered]</li><li class="tbd">[What the consult and the cohort added]</li><li class="tbd">[What to do with the next case like this]</li></ol>
       </div>
     </section>
 
-    <!-- history -->
     <section class="slide" id="s-history" aria-label="How the platform was built">
       <div class="content">
         <p class="kicker">Rajendra Singh · PathPresenter</p>
@@ -671,24 +665,41 @@
       </div>
     </section>
 
-    <!-- status -->
-    <section class="slide" id="s-status" aria-label="Where things stand">
+    <section class="slide" id="s-believe" aria-label="What we believe">
       <div class="content">
-        <p class="kicker">Status as of October 2026</p>
-        <h2 class="h-m">Where each piece stands</h2>
-        <div class="status-rows" style="margin-top:3cqw">
-          <div><span class="tag">Live today</span><span>Every step the case took today, except computable reports and model sharing</span></div>
-          <div><span class="tag">Pilot</span><span>Computable reports (1,155 archival reports, about 60% of concepts mapped to SNOMED); private teaching assistants</span></div>
-          <div><span class="tag">In development</span><span>Document search (PittGPT); <span class="tbd">[model sharing]</span></span></div>
-        </div>
-        <p class="note" style="margin-top:2cqw">Pilot and in-development tools are not used for diagnosis.</p>
+        <p class="kicker">Rajendra Singh · PathPresenter</p>
+        <h2 class="h-m">What we believe</h2>
+        <ol class="beliefs">
+          <li><h3>The pathologist stays at the center</h3><p>Today: history, priors, stains, AI and the consult, all inside Archana's case.</p></li>
+          <li><h3>Knowledge travels as freely as the slide</h3><p>Today: 11,740 km and no glass shipped. Nagasaki opened the slide Cincinnati scanned.</p></li>
+          <li><h3>No pathologist decides alone</h3><p>Today: an informal look, a real consult, and a report that came home on its own.</p></li>
+          <li><h3>Trainees stay in the loop</h3><p>Today: the fellow touched this case first. A learner across the world touched it last.</p></li>
+          <li><h3>Intelligence works for the pathologist</h3><p>Today: the model ran first and the pathologist decided. Next: less time on priors, searches and reports.</p></li>
+        </ol>
       </div>
     </section>
 
-    <!-- panel -->
+    <section class="slide" id="s-status" aria-label="What's coming">
+      <div class="content">
+        <p class="kicker">Status as of October 2026</p>
+        <h2 class="h-m">What's coming, and where it stands</h2>
+        <table class="status-table">
+          <tr><th>Status</th><th>What</th></tr>
+          <tr><td>Live today</td><td>Sign-out, consults, teaching and research collections <span class="tbd">[confirm list]</span></td></tr>
+          <tr><td class="tbd">To confirm</td><td>Assessments, high-yield sets and field-level data permissions</td></tr>
+          <tr><td>Pilot</td><td>Computable reports from free text: 1,155 archival reports, about 60% mapped to SNOMED</td></tr>
+          <tr><td>In development</td><td>Search across an institution's own documents (PittGPT)</td></tr>
+          <tr><td>In development</td><td>End-to-end DICOM and a rebuilt education platform <span class="tbd">[confirm]</span></td></tr>
+          <tr><td>Vision</td><td>Private teaching assistants built from a pathologist's own material</td></tr>
+          <tr><td>Vision</td><td>Sharing ADC Alliance models through PathPresenter</td></tr>
+        </table>
+        <p class="note" style="margin-top:1.4cqw">Pilot and in-development tools are not used for diagnosis.</p>
+      </div>
+    </section>
+
     <section class="slide" id="s-panel" aria-label="Panel questions">
       <div class="content">
-        <p class="kicker">To the panel</p>
+        <p class="kicker">Discussion · to the panel</p>
         <ol class="questions">
           <li>What did you believe about digital pathology five years ago that you no longer believe?</li>
           <li>What should no pathologist still have to do by hand in 2026?</li>
@@ -703,21 +714,23 @@
       </div>
     </section>
 
-    <!-- close -->
     <section class="slide" id="s-close" aria-label="Better Together">
       <div class="close-wrap">
         <div>
+          <p class="kicker">Case PV26-001 · Closed</p>
           <h2 class="h-xl">Better Together</h2>
-          <p class="body" style="margin-top:2cqw;max-width:52cqw">One slide from a community hospital was read in Cincinnati, Columbus, Pittsburgh and Nagasaki before it was signed out.</p>
+          <p class="serif" style="font-size:2.1cqw;margin-top:1.6cqw">Pathology shouldn't be limited by where the glass is.</p>
+          <p class="body" style="margin-top:1.4cqw;max-width:54cqw">One case, worked up in Cincinnati, consulted in Columbus, studied in Pittsburgh and taught in Nagasaki. No glass shipped.</p>
+          <p class="small" style="margin-top:2cqw;line-height:1.8">Archana Shenoy · Cincinnati Children's<br>Swati Satturwar · The Ohio State University<br>Matthew Hanna · UPMC<br>Junya Fukuoka · Nagasaki University<br>Rajendra Singh · PathPresenter</p>
         </div>
         <div style="display:grid;gap:.8cqw;justify-items:end">
           <div class="qr ph" data-qr="module">[QR to the teaching module]</div>
-          <p class="small">Take the case home</p>
+          <p class="kicker" style="margin:0">Take the case home</p>
         </div>
       </div>
     </section>
 
-    <!-- backups -->
+    <!-- ============ Backup ============ -->
     <section class="slide" id="s-b1" aria-label="Backup: consult">
       <p class="backup-tag">BACKUP · ONLY IF ASKED</p>
       <div class="content">
@@ -735,32 +748,35 @@
       <div class="content">
         <h2 class="h-m">How an AI result reaches the pathologist</h2>
         <div class="three">
-          <div><h3>Any vendor</h3><p>Heatmaps, masks, cell counts, scores and PDFs. Every model returns its own format.</p></div>
+          <div><h3>Any vendor</h3><p>Heatmaps, masks, cell counts, scores and PDFs, each model in its own format.</p></div>
           <div><h3>Middleware</h3><p>Normalizes the output, checks it belongs to this case, and logs model, version, confidence and time.</p></div>
           <div><h3>The pathologist</h3><p>Sees it in the viewer and pre-filled in the report, then accepts, modifies or overrides it. Every action is logged.</p></div>
         </div>
-        <p class="note" style="margin-top:2.4cqw">In the viewer today: Mindpeak · Aisencia · Paige <span class="tbd">[confirm list before showing]</span></p>
+        <p class="note" style="margin-top:2.4cqw">In the viewer today: Mindpeak · Aisencia · Paige, now part of Tempus <span class="tbd">[confirm list]</span></p>
       </div>
     </section>
     <section class="slide" id="s-b3" aria-label="Backup: data governance">
       <p class="backup-tag">BACKUP · ONLY IF ASKED</p>
       <div class="content">
-        <h2 class="h-m">Before a clinical case enters a shared collection</h2>
+        <h2 class="h-m">Before a case enters a shared collection</h2>
         <div class="three" style="grid-template-columns:repeat(4,1fr)">
           <div><h3>Permissions per dataset</h3><p>Each collection carries its own access rules and data-use terms, accepted at every access.</p></div>
           <div><h3>Masked by default</h3><p>Researchers search masked metadata. Images and permitted fields are released only on approval.</p></div>
-          <div><h3>A full audit trail</h3><p>Digital signatures and system-wide auditability (21 CFR Part 11).</p></div>
+          <div><h3>A full audit trail</h3><p>Digital signatures and system-wide auditability under 21 CFR Part 11.</p></div>
           <div><h3>Data stays home</h3><p>Institutions keep their own cases and share selectively. Nothing has to be exported to be found.</p></div>
         </div>
         <p class="note" style="margin-top:2.4cqw">The same model CHTN runs across Penn, Virginia, Ohio State, Nationwide Children's, Duke and Vanderbilt.</p>
       </div>
     </section>
+
+    <aside class="notes" id="notes" hidden><p class="kicker" style="margin:0 0 .5cqw">Speaker notes · N to hide</p><p id="notes-text"></p></aside>
   </main>
 
   <script src="assets/vendor/d3.min.js"></script>
   <script src="assets/vendor/topojson-client.min.js"></script>
   <script src="assets/vendor/qrcode.js"></script>
   <script src="assets/vendor/openseadragon.min.js"></script>
+  <script src="assets/content.js"></script>
   <script src="assets/tissue.js"></script>
   <script src="assets/app.js"></script>
 </body>

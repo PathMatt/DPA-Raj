@@ -14,7 +14,7 @@ offline.
 - Right arrow, Space, Enter, Page Down or click: next. Left arrow or Page Up: back.
 - If a zoom or animation is playing, the next press finishes it instead of advancing.
 - Going back jumps straight to the finished state of the earlier slide.
-- `F` toggles fullscreen.
+- `F` toggles fullscreen. `N` shows the speaker notes from the script.
 - Type is set like a map: Overpass (from the Highway Gothic road-sign lineage)
   for labels and headings, Overpass Mono for coordinates and distances, and
   Source Serif 4 italic for water and quotes. Fonts are vendored in `assets/fonts`. Home and End jump to the first and last slide.
@@ -39,24 +39,34 @@ the top right are computed from the same value.
 
 ## Story
 
-1. Title, disclosures
-2. 40x in a community hospital, one feature marked, vote 1
-3. Zoom out to the region, the case flies to Cincinnati Children's
-4. Cincinnati: the slide pulls back to the whole case (clinical photo, history,
-   priors, gross, stains, molecular), what moved the differential
-5. Cincinnati to Columbus: the consult, the 23 h vs 30 min referral data, the finding
-6. Columbus to Pittsburgh: the case pulls back into a shared collection, AI status
-7. Pittsburgh to Nagasaki across the Pacific: teaching from the case
-8. The globe with every handoff and the learners, vote 2, comparison
-9. The dive back to the same 40x field, now carrying all four sites' annotations
-10. Final diagnosis, platform history, status, panel, close, three backup slides
+Content follows the "Better Together · PV 2026" PowerPoint script; the words
+live in `assets/content.js`.
+
+1. Title (a map cartouche with the four stops), disclosures
+2. The case at 40x in Cincinnati: round blue cells, vote 1 (four options),
+   why a second read matters (Ray-Coquard et al., Ann Oncol 2012), the overview
+3. The camera pulls back from the slide to Cincinnati Children's.
+   01 · Care: the whole case in one place, then Archana's eight demo steps
+4. Leg 1, 159 km to Columbus. 02 · Consult: Swati's eight steps, then the
+   23 h vs 30 min referral data
+5. Leg 2, 264 km to Pittsburgh. 03 · Discover: Matt's eight steps, with the
+   cohort grid after "Build a cohort"
+6. Leg 3, 11,317 km across the Pacific. 04 · Teach: Junya's seven steps
+7. The whole journey (11,740 km), vote 2, the comparison
+8. The dive back to the same 40x field in Cincinnati, with all four sites'
+   annotations; final diagnosis, history, what we believe, status, panel,
+   close, three backup slides
+
+Each demo step shows the site's step rail, the speaker's line and a screen
+frame holding the placeholder for the live demo. To show a screenshot
+instead, add `img: 'assets/screens/<file>.jpg'` to that step in
+`assets/content.js`.
 
 ## Placeholders
 
 - Inline text in rust brackets, for example `[feature]`, is content to fill in.
 - Dashed boxes are image placeholders.
-- `CONFIG` at the top of `index.html` holds the community hospital's location
-  and name, the poll and teaching-module URLs (a real QR code is drawn when
+- `CONFIG` at the top of `index.html` holds the four sites, the poll and teaching-module URLs (a real QR code is drawn when
   set), the case images, and the learner locations on the globe, which are
   illustrative until replaced.
 - The tissue is a real whole-slide image used as a stand-in: SN_0023 from the

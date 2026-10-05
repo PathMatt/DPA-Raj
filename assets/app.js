@@ -25,13 +25,11 @@
     const dLon = (shift * w) / (R * Math.cos(site.lat * Math.PI / 180)) * 180 / Math.PI;
     return { lon: site.lon - dLon, lat: site.lat, w };
   }
-  const C = SITES.community;
-  const ohioMid = d3.geoInterpolate(geo(C), geo(SITES.cincinnati))(0.5);
+  const C = SITES.cincinnati;     // the case starts, and ends, in Cincinnati
   const pacific = d3.geoInterpolate(geo(SITES.pittsburgh), geo(SITES.nagasaki))(0.5);
   const VIEWS = {
     lab40: { lon: C.lon, lat: C.lat, w: 0.00045 },
     lab4: { lon: C.lon, lat: C.lat, w: 0.0045 },
-    ohio: { lon: ohioMid[0], lat: ohioMid[1], w: 380e3 },
     cincinnati: viewAt(SITES.cincinnati, 260e3),
     columbus: viewAt(SITES.columbus, 260e3),
     pittsburgh: viewAt(SITES.pittsburgh, 320e3),
@@ -40,10 +38,9 @@
   };
 
   const ROUTES = [
-    { key: 'r1', a: 'community', b: 'cincinnati' },
-    { key: 'r2', a: 'cincinnati', b: 'columbus' },
-    { key: 'r3', a: 'columbus', b: 'pittsburgh' },
-    { key: 'r4', a: 'pittsburgh', b: 'nagasaki' },
+    { key: 'r1', a: 'cincinnati', b: 'columbus' },
+    { key: 'r2', a: 'columbus', b: 'pittsburgh' },
+    { key: 'r3', a: 'pittsburgh', b: 'nagasaki' },
   ];
   ROUTES.forEach(r => { r.km = d3.geoDistance(geo(SITES[r.a]), geo(SITES[r.b])) * R / 1000; });
   const TOTAL_KM = ROUTES.reduce((s, r) => s + r.km, 0);
@@ -52,9 +49,9 @@
   // Annotations on the opening 40x field, in mm from its centre (y down). They sit
   // on real structures in the stand-in slide; the labels are placeholders.
   const MARKS = {
-    community: { color: INK, items: [{ type: 'circle', x: 0.0925, y: 0.0045, r: 0.022, label: '[the feature]', dx: 0.03, dy: -0.012 }] },
+    start: { color: INK, items: [{ type: 'circle', x: 0.0925, y: 0.0045, r: 0.022, label: '[the feature]', dx: 0.03, dy: -0.012 }] },
     cincinnati: { color: RUST, tag: 'CIN', items: [
-      { type: 'num', n: 1, x: 0.045, y: -0.0465, r: 0.009, label: '[features 1–3]', dx: 0.014, dy: -0.004 },
+      { type: 'num', n: 1, x: 0.045, y: -0.0465, r: 0.009, label: "[annotations · fellow's questions]", dx: 0.014, dy: -0.004 },
       { type: 'num', n: 2, x: 0.155, y: -0.0665, r: 0.009 },
       { type: 'num', n: 3, x: 0.010, y: 0.0635, r: 0.009 },
     ] },
@@ -442,14 +439,14 @@
   }
 
   function sitesToShow() {
-    const shown = new Set(['community']);
+    const shown = new Set(['cincinnati']);
     ROUTES.forEach(r => { if (S.routes[r.key] >= 1 || (S.packet && S.packet.key === r.key && S.packet.f > 0.85)) { shown.add(r.a); shown.add(r.b); } });
     return shown;
   }
 
   function drawSites(now, alpha) {
     const shown = sitesToShow(), placed = [];
-    const order = [current.at, 'community', 'cincinnati', 'columbus', 'pittsburgh', 'nagasaki'].filter((v, i, a) => v && a.indexOf(v) === i);
+    const order = [current.at, 'cincinnati', 'columbus', 'pittsburgh', 'nagasaki'].filter((v, i, a) => v && a.indexOf(v) === i);
     ctx.save();
     for (const key of order) {
       if (!shown.has(key)) continue;
@@ -762,46 +759,56 @@
     S.routes[key] = 0; S.packet = { key, f: 0 };
     flight(VIEWS[view], dur, { rho, onStep: f => { S.packet.f = f; S.routes[key] = f; }, done: () => { S.packet = null; S.routes[key] = 1; } });
   };
+  // A site's demo: one step per stage of its demo slide, words from content.js.
+  const demo = (key, at, from = 0, to) => CONTENT.demos[key].steps.slice(from, to)
+    .map((d, i) => ({ slide: `s-demo-${key}`, stage: from + i, veil: 1, at, notes: d.notes }));
+  const ALL_MARKS = ['start', 'cincinnati', 'columbus', 'pittsburgh', 'nagasaki'];
   const STEPS = [
+    // the opening, at 40x in Cincinnati
     { slide: 's-title', veil: 0.9, view: 'lab40', enter: () => { setTitle(0); tween(300, 3200, setTitle); } },
     { slide: 's-disclosures', veil: 1, view: 'lab40' },
-    { slide: 's-case', veil: 0, view: 'lab40', at: 'community', scale: true, marks: ['community'], captionDelay: 2400,
-      enter: () => { S.cam = { ...VIEWS.lab4 }; S.marks.community = 0; flight(VIEWS.lab40, 3000, { rho: 1 }); tween(2700, 900, t => { S.marks.community = t; }); } },
-    { slide: 's-vote1', stage: 0, veil: 0, view: 'lab40', at: 'community', scale: true, marks: ['community'] },
-    { slide: 's-vote1', stage: 1, veil: 0, view: 'lab40', at: 'community', scale: true, marks: ['community'] },
-    { slide: 's-zoom1', veil: 0, view: 'ohio', at: 'community', scale: true,
-      enter: () => flight(VIEWS.ohio, 7500, { rho: 1.6, ease: d3.easeSinInOut }) },
-    { slide: 's-send1', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true, route: 'r1', enter: send('r1', 'cincinnati', 3800, 1.3) },
-    { slide: 's-card1', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true },
+    { slide: 's-case', veil: 0, view: 'lab40', at: 'cincinnati', scale: true, marks: ['start'], captionDelay: 2400,
+      enter: () => { S.cam = { ...VIEWS.lab4 }; S.marks.start = 0; flight(VIEWS.lab40, 3000, { rho: 1 }); tween(2700, 900, t => { S.marks.start = t; }); } },
+    { slide: 's-vote1', veil: 0, view: 'lab40', at: 'cincinnati', scale: true, marks: ['start'] },
+    { slide: 's-second', veil: 1, view: 'lab40' },
+    { slide: 's-overview', veil: 1, view: 'lab40' },
+    // 01 · Care: pull back from the slide to Cincinnati
+    { slide: 's-card1', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true, captionDelay: 7000,
+      enter: () => flight(VIEWS.cincinnati, 7500, { rho: 1.6, ease: d3.easeSinInOut }) },
     { slide: 's-workspace', veil: 1, at: 'cincinnati',
       enter: () => { const h = $('#s-workspace .ws-heading'); h.style.opacity = 0; domZoom($('#s-workspace .ws-frame'), $('#s-workspace .t-slide'), 2200, 500, initWorkspaceViewer); tween(2500, 600, t => { h.style.opacity = t; h.style.transform = 'none'; }); } },
-    { slide: 's-diff', stage: 0, veil: 1, at: 'cincinnati' },
-    { slide: 's-diff', stage: 1, veil: 1, at: 'cincinnati' },
-    { slide: 's-send2', veil: 0, view: 'columbus', at: 'columbus', scale: true, route: 'r2', enter: send('r2', 'columbus', 3800, 1.4) },
+    ...demo('cin', 'cincinnati'),
+    { slide: 's-send1', veil: 0, view: 'columbus', at: 'columbus', scale: true, route: 'r1', enter: send('r1', 'columbus', 3800, 1.4) },
+    // 02 · Consult
     { slide: 's-card2', veil: 0, view: 'columbus', at: 'columbus', scale: true },
+    ...demo('osu', 'columbus'),
     { slide: 's-arrival', veil: 1, at: 'columbus', enter: () => { setBars(0); tween(700, 1600, t => setBars(d3.easeCubicOut(t))); } },
-    { slide: 's-finding', veil: 1, at: 'columbus' },
-    { slide: 's-send3', veil: 0, view: 'pittsburgh', at: 'pittsburgh', scale: true, route: 'r3', enter: send('r3', 'pittsburgh', 3800, 1.4) },
+    { slide: 's-send2', veil: 0, view: 'pittsburgh', at: 'pittsburgh', scale: true, route: 'r2', enter: send('r2', 'pittsburgh', 3800, 1.4) },
+    // 03 · Discover; the cohort sits after "Build a cohort"
     { slide: 's-card3', veil: 0, view: 'pittsburgh', at: 'pittsburgh', scale: true },
+    ...demo('upmc', 'pittsburgh', 0, 4),
     { slide: 's-cohort', stage: 0, veil: 1, at: 'pittsburgh', enter: () => { const g = $('#cohort-grid'); g.classList.remove('is-settled'); domZoom(g, $('.is-case', g), 2600, 400, () => g.classList.add('is-settled')); } },
     { slide: 's-cohort', stage: 1, veil: 1, at: 'pittsburgh' },
-    { slide: 's-ai', veil: 1, at: 'pittsburgh' },
-    { slide: 's-send4', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true, route: 'r4', enter: send('r4', 'nagasaki', 9000, 1.5) },
+    ...demo('upmc', 'pittsburgh', 4),
+    { slide: 's-send3', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true, route: 'r3', enter: send('r3', 'nagasaki', 9000, 1.5) },
+    // 04 · Teach
     { slide: 's-card4', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true },
-    { slide: 's-teach', veil: 1, at: 'nagasaki' },
+    ...demo('ngs', 'nagasaki'),
+    // close: the whole journey, the votes, and back to the same field
     { slide: 's-world', veil: 0, view: 'globe', at: 'nagasaki', scale: true, learners: true,
       enter: () => { S.spin = false; S.learners = 0; flight(VIEWS.globe, 4200, { rho: 1.3, done: startSpin }); tween(3200, 5000, t => { S.learners = t; }); countTotal(); } },
     { slide: 's-vote2', veil: 0.94, view: 'globe', at: 'nagasaki', learners: true },
     { slide: 's-compare', veil: 0.94, view: 'globe', at: 'nagasaki', learners: true },
-    { slide: 's-home', veil: 0, view: 'lab40', at: 'community', home: true, scale: true, marks: ['community', 'cincinnati', 'columbus', 'pittsburgh', 'nagasaki'], captionDelay: 9800,
+    { slide: 's-home', veil: 0, view: 'lab40', at: 'cincinnati', home: true, scale: true, marks: ALL_MARKS, captionDelay: 9800,
       enter: () => {
         S.spin = false;
-        Object.keys(MARKS).forEach(k => { S.marks[k] = k === 'community' ? 1 : 0; });
+        ALL_MARKS.forEach(k => { S.marks[k] = k === 'start' ? 1 : 0; });
         flight(VIEWS.lab40, 10000, { rho: 1.5 });
-        ['cincinnati', 'columbus', 'pittsburgh', 'nagasaki'].forEach((k, i) => tween(10200 + i * 900, 900, t => { S.marks[k] = t; }));
+        ALL_MARKS.slice(1).forEach((k, i) => tween(10200 + i * 900, 900, t => { S.marks[k] = t; }));
       } },
-    { slide: 's-final', veil: 0, view: 'lab40', at: 'community', home: true, scale: true, marks: ['community', 'cincinnati', 'columbus', 'pittsburgh', 'nagasaki'] },
+    { slide: 's-final', veil: 0, view: 'lab40', at: 'cincinnati', home: true, scale: true, marks: ALL_MARKS },
     { slide: 's-history', veil: 1, view: 'globe' },
+    { slide: 's-believe', veil: 1, view: 'globe' },
     { slide: 's-status', veil: 1, view: 'globe' },
     { slide: 's-panel', veil: 1, view: 'globe' },
     { slide: 's-close', veil: 0.9, view: 'globe', learners: true },
@@ -813,7 +820,7 @@
   STEPS.forEach((s, i) => {
     s.view = s.view || STEPS[i - 1].view;
     s.routesDone = new Set(STEPS.slice(0, i + 1).filter(x => x.route).map(x => x.route));
-    if (s.home || i > STEPS.findIndex(x => x.slide === 's-send4')) ROUTES.forEach(r => s.routesDone.add(r.key));
+    if (s.home || i > STEPS.findIndex(x => x.slide === 's-send3')) ROUTES.forEach(r => s.routesDone.add(r.key));
   });
 
   function startSpin() { S.spin = true; S.spinFrom = performance.now(); S.spinLon = S.cam.lon; }
@@ -830,8 +837,8 @@
     document.documentElement.style.setProperty('--veil', st.veil);
     hud.scale.classList.toggle('is-on', !!st.scale);
     hud.route.classList.toggle('is-on', !!st.at && st.veil < 0.5);
-    const order = ['community', 'cincinnati', 'columbus', 'pittsburgh', 'nagasaki'];
-    const hereIdx = st.home ? 5 : order.indexOf(st.at);
+    const order = ['cincinnati', 'columbus', 'pittsburgh', 'nagasaki'];
+    const hereIdx = st.home ? order.length : order.indexOf(st.at);
     $$('span', hud.route).forEach((el, i) => {
       el.classList.toggle('is-done', i < hereIdx || !!st.home);
       el.classList.toggle('is-here', st.home ? i === 0 : i === hereIdx);
@@ -855,7 +862,44 @@
   function show(st) {
     $$('.slide').forEach(el => el.classList.toggle('is-active', el.id === st.slide));
     const el = $('#' + st.slide);
+    const changed = el.dataset.stage !== String(st.stage);
     if (st.stage !== undefined) el.dataset.stage = st.stage;
+    if (el.classList.contains('demo')) setDemo(el, st.stage, changed && el.classList.contains('was-shown'));
+    el.classList.add('was-shown');
+    $('#notes-text').textContent = st.notes || CONTENT.notes[st.slide] || '';
+  }
+
+  // ---------- demo steps ----------
+  // One slide per site: a rail of its steps, the speaker's line, and the screen
+  // the live demo will show (a placeholder until a screenshot is set in content.js).
+  const esc = t => t.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  $$('.slide.demo').forEach(el => {
+    const d = CONTENT.demos[el.dataset.demo];
+    el.innerHTML = `
+      <div class="demo-head"><p class="kicker"><b>${esc(d.kicker)}</b>${esc(d.who)}</p></div>
+      <ol class="demo-rail">${d.steps.map((s, i) => `<li><b>${String(i + 1).padStart(2, '0')}</b>${esc(s.name)}</li>`).join('')}</ol>
+      <div class="demo-main">
+        <p class="demo-quote"></p>
+        <div class="demo-screen"><div class="demo-chrome"><i></i><i></i><i></i><span></span><em></em></div><div class="demo-body"></div></div>
+      </div>
+      <p class="demo-foot"></p>`;
+  });
+  function fillDemo(el, i) {
+    const d = CONTENT.demos[el.dataset.demo], s = d.steps[i];
+    $$('.demo-rail li', el).forEach((li, k) => { li.classList.toggle('is-done', k < i); li.classList.toggle('is-here', k === i); });
+    $('.demo-quote', el).textContent = `“${s.quote}”`;
+    $('.demo-chrome span', el).textContent = s.chrome || d.chrome;
+    $('.demo-chrome em', el).textContent = s.tag || '';
+    const body = $('.demo-body', el);
+    body.style.cssText = 'flex:1;min-height:0;display:flex';
+    body.innerHTML = s.img ? `<img src="${esc(s.img)}" alt="${esc(s.screen)}">` : `<div class="ph">[Screen: ${esc(s.screen)}]</div>`;
+    $('.demo-foot', el).textContent = `${d.kicker} · Step ${i + 1} of ${d.steps.length}`;
+  }
+  function setDemo(el, i, animate) {
+    const main = $('.demo-main', el);
+    if (!animate || RM) { fillDemo(el, i); return; }
+    main.classList.add('is-swapping');
+    setTimeout(() => { fillDemo(el, i); main.classList.remove('is-swapping'); }, 230);
   }
 
   function go(i, animate) {
@@ -893,6 +937,7 @@
       return;                                   // everything else belongs to the viewer
     }
     if (e.key === 'v' || e.key === 'V') { openReviewer(); return; }
+    if (e.key === 'n' || e.key === 'N') { $('#notes').hidden = !$('#notes').hidden; return; }
     if (e.key.startsWith('Arrow') && e.target.closest && e.target.closest('.ws-osd')) return;  // panning the workspace viewer
     if (['ArrowRight', 'PageDown', ' ', 'Enter', 'ArrowDown'].includes(e.key)) { e.preventDefault(); next(); }
     else if (['ArrowLeft', 'PageUp', 'Backspace', 'ArrowUp'].includes(e.key)) { e.preventDefault(); prev(); }

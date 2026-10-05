@@ -25,7 +25,7 @@
     const dLon = (shift * w) / (R * Math.cos(site.lat * Math.PI / 180)) * 180 / Math.PI;
     return { lon: site.lon - dLon, lat: site.lat, w };
   }
-  const C = SITES.cincinnati;     // the case starts, and ends, in Cincinnati
+  const C = SITES.columbus;       // the case starts, and ends, at Ohio State
   const pacific = d3.geoInterpolate(geo(SITES.pittsburgh), geo(SITES.nagasaki))(0.5);
   const VIEWS = {
     lab40: { lon: C.lon, lat: C.lat, w: 0.00045 },
@@ -38,8 +38,8 @@
   };
 
   const ROUTES = [
-    { key: 'r1', a: 'cincinnati', b: 'columbus' },
-    { key: 'r2', a: 'columbus', b: 'pittsburgh' },
+    { key: 'r1', a: 'columbus', b: 'cincinnati' },
+    { key: 'r2', a: 'cincinnati', b: 'pittsburgh' },
     { key: 'r3', a: 'pittsburgh', b: 'nagasaki' },
   ];
   ROUTES.forEach(r => { r.km = d3.geoDistance(geo(SITES[r.a]), geo(SITES[r.b])) * R / 1000; });
@@ -50,12 +50,12 @@
   // on real structures in the stand-in slide; the labels are placeholders.
   const MARKS = {
     start: { color: INK, items: [{ type: 'circle', x: 0.0925, y: 0.0045, r: 0.022, label: '[the feature]', dx: 0.03, dy: -0.012 }] },
-    cincinnati: { color: RUST, tag: 'CIN', items: [
+    columbus: { color: RUST, tag: 'OSU', items: [
       { type: 'num', n: 1, x: 0.045, y: -0.0465, r: 0.009, label: "[annotations · fellow's questions]", dx: 0.014, dy: -0.004 },
       { type: 'num', n: 2, x: 0.155, y: -0.0665, r: 0.009 },
       { type: 'num', n: 3, x: 0.010, y: 0.0635, r: 0.009 },
     ] },
-    columbus: { color: RUST, tag: 'OSU', items: [{ type: 'rect', x0: 0.095, y0: 0.07, x1: 0.185, y1: 0.12, label: '[area that changed the read]', dx: 0.09, dy: -0.014, anchor: 'right' }] },
+    cincinnati: { color: RUST, tag: 'CIN', items: [{ type: 'rect', x0: 0.095, y0: 0.07, x1: 0.185, y1: 0.12, label: '[area that changed the read]', dx: 0.09, dy: -0.014, anchor: 'right' }] },
     pittsburgh: { color: RUST, tag: 'UPMC', items: [{ type: 'ellipse', x: 0.055, y: -0.0065, rx: 0.105, ry: 0.09, dash: true, label: '[n] cases share this pattern', dx: -0.04, dy: -0.098 }] },
     nagasaki: { color: RUST, tag: 'NGS', items: [{ type: 'pin', x: 0.0, y: 0.1, label: '[teaching note]', dx: 0.006, dy: -0.011 }] },
   };
@@ -439,14 +439,14 @@
   }
 
   function sitesToShow() {
-    const shown = new Set(['cincinnati']);
+    const shown = new Set(['columbus']);
     ROUTES.forEach(r => { if (S.routes[r.key] >= 1 || (S.packet && S.packet.key === r.key && S.packet.f > 0.85)) { shown.add(r.a); shown.add(r.b); } });
     return shown;
   }
 
   function drawSites(now, alpha) {
     const shown = sitesToShow(), placed = [];
-    const order = [current.at, 'cincinnati', 'columbus', 'pittsburgh', 'nagasaki'].filter((v, i, a) => v && a.indexOf(v) === i);
+    const order = [current.at, 'columbus', 'cincinnati', 'pittsburgh', 'nagasaki'].filter((v, i, a) => v && a.indexOf(v) === i);
     ctx.save();
     for (const key of order) {
       if (!shown.has(key)) continue;
@@ -653,7 +653,7 @@
         g.drawImage(f, f.naturalWidth * 0.3, f.naturalHeight * 0.15, f.naturalWidth * 0.5, f.naturalHeight * 0.667, 0, 0, 128, 96);
         c.className = 'is-case';
       } else {
-        const cell = Math.floor(r() * 48), sx = (cell % 8) * 256, sy = Math.floor(cell / 8) * 192;
+        const cell = Math.floor(r() * TISSUE.spriteCells), sx = (cell % 8) * 256, sy = Math.floor(cell / 8) * 192;
         g.filter = `hue-rotate(${(r() - 0.5) * 24}deg) saturate(${0.75 + r() * 0.5}) brightness(${0.94 + r() * 0.12})`;
         if (r() < 0.5) { g.translate(128, 96); g.rotate(Math.PI); }
         g.drawImage(TEX.sprite, sx, sy, 256, 192, 0, 0, 128, 96);
@@ -762,51 +762,52 @@
   // A site's demo: one step per stage of its demo slide, words from content.js.
   const demo = (key, at, from = 0, to) => CONTENT.demos[key].steps.slice(from, to)
     .map((d, i) => ({ slide: `s-demo-${key}`, stage: from + i, veil: 1, at, notes: d.notes }));
-  const ALL_MARKS = ['start', 'cincinnati', 'columbus', 'pittsburgh', 'nagasaki'];
+  const ALL_MARKS = ['start', 'columbus', 'cincinnati', 'pittsburgh', 'nagasaki'];
   const STEPS = [
-    // the opening, at 40x in Cincinnati
+    // the opening, at 40x at Ohio State
     { slide: 's-title', veil: 0.9, view: 'lab40', enter: () => { setTitle(0); tween(300, 3200, setTitle); } },
     { slide: 's-disclosures', veil: 1, view: 'lab40' },
-    { slide: 's-case', veil: 0, view: 'lab40', at: 'cincinnati', scale: true, marks: ['start'], captionDelay: 2400,
+    { slide: 's-case', veil: 0, view: 'lab40', at: 'columbus', scale: true, marks: ['start'], captionDelay: 2400,
       enter: () => { S.cam = { ...VIEWS.lab4 }; S.marks.start = 0; flight(VIEWS.lab40, 3000, { rho: 1 }); tween(2700, 900, t => { S.marks.start = t; }); } },
-    { slide: 's-vote1', veil: 0, view: 'lab40', at: 'cincinnati', scale: true, marks: ['start'] },
+    { slide: 's-vote1', veil: 0, view: 'lab40', at: 'columbus', scale: true, marks: ['start'] },
     { slide: 's-second', veil: 1, view: 'lab40' },
     { slide: 's-overview', veil: 1, view: 'lab40' },
-    // 01 · Care: pull back from the slide to Cincinnati
-    { slide: 's-card1', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true, captionDelay: 7000,
-      enter: () => flight(VIEWS.cincinnati, 7500, { rho: 1.6, ease: d3.easeSinInOut }) },
-    { slide: 's-workspace', veil: 1, at: 'cincinnati',
+    // 01 · Care: pull back from the slide to Columbus
+    { slide: 's-card1', veil: 0, view: 'columbus', at: 'columbus', scale: true, captionDelay: 7000,
+      enter: () => flight(VIEWS.columbus, 7500, { rho: 1.6, ease: d3.easeSinInOut }) },
+    { slide: 's-workspace', veil: 1, at: 'columbus',
       enter: () => { const h = $('#s-workspace .ws-heading'); h.style.opacity = 0; domZoom($('#s-workspace .ws-frame'), $('#s-workspace .t-slide'), 2200, 500, initWorkspaceViewer); tween(2500, 600, t => { h.style.opacity = t; h.style.transform = 'none'; }); } },
-    ...demo('cin', 'cincinnati'),
-    { slide: 's-send1', veil: 0, view: 'columbus', at: 'columbus', scale: true, route: 'r1', enter: send('r1', 'columbus', 3800, 1.4) },
-    // 02 · Consult
-    { slide: 's-card2', veil: 0, view: 'columbus', at: 'columbus', scale: true },
-    ...demo('osu', 'columbus'),
+    ...demo('care', 'columbus'),
+    // why Ohio State sends consults as images, then the case leaves
     { slide: 's-arrival', veil: 1, at: 'columbus', enter: () => { setBars(0); tween(700, 1600, t => setBars(d3.easeCubicOut(t))); } },
-    { slide: 's-send2', veil: 0, view: 'pittsburgh', at: 'pittsburgh', scale: true, route: 'r2', enter: send('r2', 'pittsburgh', 3800, 1.4) },
+    { slide: 's-send1', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true, route: 'r1', enter: send('r1', 'cincinnati', 3800, 1.4) },
+    // 02 · Consult
+    { slide: 's-card2', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true },
+    ...demo('consult', 'cincinnati'),
+    { slide: 's-send2', veil: 0, view: 'pittsburgh', at: 'pittsburgh', scale: true, route: 'r2', enter: send('r2', 'pittsburgh', 4200, 1.5) },
     // 03 · Discover; the cohort sits after "Build a cohort"
     { slide: 's-card3', veil: 0, view: 'pittsburgh', at: 'pittsburgh', scale: true },
-    ...demo('upmc', 'pittsburgh', 0, 4),
+    ...demo('discover', 'pittsburgh', 0, 4),
     { slide: 's-cohort', stage: 0, veil: 1, at: 'pittsburgh', enter: () => { const g = $('#cohort-grid'); g.classList.remove('is-settled'); domZoom(g, $('.is-case', g), 2600, 400, () => g.classList.add('is-settled')); } },
     { slide: 's-cohort', stage: 1, veil: 1, at: 'pittsburgh' },
-    ...demo('upmc', 'pittsburgh', 4),
+    ...demo('discover', 'pittsburgh', 4),
     { slide: 's-send3', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true, route: 'r3', enter: send('r3', 'nagasaki', 9000, 1.5) },
     // 04 · Teach
     { slide: 's-card4', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true },
-    ...demo('ngs', 'nagasaki'),
+    ...demo('teach', 'nagasaki'),
     // close: the whole journey, the votes, and back to the same field
     { slide: 's-world', veil: 0, view: 'globe', at: 'nagasaki', scale: true, learners: true,
       enter: () => { S.spin = false; S.learners = 0; flight(VIEWS.globe, 4200, { rho: 1.3, done: startSpin }); tween(3200, 5000, t => { S.learners = t; }); countTotal(); } },
     { slide: 's-vote2', veil: 0.94, view: 'globe', at: 'nagasaki', learners: true },
     { slide: 's-compare', veil: 0.94, view: 'globe', at: 'nagasaki', learners: true },
-    { slide: 's-home', veil: 0, view: 'lab40', at: 'cincinnati', home: true, scale: true, marks: ALL_MARKS, captionDelay: 9800,
+    { slide: 's-home', veil: 0, view: 'lab40', at: 'columbus', home: true, scale: true, marks: ALL_MARKS, captionDelay: 9800,
       enter: () => {
         S.spin = false;
         ALL_MARKS.forEach(k => { S.marks[k] = k === 'start' ? 1 : 0; });
         flight(VIEWS.lab40, 10000, { rho: 1.5 });
         ALL_MARKS.slice(1).forEach((k, i) => tween(10200 + i * 900, 900, t => { S.marks[k] = t; }));
       } },
-    { slide: 's-final', veil: 0, view: 'lab40', at: 'cincinnati', home: true, scale: true, marks: ALL_MARKS },
+    { slide: 's-final', veil: 0, view: 'lab40', at: 'columbus', home: true, scale: true, marks: ALL_MARKS },
     { slide: 's-history', veil: 1, view: 'globe' },
     { slide: 's-believe', veil: 1, view: 'globe' },
     { slide: 's-status', veil: 1, view: 'globe' },
@@ -837,7 +838,7 @@
     document.documentElement.style.setProperty('--veil', st.veil);
     hud.scale.classList.toggle('is-on', !!st.scale);
     hud.route.classList.toggle('is-on', !!st.at && st.veil < 0.5);
-    const order = ['cincinnati', 'columbus', 'pittsburgh', 'nagasaki'];
+    const order = ['columbus', 'cincinnati', 'pittsburgh', 'nagasaki'];
     const hereIdx = st.home ? order.length : order.indexOf(st.at);
     $$('span', hud.route).forEach((el, i) => {
       el.classList.toggle('is-done', i < hereIdx || !!st.home);

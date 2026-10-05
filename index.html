@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#fafaf8">
   <title>Better Together · Pathology Visions 2026</title>
-  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="assets/fonts.css?v=20261005">
   <style>
     :root { color-scheme: light; --sans: "Overpass", "Helvetica Neue", Arial, sans-serif; --mono: "Overpass Mono", ui-monospace, Menlo, monospace; --serif: "Source Serif 4", Georgia, serif; --water: #47698c; --paper: #fafaf8; --ink: #161616; --muted: #6b6b64; --faint: #b0b0a8; --line: rgba(22,22,22,.14); --rust: #9c423c; --veil: 1; }
     * { box-sizing: border-box; }
@@ -308,9 +308,10 @@
 <body>
   <!--
     CONFIG: every placeholder that is not inline text lives here.
-    - The slide is a stand-in whole-slide image (SOPHIE SN_0023, CC0) set up in
-      assets/tissue.js. See README for swapping in the real case.
-    - sites: the four stops. The case starts at Cincinnati Children's.
+    - The slide is a stand-in whole-slide image (CCDI-MCI alveolar rhabdomyosarcoma,
+      CC BY 4.0) set up in assets/tissue.js. See README for swapping in the real case.
+    - sites: the four stops. The case starts at Ohio State, goes to Cincinnati
+      Children's for a consult, then UPMC and Nagasaki.
     - pollUrl / moduleUrl: when set, a real QR code is drawn.
     - learners: illustrative only. Replace with real learner locations.
   -->
@@ -342,8 +343,8 @@
 
     <div class="hud" aria-hidden="true">
       <div class="route chip" id="route">
-        <span data-site="cincinnati">CINCINNATI</span>
         <span data-site="columbus">COLUMBUS</span>
+        <span data-site="cincinnati">CINCINNATI</span>
         <span data-site="pittsburgh">PITTSBURGH</span>
         <span data-site="nagasaki">NAGASAKI</span>
       </div>
@@ -361,7 +362,7 @@
     <div class="reviewer" id="reviewer" hidden>
       <div class="reviewer-bar">
         <p class="kicker" style="margin:0">Slide viewer</p>
-        <p class="rv-title">PV26-001 · <span class="muted">stand-in slide: SOPHIE SN_0023, a Spitz nevus, CC0, until the case's own H&amp;E is added</span></p>
+        <p class="rv-title">PV26-001 · <span class="muted">stand-in slide: alveolar rhabdomyosarcoma, CCDI-MCI via NCI Imaging Data Commons, CC BY 4.0</span></p>
         <span class="rv-mag" id="rv-mag">40×</span>
         <button type="button" data-rv="out" aria-label="Zoom out">−</button>
         <button type="button" data-rv="in" aria-label="Zoom in">+</button>
@@ -378,10 +379,10 @@
         <span class="corner tl" data-corner="lat"></span><span class="corner tr" data-corner="lon"></span>
         <div class="carto-head"><p class="kicker">Pathology Visions 2026 · Workshop</p><p class="kicker">Sheet PV26-001</p></div>
         <h1 class="h-xl title-word" id="title-word">Better Together</h1>
-        <p class="title-sub">One case, followed from a single slide in Cincinnati to the other side of the world.</p>
+        <p class="title-sub">One case, followed from a single slide in Columbus to the other side of the world.</p>
         <ol class="stops">
-          <li><b>Cincinnati</b><span>Care · Archana Shenoy</span></li>
-          <li><b>Columbus</b><span>Consult · Swati Satturwar</span></li>
+          <li><b>Columbus</b><span>Care · Swati Satturwar</span></li>
+          <li><b>Cincinnati</b><span>Consult · Archana Shenoy</span></li>
           <li><b>Pittsburgh</b><span>Discover · Matthew Hanna</span></li>
           <li><b>Nagasaki</b><span>Teach · Junya Fukuoka</span></li>
         </ol>
@@ -392,7 +393,7 @@
             <g id="needle"><path d="M0 -11 L3.4 0 L0 11 L-3.4 0Z" fill="none" stroke="#161616" stroke-width=".8"/><path d="M0 -11 L3.4 0 L-3.4 0Z" fill="#161616"/></g>
           </svg>
           <div class="sbar"><div class="sbar-blocks" id="sbar"><span></span><span></span><span></span><span></span></div><div class="sbar-labels"><span>0</span><span>25</span><span>50</span><span>75</span><span>100 µm</span></div></div>
-          <p class="carto-coord"><small>START</small><span id="title-coord">39.1406° N · 84.5020° W</span></p>
+          <p class="carto-coord"><small>START</small><span id="title-coord">39.9952° N · 83.0171° W</span></p>
           <p class="legend-note">Magnification 40×<br>Sites 4 · Handoffs 3 · Glass shipped 0</p>
         </div>
       </div>
@@ -419,10 +420,10 @@
       </div>
     </section>
 
-    <!-- 40x in Cincinnati -->
+    <!-- 40x at Ohio State -->
     <section class="slide" id="s-case" aria-label="The case at 40x">
       <div class="panel caption">
-        <p class="kicker">Case PV26-001 · Cincinnati Children's</p>
+        <p class="kicker">Case PV26-001 · The Ohio State University</p>
         <h2 class="h-m">Round blue cells in a <span class="tbd">[age]</span>-year-old</h2>
         <dl class="facts">
           <dt>Site</dt><dd class="tbd">[site]</dd>
@@ -430,7 +431,7 @@
           <dt>Presentation</dt><dd class="tbd">[clinical note]</dd>
         </dl>
         <p class="body" style="margin-top:1.2cqw">Every pathologist in this room has had this case on their desk.</p>
-        <p class="note" style="margin-top:1cqw">On screen: a stand-in slide (SOPHIE SN_0023, a Spitz nevus, CC0) until the case's own H&amp;E is added.</p>
+        <p class="note" style="margin-top:1cqw">On screen: a stand-in slide until the case's own H&amp;E is added. Alveolar rhabdomyosarcoma, 3-year-old, frozen section. CCDI-MCI, Children's Oncology Group, via NCI Imaging Data Commons, CC BY 4.0.</p>
       </div>
     </section>
 
@@ -468,8 +469,8 @@
         <p class="kicker">How we'll present</p>
         <h2 class="h-m">One case, four stops, no glass</h2>
         <div class="four">
-          <div><p class="num">01 · Care</p><h3>Cincinnati Children's</h3><p class="who">Archana Shenoy</p><p class="q">What do I need before I sign this out?</p></div>
-          <div><p class="num">02 · Consult</p><h3>Ohio State</h3><p class="who">Swati Satturwar</p><p class="q">Can someone else help?</p></div>
+          <div><p class="num">01 · Care</p><h3>Ohio State</h3><p class="who">Swati Satturwar</p><p class="q">What do I need before I sign this out?</p></div>
+          <div><p class="num">02 · Consult</p><h3>Cincinnati Children's</h3><p class="who">Archana Shenoy</p><p class="q">Can someone else help?</p></div>
           <div><p class="num">03 · Discover</p><h3>UPMC</h3><p class="who">Matthew Hanna</p><p class="q">Have we seen this before?</p></div>
           <div><p class="num">04 · Teach</p><h3>Nagasaki University</h3><p class="who">Junya Fukuoka</p><p class="q">How do we teach what we learned?</p></div>
         </div>
@@ -477,12 +478,12 @@
       </div>
     </section>
 
-    <!-- ============ 01 · Care, Cincinnati ============ -->
-    <section class="slide" id="s-card1" aria-label="Cincinnati Children's">
+    <!-- ============ 01 · Care, Columbus ============ -->
+    <section class="slide" id="s-card1" aria-label="Ohio State">
       <div class="panel station">
         <p class="num">01 · CARE</p>
-        <h2 class="h-l">Cincinnati Children's</h2>
-        <p class="who">Dr. Archana Shenoy</p>
+        <h2 class="h-l">The Ohio State University</h2>
+        <p class="who">Dr. Swati Satturwar</p>
         <p class="q">What do I need before I sign this out?</p>
       </div>
     </section>
@@ -490,7 +491,7 @@
     <section class="slide" id="s-workspace" aria-label="The whole case">
       <h2 class="h-m ws-heading reveal">The whole case, in one place</h2>
       <div class="ws-frame">
-        <div class="ws-bar"><span>PV26-001 · Cincinnati Children's</span><span class="tbd">[replace with a real screenshot or screen recording]</span></div>
+        <div class="ws-bar"><span>PV26-001 · The Ohio State University</span><span class="tbd">[replace with a real screenshot or screen recording]</span></div>
         <div class="ws-grid">
           <figure class="ws-tile t-photo"><div class="ph">[Clinical images or imaging]</div><figcaption>Clinical</figcaption></figure>
           <figure class="ws-tile t-slide"><div class="ws-osd" id="ws-viewer" tabindex="-1"><img src="assets/wsi/field40.jpg" alt="H&amp;E, 40x field of the stand-in slide"></div><figcaption>H&amp;E · live slide · drag to pan, scroll to zoom</figcaption></figure>
@@ -504,27 +505,27 @@
       </div>
     </section>
 
-    <section class="slide demo" id="s-demo-cin" data-demo="cin" data-stage="0" aria-label="Care demo"></section>
+    <section class="slide demo" id="s-demo-care" data-demo="care" data-stage="0" aria-label="Care demo"></section>
 
-    <section class="slide" id="s-send1" aria-label="To Columbus">
+    <section class="slide" id="s-send1" aria-label="To Cincinnati">
       <div class="panel ledger">
-        <p class="kicker">Leg 1 of 3 · Cincinnati → Columbus</p>
+        <p class="kicker">Leg 1 of 3 · Columbus → Cincinnati</p>
         <p class="km"><span data-km>0</span><small>km</small></p>
         <div class="ledger-rows"><span>Sent as</span><span>whole-slide images</span><span>Files converted</span><span>0</span><span>Glass shipped</span><span>0</span></div>
       </div>
     </section>
 
-    <!-- ============ 02 · Consult, Columbus ============ -->
-    <section class="slide" id="s-card2" aria-label="Ohio State">
+    <!-- ============ 02 · Consult, Cincinnati ============ -->
+    <section class="slide" id="s-card2" aria-label="Cincinnati Children's">
       <div class="panel station">
         <p class="num">02 · CONSULT</p>
-        <h2 class="h-l">The Ohio State University</h2>
-        <p class="who">Dr. Swati Satturwar</p>
+        <h2 class="h-l">Cincinnati Children's</h2>
+        <p class="who">Dr. Archana Shenoy</p>
         <p class="q">Can someone else help?</p>
       </div>
     </section>
 
-    <section class="slide demo" id="s-demo-osu" data-demo="osu" data-stage="0" aria-label="Consult demo"></section>
+    <section class="slide demo" id="s-demo-consult" data-demo="consult" data-stage="0" aria-label="Consult demo"></section>
 
     <section class="slide" id="s-arrival" aria-label="From a day to half an hour">
       <div class="content">
@@ -540,7 +541,7 @@
 
     <section class="slide" id="s-send2" aria-label="To Pittsburgh">
       <div class="panel ledger">
-        <p class="kicker">Leg 2 of 3 · Columbus → Pittsburgh</p>
+        <p class="kicker">Leg 2 of 3 · Cincinnati → Pittsburgh</p>
         <p class="km"><span data-km>0</span><small>km</small></p>
         <div class="ledger-rows"><span>Into</span><span>a shared research collection</span><span>Hard drives shipped</span><span>0</span><span>Glass shipped</span><span>0</span></div>
       </div>
@@ -556,7 +557,7 @@
       </div>
     </section>
 
-    <section class="slide demo" id="s-demo-upmc" data-demo="upmc" data-stage="0" aria-label="Discover demo"></section>
+    <section class="slide demo" id="s-demo-discover" data-demo="discover" data-stage="0" aria-label="Discover demo"></section>
 
     <section class="slide" id="s-cohort" data-stage="0" aria-label="The cohort">
       <h2 class="h-m ws-heading">One case in 35 sites' worth of data</h2>
@@ -590,7 +591,7 @@
       </div>
     </section>
 
-    <section class="slide demo" id="s-demo-ngs" data-demo="ngs" data-stage="0" aria-label="Teach demo"></section>
+    <section class="slide demo" id="s-demo-teach" data-demo="teach" data-stage="0" aria-label="Teach demo"></section>
 
     <!-- ============ Close ============ -->
     <section class="slide" id="s-world" aria-label="The whole journey">
@@ -628,13 +629,13 @@
       </div>
     </section>
 
-    <section class="slide" id="s-home" aria-label="Back in Cincinnati">
+    <section class="slide" id="s-home" aria-label="Back at Ohio State">
       <div class="panel caption">
-        <p class="kicker">Back in Cincinnati</p>
+        <p class="kicker">Back at Ohio State</p>
         <h2 class="h-m">The same field, with four sites' work on it</h2>
         <ul class="legend">
-          <li><b>CIN</b>Archana's annotations and her fellow's questions</li>
-          <li><b>OSU</b>The area that changed Swati's read</li>
+          <li><b>OSU</b>Swati's annotations and her fellow's questions</li>
+          <li><b>CIN</b>The area that changed Archana's read</li>
           <li><b>UPMC</b>The cohort that matched</li>
           <li><b>NGS</b>The teaching note</li>
         </ul>
@@ -670,8 +671,8 @@
         <p class="kicker">Rajendra Singh · PathPresenter</p>
         <h2 class="h-m">What we believe</h2>
         <ol class="beliefs">
-          <li><h3>The pathologist stays at the center</h3><p>Today: history, priors, stains, AI and the consult, all inside Archana's case.</p></li>
-          <li><h3>Knowledge travels as freely as the slide</h3><p>Today: 11,740 km and no glass shipped. Nagasaki opened the slide Cincinnati scanned.</p></li>
+          <li><h3>The pathologist stays at the center</h3><p>Today: history, priors, stains, AI and the consult, all inside Swati's case.</p></li>
+          <li><h3>Knowledge travels as freely as the slide</h3><p>Today: 11,890 km and no glass shipped. Nagasaki opened the slide Columbus scanned.</p></li>
           <li><h3>No pathologist decides alone</h3><p>Today: an informal look, a real consult, and a report that came home on its own.</p></li>
           <li><h3>Trainees stay in the loop</h3><p>Today: the fellow touched this case first. A learner across the world touched it last.</p></li>
           <li><h3>Intelligence works for the pathologist</h3><p>Today: the model ran first and the pathologist decided. Next: less time on priors, searches and reports.</p></li>
@@ -706,8 +707,8 @@
         </ol>
       </div>
       <div class="names">
-        <span>Archana Shenoy<small>Cincinnati Children's</small></span>
         <span>Swati Satturwar<small>Ohio State</small></span>
+        <span>Archana Shenoy<small>Cincinnati Children's</small></span>
         <span>Matthew Hanna<small>UPMC</small></span>
         <span>Junya Fukuoka<small>Nagasaki</small></span>
         <span>Rajendra Singh<small>PathPresenter</small></span>
@@ -720,8 +721,8 @@
           <p class="kicker">Case PV26-001 · Closed</p>
           <h2 class="h-xl">Better Together</h2>
           <p class="serif" style="font-size:2.1cqw;margin-top:1.6cqw">Pathology shouldn't be limited by where the glass is.</p>
-          <p class="body" style="margin-top:1.4cqw;max-width:54cqw">One case, worked up in Cincinnati, consulted in Columbus, studied in Pittsburgh and taught in Nagasaki. No glass shipped.</p>
-          <p class="small" style="margin-top:2cqw;line-height:1.8">Archana Shenoy · Cincinnati Children's<br>Swati Satturwar · The Ohio State University<br>Matthew Hanna · UPMC<br>Junya Fukuoka · Nagasaki University<br>Rajendra Singh · PathPresenter</p>
+          <p class="body" style="margin-top:1.4cqw;max-width:54cqw">One case, worked up in Columbus, consulted in Cincinnati, studied in Pittsburgh and taught in Nagasaki. No glass shipped.</p>
+          <p class="small" style="margin-top:2cqw;line-height:1.8">Swati Satturwar · The Ohio State University<br>Archana Shenoy · Cincinnati Children's<br>Matthew Hanna · UPMC<br>Junya Fukuoka · Nagasaki University<br>Rajendra Singh · PathPresenter</p>
         </div>
         <div style="display:grid;gap:.8cqw;justify-items:end">
           <div class="qr ph" data-qr="module">[QR to the teaching module]</div>
@@ -772,12 +773,13 @@
     <aside class="notes" id="notes" hidden><p class="kicker" style="margin:0 0 .5cqw">Speaker notes · N to hide</p><p id="notes-text"></p></aside>
   </main>
 
+  <!-- bump ?v= on every change so presenting machines never run a stale cached copy -->
   <script src="assets/vendor/d3.min.js"></script>
   <script src="assets/vendor/topojson-client.min.js"></script>
   <script src="assets/vendor/qrcode.js"></script>
   <script src="assets/vendor/openseadragon.min.js"></script>
-  <script src="assets/content.js"></script>
-  <script src="assets/tissue.js"></script>
-  <script src="assets/app.js"></script>
+  <script src="assets/content.js?v=20261005"></script>
+  <script src="assets/tissue.js?v=20261005"></script>
+  <script src="assets/app.js?v=20261005"></script>
 </body>
 </html>

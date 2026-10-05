@@ -1,0 +1,1234 @@
+<?xml version="1.0"?>
+<image xmlns="http://www.vips.ecs.soton.ac.uk//dzsave" date="2026-10-05T14:25:58.536515-07" version="8.18.2">
+  <properties>
+    <property>
+      <name>width</name>
+      <value type="gint">12200</value>
+    </property>
+    <property>
+      <name>height</name>
+      <value type="gint">8600</value>
+    </property>
+    <property>
+      <name>bands</name>
+      <value type="gint">3</value>
+    </property>
+    <property>
+      <name>xoffset</name>
+      <value type="gint">-84600</value>
+    </property>
+    <property>
+      <name>yoffset</name>
+      <value type="gint">-6500</value>
+    </property>
+    <property>
+      <name>xres</name>
+      <value type="gdouble">3795.5561417322838</value>
+    </property>
+    <property>
+      <name>yres</name>
+      <value type="gdouble">3795.5561417322838</value>
+    </property>
+    <property>
+      <name>vips-loader</name>
+      <value type="VipsRefString">openslideload</value>
+    </property>
+    <property>
+      <name>slide-level</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>tile-width</name>
+      <value type="gint">256</value>
+    </property>
+    <property>
+      <name>tile-height</name>
+      <value type="gint">256</value>
+    </property>
+    <property>
+      <name>dicom.AccessionNumber</name>
+      <value type="VipsRefString">PBCWJS</value>
+    </property>
+    <property>
+      <name>dicom.AcquisitionDate</name>
+      <value type="VipsRefString">20240827</value>
+    </property>
+    <property>
+      <name>dicom.AcquisitionDateTime</name>
+      <value type="VipsRefString">20240827165200</value>
+    </property>
+    <property>
+      <name>dicom.AcquisitionTime</name>
+      <value type="VipsRefString">165200</value>
+    </property>
+    <property>
+      <name>dicom.AcquisitionUID</name>
+      <value type="VipsRefString">1.3.6.1.4.1.5962.99.1.3090789233.1722613376.1738257609585.3.0</value>
+    </property>
+    <property>
+      <name>dicom.AdmittingDiagnosesCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Alveolar rhabdomyosarcoma</value>
+    </property>
+    <property>
+      <name>dicom.AdmittingDiagnosesCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">8920/3</value>
+    </property>
+    <property>
+      <name>dicom.AdmittingDiagnosesCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">ICDO3</value>
+    </property>
+    <property>
+      <name>dicom.AdmittingDiagnosesDescription</name>
+      <value type="VipsRefString">Alveolar rhabdomyosarcoma</value>
+    </property>
+    <property>
+      <name>dicom.BitsAllocated</name>
+      <value type="VipsRefString">8</value>
+    </property>
+    <property>
+      <name>dicom.BitsStored</name>
+      <value type="VipsRefString">8</value>
+    </property>
+    <property>
+      <name>dicom.BurnedInAnnotation</name>
+      <value type="VipsRefString">NO</value>
+    </property>
+    <property>
+      <name>dicom.ClinicalTrialCoordinatingCenterName</name>
+      <value type="VipsRefString">Nationwide Children's Hospital</value>
+    </property>
+    <property>
+      <name>dicom.ClinicalTrialProtocolID</name>
+      <value type="VipsRefString">phs002790</value>
+    </property>
+    <property>
+      <name>dicom.ClinicalTrialProtocolName</name>
+      <value type="VipsRefString">CCDI Molecular Characterization Initiative</value>
+    </property>
+    <property>
+      <name>dicom.ClinicalTrialSiteID</name>
+      <value type="VipsRefString"></value>
+    </property>
+    <property>
+      <name>dicom.ClinicalTrialSiteName</name>
+      <value type="VipsRefString"></value>
+    </property>
+    <property>
+      <name>dicom.ClinicalTrialSponsorName</name>
+      <value type="VipsRefString">National Cancer Institute (NCI) Childhood Cancer Data Initiative</value>
+    </property>
+    <property>
+      <name>dicom.ClinicalTrialSubjectID</name>
+      <value type="VipsRefString">PBCWJS</value>
+    </property>
+    <property>
+      <name>dicom.CodingSchemeIdentificationSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">DCM</value>
+    </property>
+    <property>
+      <name>dicom.CodingSchemeIdentificationSequence[0].CodingSchemeName</name>
+      <value type="VipsRefString">DICOM Controlled Terminology</value>
+    </property>
+    <property>
+      <name>dicom.CodingSchemeIdentificationSequence[0].CodingSchemeRegistry</name>
+      <value type="VipsRefString">HL7</value>
+    </property>
+    <property>
+      <name>dicom.CodingSchemeIdentificationSequence[0].CodingSchemeUID</name>
+      <value type="VipsRefString">1.2.840.10008.2.16.4</value>
+    </property>
+    <property>
+      <name>dicom.CodingSchemeIdentificationSequence[1].CodingSchemeDesignator</name>
+      <value type="VipsRefString">ICDO3</value>
+    </property>
+    <property>
+      <name>dicom.CodingSchemeIdentificationSequence[1].CodingSchemeName</name>
+      <value type="VipsRefString">ICD-O-3</value>
+    </property>
+    <property>
+      <name>dicom.CodingSchemeIdentificationSequence[1].CodingSchemeRegistry</name>
+      <value type="VipsRefString">HL7</value>
+    </property>
+    <property>
+      <name>dicom.CodingSchemeIdentificationSequence[1].CodingSchemeUID</name>
+      <value type="VipsRefString">2.16.840.1.113883.6.43.1</value>
+    </property>
+    <property>
+      <name>dicom.CodingSchemeIdentificationSequence[2].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.CodingSchemeIdentificationSequence[2].CodingSchemeName</name>
+      <value type="VipsRefString">SNOMED CT using SNOMED-CT style values</value>
+    </property>
+    <property>
+      <name>dicom.CodingSchemeIdentificationSequence[2].CodingSchemeRegistry</name>
+      <value type="VipsRefString">HL7</value>
+    </property>
+    <property>
+      <name>dicom.CodingSchemeIdentificationSequence[2].CodingSchemeUID</name>
+      <value type="VipsRefString">2.16.840.1.113883.6.96</value>
+    </property>
+    <property>
+      <name>dicom.Columns</name>
+      <value type="VipsRefString">256</value>
+    </property>
+    <property>
+      <name>dicom.ContainerIdentifier</name>
+      <value type="VipsRefString">0E1BOM_165200</value>
+    </property>
+    <property>
+      <name>dicom.ContainerTypeCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Microscope slide</value>
+    </property>
+    <property>
+      <name>dicom.ContainerTypeCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">433466003</value>
+    </property>
+    <property>
+      <name>dicom.ContainerTypeCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.ContentDate</name>
+      <value type="VipsRefString">20240827</value>
+    </property>
+    <property>
+      <name>dicom.ContentQualification</name>
+      <value type="VipsRefString">RESEARCH</value>
+    </property>
+    <property>
+      <name>dicom.ContentTime</name>
+      <value type="VipsRefString">165200</value>
+    </property>
+    <property>
+      <name>dicom.ContributingEquipmentSequence[0].ContributionDateTime</name>
+      <value type="VipsRefString">20250815230748.646+0000</value>
+    </property>
+    <property>
+      <name>dicom.ContributingEquipmentSequence[0].ContributionDescription</name>
+      <value type="VipsRefString">TIFF to DICOM conversion</value>
+    </property>
+    <property>
+      <name>dicom.ContributingEquipmentSequence[0].InstitutionAddress</name>
+      <value type="VipsRefString">Bangor, PA</value>
+    </property>
+    <property>
+      <name>dicom.ContributingEquipmentSequence[0].InstitutionName</name>
+      <value type="VipsRefString">PixelMed</value>
+    </property>
+    <property>
+      <name>dicom.ContributingEquipmentSequence[0].InstitutionalDepartmentName</name>
+      <value type="VipsRefString">Software Development</value>
+    </property>
+    <property>
+      <name>dicom.ContributingEquipmentSequence[0].Manufacturer</name>
+      <value type="VipsRefString">PixelMed</value>
+    </property>
+    <property>
+      <name>dicom.ContributingEquipmentSequence[0].ManufacturerModelName</name>
+      <value type="VipsRefString">com.pixelmed.convert.TIFFToDicom</value>
+    </property>
+    <property>
+      <name>dicom.ContributingEquipmentSequence[0].PurposeOfReferenceCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Modifying Equipment</value>
+    </property>
+    <property>
+      <name>dicom.ContributingEquipmentSequence[0].PurposeOfReferenceCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">109103</value>
+    </property>
+    <property>
+      <name>dicom.ContributingEquipmentSequence[0].PurposeOfReferenceCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">DCM</value>
+    </property>
+    <property>
+      <name>dicom.ContributingEquipmentSequence[0].SoftwareVersions</name>
+      <value type="VipsRefString">Vers. Wed Aug 13 07:51:05 EDT 2025</value>
+    </property>
+    <property>
+      <name>dicom.DeviceSerialNumber</name>
+      <value type="VipsRefString">SS12172</value>
+    </property>
+    <property>
+      <name>dicom.DimensionIndexSequence[0].DimensionDescriptionLabel</name>
+      <value type="VipsRefString">Row Position</value>
+    </property>
+    <property>
+      <name>dicom.DimensionIndexSequence[0].DimensionIndexPointer[0]</name>
+      <value type="VipsRefString">72</value>
+    </property>
+    <property>
+      <name>dicom.DimensionIndexSequence[0].DimensionIndexPointer[1]</name>
+      <value type="VipsRefString">543</value>
+    </property>
+    <property>
+      <name>dicom.DimensionIndexSequence[0].DimensionOrganizationUID</name>
+      <value type="VipsRefString">1.3.6.1.4.1.5962.99.1.3090789233.1722613376.1738257609585.15.0</value>
+    </property>
+    <property>
+      <name>dicom.DimensionIndexSequence[0].FunctionalGroupPointer[0]</name>
+      <value type="VipsRefString">72</value>
+    </property>
+    <property>
+      <name>dicom.DimensionIndexSequence[0].FunctionalGroupPointer[1]</name>
+      <value type="VipsRefString">538</value>
+    </property>
+    <property>
+      <name>dicom.DimensionIndexSequence[1].DimensionDescriptionLabel</name>
+      <value type="VipsRefString">Column Position</value>
+    </property>
+    <property>
+      <name>dicom.DimensionIndexSequence[1].DimensionIndexPointer[0]</name>
+      <value type="VipsRefString">72</value>
+    </property>
+    <property>
+      <name>dicom.DimensionIndexSequence[1].DimensionIndexPointer[1]</name>
+      <value type="VipsRefString">542</value>
+    </property>
+    <property>
+      <name>dicom.DimensionIndexSequence[1].DimensionOrganizationUID</name>
+      <value type="VipsRefString">1.3.6.1.4.1.5962.99.1.3090789233.1722613376.1738257609585.15.0</value>
+    </property>
+    <property>
+      <name>dicom.DimensionIndexSequence[1].FunctionalGroupPointer[0]</name>
+      <value type="VipsRefString">72</value>
+    </property>
+    <property>
+      <name>dicom.DimensionIndexSequence[1].FunctionalGroupPointer[1]</name>
+      <value type="VipsRefString">538</value>
+    </property>
+    <property>
+      <name>dicom.DimensionOrganizationSequence[0].DimensionOrganizationUID</name>
+      <value type="VipsRefString">1.3.6.1.4.1.5962.99.1.3090789233.1722613376.1738257609585.15.0</value>
+    </property>
+    <property>
+      <name>dicom.DimensionOrganizationType</name>
+      <value type="VipsRefString">TILED_FULL</value>
+    </property>
+    <property>
+      <name>dicom.EthnicGroup</name>
+      <value type="VipsRefString">Mx Hisp White</value>
+    </property>
+    <property>
+      <name>dicom.ExtendedDepthOfField</name>
+      <value type="VipsRefString">NO</value>
+    </property>
+    <property>
+      <name>dicom.FocusMethod</name>
+      <value type="VipsRefString">AUTO</value>
+    </property>
+    <property>
+      <name>dicom.FrameOfReferenceUID</name>
+      <value type="VipsRefString">1.3.6.1.4.1.5962.99.1.2952568197.109847118.1755299257733.7.0</value>
+    </property>
+    <property>
+      <name>dicom.HighBit</name>
+      <value type="VipsRefString">7</value>
+    </property>
+    <property>
+      <name>dicom.ImageComments</name>
+      <value type="VipsRefString">Aperio Leica Biosystems GT450 v1.0.1 
+103437x21624 [0,0,103437x21624] (256x256) JPEG/YCC Q=91|AppMag = 40|CalibrationAverageBlue = 211.0454864502|CalibrationAverageGreen = 211.64855957031|CalibrationAverageRed = 216.67425537109|Date = 08/27/2024|Exposure Scale = 0.000001|Exposure Time = 8|Filtered = 3|Focus Offset = -0.500000|Gamma = 2.2|Left = 12.39959526062|MPP = 0.263466|Rack = 1|ScanScope ID = SS12172|ScannerType = GT450|SessionMode = NR|Slide = 1|StripeWidth = 4096|Time = 16:52:00|Time Zone = GMT+429496729200|Top = 45.589813232422|Scan Warning = NONE</value>
+    </property>
+    <property>
+      <name>dicom.ImageOrientationSlide[0]</name>
+      <value type="VipsRefString">0</value>
+    </property>
+    <property>
+      <name>dicom.ImageOrientationSlide[1]</name>
+      <value type="VipsRefString">-1</value>
+    </property>
+    <property>
+      <name>dicom.ImageOrientationSlide[2]</name>
+      <value type="VipsRefString">0</value>
+    </property>
+    <property>
+      <name>dicom.ImageOrientationSlide[3]</name>
+      <value type="VipsRefString">-1</value>
+    </property>
+    <property>
+      <name>dicom.ImageOrientationSlide[4]</name>
+      <value type="VipsRefString">0</value>
+    </property>
+    <property>
+      <name>dicom.ImageOrientationSlide[5]</name>
+      <value type="VipsRefString">0</value>
+    </property>
+    <property>
+      <name>dicom.ImageType[0]</name>
+      <value type="VipsRefString">DERIVED</value>
+    </property>
+    <property>
+      <name>dicom.ImageType[1]</name>
+      <value type="VipsRefString">PRIMARY</value>
+    </property>
+    <property>
+      <name>dicom.ImageType[2]</name>
+      <value type="VipsRefString">VOLUME</value>
+    </property>
+    <property>
+      <name>dicom.ImageType[3]</name>
+      <value type="VipsRefString">NONE</value>
+    </property>
+    <property>
+      <name>dicom.ImagedVolumeDepth</name>
+      <value type="VipsRefString">0</value>
+    </property>
+    <property>
+      <name>dicom.ImagedVolumeHeight</name>
+      <value type="VipsRefString">5.6971888542175293</value>
+    </property>
+    <property>
+      <name>dicom.ImagedVolumeWidth</name>
+      <value type="VipsRefString">27.252132415771484</value>
+    </property>
+    <property>
+      <name>dicom.ImplementationClassUID</name>
+      <value type="VipsRefString">1.3.6.1.4.1.5962.99.2</value>
+    </property>
+    <property>
+      <name>dicom.ImplementationVersionName</name>
+      <value type="VipsRefString">PIXELMEDJAVA001</value>
+    </property>
+    <property>
+      <name>dicom.InstanceCreationDate</name>
+      <value type="VipsRefString">20250815</value>
+    </property>
+    <property>
+      <name>dicom.InstanceCreationTime</name>
+      <value type="VipsRefString">230748.105</value>
+    </property>
+    <property>
+      <name>dicom.InstanceCreatorUID</name>
+      <value type="VipsRefString">1.3.6.1.4.1.5962.99.3</value>
+    </property>
+    <property>
+      <name>dicom.InstanceNumber</name>
+      <value type="VipsRefString">1</value>
+    </property>
+    <property>
+      <name>dicom.LossyImageCompression</name>
+      <value type="VipsRefString">01</value>
+    </property>
+    <property>
+      <name>dicom.LossyImageCompressionMethod</name>
+      <value type="VipsRefString">ISO_10918_1</value>
+    </property>
+    <property>
+      <name>dicom.LossyImageCompressionRatio</name>
+      <value type="VipsRefString">33.61</value>
+    </property>
+    <property>
+      <name>dicom.Manufacturer</name>
+      <value type="VipsRefString">Leica Biosystems</value>
+    </property>
+    <property>
+      <name>dicom.ManufacturerModelName</name>
+      <value type="VipsRefString">GT450 converted by com.pixelmed.convert.TIFFToDicom</value>
+    </property>
+    <property>
+      <name>dicom.MediaStorageSOPClassUID</name>
+      <value type="VipsRefString">1.2.840.10008.5.1.4.1.1.77.1.6</value>
+    </property>
+    <property>
+      <name>dicom.MediaStorageSOPInstanceUID</name>
+      <value type="VipsRefString">1.3.6.1.4.1.5962.99.1.3090789233.1722613376.1738257609585.10.0</value>
+    </property>
+    <property>
+      <name>dicom.Modality</name>
+      <value type="VipsRefString">SM</value>
+    </property>
+    <property>
+      <name>dicom.NumberOfFrames</name>
+      <value type="VipsRefString">34425</value>
+    </property>
+    <property>
+      <name>dicom.NumberOfOpticalPaths</name>
+      <value type="VipsRefString">1</value>
+    </property>
+    <property>
+      <name>dicom.OpticalPathSequence[0].IlluminationColorCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Full Spectrum</value>
+    </property>
+    <property>
+      <name>dicom.OpticalPathSequence[0].IlluminationColorCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">414298005</value>
+    </property>
+    <property>
+      <name>dicom.OpticalPathSequence[0].IlluminationColorCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.OpticalPathSequence[0].IlluminationTypeCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Brightfield illumination</value>
+    </property>
+    <property>
+      <name>dicom.OpticalPathSequence[0].IlluminationTypeCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">111744</value>
+    </property>
+    <property>
+      <name>dicom.OpticalPathSequence[0].IlluminationTypeCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">DCM</value>
+    </property>
+    <property>
+      <name>dicom.OpticalPathSequence[0].ObjectiveLensPower</name>
+      <value type="VipsRefString">40</value>
+    </property>
+    <property>
+      <name>dicom.OpticalPathSequence[0].OpticalPathIdentifier</name>
+      <value type="VipsRefString">1</value>
+    </property>
+    <property>
+      <name>dicom.PatientAge</name>
+      <value type="VipsRefString">038M</value>
+    </property>
+    <property>
+      <name>dicom.PatientBirthDate</name>
+      <value type="VipsRefString"></value>
+    </property>
+    <property>
+      <name>dicom.PatientID</name>
+      <value type="VipsRefString">PBCWJS</value>
+    </property>
+    <property>
+      <name>dicom.PatientName</name>
+      <value type="VipsRefString">PBCWJS</value>
+    </property>
+    <property>
+      <name>dicom.PatientOrientation</name>
+      <value type="VipsRefString"></value>
+    </property>
+    <property>
+      <name>dicom.PatientSex</name>
+      <value type="VipsRefString">M</value>
+    </property>
+    <property>
+      <name>dicom.PhotometricInterpretation</name>
+      <value type="VipsRefString">YBR_FULL_422</value>
+    </property>
+    <property>
+      <name>dicom.PixelRepresentation</name>
+      <value type="VipsRefString">0</value>
+    </property>
+    <property>
+      <name>dicom.PlanarConfiguration</name>
+      <value type="VipsRefString">0</value>
+    </property>
+    <property>
+      <name>dicom.PositionReferenceIndicator</name>
+      <value type="VipsRefString">SLIDE_CORNER</value>
+    </property>
+    <property>
+      <name>dicom.PrivateCreator</name>
+      <value type="VipsRefString">PixelMed Publishing</value>
+    </property>
+    <property>
+      <name>dicom.PyramidUID</name>
+      <value type="VipsRefString">1.3.6.1.4.1.5962.99.1.3090789233.1722613376.1738257609585.2.0</value>
+    </property>
+    <property>
+      <name>dicom.RecognizableVisualFeatures</name>
+      <value type="VipsRefString">NO</value>
+    </property>
+    <property>
+      <name>dicom.RecommendedAbsentPixelCIELabValue[0]</name>
+      <value type="VipsRefString">65535</value>
+    </property>
+    <property>
+      <name>dicom.RecommendedAbsentPixelCIELabValue[1]</name>
+      <value type="VipsRefString">0</value>
+    </property>
+    <property>
+      <name>dicom.RecommendedAbsentPixelCIELabValue[2]</name>
+      <value type="VipsRefString">0</value>
+    </property>
+    <property>
+      <name>dicom.ReferringPhysicianName</name>
+      <value type="VipsRefString">^^^^</value>
+    </property>
+    <property>
+      <name>dicom.Rows</name>
+      <value type="VipsRefString">256</value>
+    </property>
+    <property>
+      <name>dicom.SOPClassUID</name>
+      <value type="VipsRefString">1.2.840.10008.5.1.4.1.1.77.1.6</value>
+    </property>
+    <property>
+      <name>dicom.SOPInstanceUID</name>
+      <value type="VipsRefString">1.3.6.1.4.1.5962.99.1.3090789233.1722613376.1738257609585.10.0</value>
+    </property>
+    <property>
+      <name>dicom.SamplesPerPixel</name>
+      <value type="VipsRefString">3</value>
+    </property>
+    <property>
+      <name>dicom.SeriesDate</name>
+      <value type="VipsRefString">20240827</value>
+    </property>
+    <property>
+      <name>dicom.SeriesDescription</name>
+      <value type="VipsRefString">OCT HE T</value>
+    </property>
+    <property>
+      <name>dicom.SeriesInstanceUID</name>
+      <value type="VipsRefString">1.3.6.1.4.1.5962.99.1.3090789233.1722613376.1738257609585.4.0</value>
+    </property>
+    <property>
+      <name>dicom.SeriesNumber</name>
+      <value type="VipsRefString">1</value>
+    </property>
+    <property>
+      <name>dicom.SeriesTime</name>
+      <value type="VipsRefString">165200</value>
+    </property>
+    <property>
+      <name>dicom.SharedFunctionalGroupsSequence[0].PixelMeasuresSequence[0].PixelSpacing[0]</name>
+      <value type="VipsRefString">.000263466</value>
+    </property>
+    <property>
+      <name>dicom.SharedFunctionalGroupsSequence[0].PixelMeasuresSequence[0].PixelSpacing[1]</name>
+      <value type="VipsRefString">.000263466</value>
+    </property>
+    <property>
+      <name>dicom.SharedFunctionalGroupsSequence[0].PixelMeasuresSequence[0].SliceThickness</name>
+      <value type="VipsRefString">0</value>
+    </property>
+    <property>
+      <name>dicom.SharedFunctionalGroupsSequence[0].WholeSlideMicroscopyImageFrameTypeSequence[0].FrameType[0]</name>
+      <value type="VipsRefString">DERIVED</value>
+    </property>
+    <property>
+      <name>dicom.SharedFunctionalGroupsSequence[0].WholeSlideMicroscopyImageFrameTypeSequence[0].FrameType[1]</name>
+      <value type="VipsRefString">PRIMARY</value>
+    </property>
+    <property>
+      <name>dicom.SharedFunctionalGroupsSequence[0].WholeSlideMicroscopyImageFrameTypeSequence[0].FrameType[2]</name>
+      <value type="VipsRefString">VOLUME</value>
+    </property>
+    <property>
+      <name>dicom.SharedFunctionalGroupsSequence[0].WholeSlideMicroscopyImageFrameTypeSequence[0].FrameType[3]</name>
+      <value type="VipsRefString">NONE</value>
+    </property>
+    <property>
+      <name>dicom.SoftwareVersions</name>
+      <value type="VipsRefString">v1.0.1\Wed Aug 13 07:51:05 EDT 2025</value>
+    </property>
+    <property>
+      <name>dicom.SourceApplicationEntityTitle</name>
+      <value type="VipsRefString">OURAETITLE</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].PrimaryAnatomicStructureSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Head and neck</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].PrimaryAnatomicStructureSequence[0].CodeValue</name>
+      <value type="VipsRefString">774007</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].PrimaryAnatomicStructureSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].PrimaryAnatomicStructureSequence[0].PrimaryAnatomicStructureModifierSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Tumor</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].PrimaryAnatomicStructureSequence[0].PrimaryAnatomicStructureModifierSequence[0].CodeValue</name>
+      <value type="VipsRefString">108369006</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].PrimaryAnatomicStructureSequence[0].PrimaryAnatomicStructureModifierSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenDetailedDescription</name>
+      <value type="VipsRefString">Optimal Cutting Temperature Hematoxylin and Eosin Tumor</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenIdentifier</name>
+      <value type="VipsRefString">0E1HFA</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[0].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Specimen Identifier</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[0].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">121041</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[0].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">DCM</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[0].TextValue</name>
+      <value type="VipsRefString">0E1HFA</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[0].ValueType</name>
+      <value type="VipsRefString">TEXT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ConceptCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Specimen processing</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ConceptCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">9265001</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ConceptCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Processing type</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">111701</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">DCM</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ValueType</name>
+      <value type="VipsRefString">CODE</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ConceptCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Tissue freezing medium</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ConceptCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">433469005</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ConceptCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Tissue Fixative</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">430864009</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ValueType</name>
+      <value type="VipsRefString">CODE</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[0].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Specimen Identifier</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[0].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">121041</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[0].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">DCM</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[0].TextValue</name>
+      <value type="VipsRefString">0E1HFA</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[0].ValueType</name>
+      <value type="VipsRefString">TEXT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ConceptCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Staining</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ConceptCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">127790008</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ConceptCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Processing type</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">111701</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">DCM</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ValueType</name>
+      <value type="VipsRefString">CODE</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ConceptCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">hematoxylin stain</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ConceptCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">12710003</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ConceptCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Using substance</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">424361007</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ValueType</name>
+      <value type="VipsRefString">CODE</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ConceptCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">water soluble eosin stain</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ConceptCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">36879007</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ConceptCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Using substance</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">424361007</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ValueType</name>
+      <value type="VipsRefString">CODE</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenShortDescription</name>
+      <value type="VipsRefString">OCT HE T</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[0].SpecimenUID</name>
+      <value type="VipsRefString">2.25.117848864762332715552540241402261214828</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].PrimaryAnatomicStructureSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Head and neck</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].PrimaryAnatomicStructureSequence[0].CodeValue</name>
+      <value type="VipsRefString">774007</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].PrimaryAnatomicStructureSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].PrimaryAnatomicStructureSequence[0].PrimaryAnatomicStructureModifierSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Tumor</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].PrimaryAnatomicStructureSequence[0].PrimaryAnatomicStructureModifierSequence[0].CodeValue</name>
+      <value type="VipsRefString">108369006</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].PrimaryAnatomicStructureSequence[0].PrimaryAnatomicStructureModifierSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenDetailedDescription</name>
+      <value type="VipsRefString">Optimal Cutting Temperature Hematoxylin and Eosin Tumor</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenIdentifier</name>
+      <value type="VipsRefString">0E1HEU</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[0].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Specimen Identifier</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[0].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">121041</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[0].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">DCM</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[0].TextValue</name>
+      <value type="VipsRefString">0E1HEU</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[0].ValueType</name>
+      <value type="VipsRefString">TEXT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ConceptCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Specimen processing</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ConceptCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">9265001</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ConceptCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Processing type</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">111701</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">DCM</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[1].ValueType</name>
+      <value type="VipsRefString">CODE</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ConceptCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Tissue freezing medium</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ConceptCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">433469005</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ConceptCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Tissue Fixative</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">430864009</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[0].SpecimenPreparationStepContentItemSequence[2].ValueType</name>
+      <value type="VipsRefString">CODE</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[0].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Specimen Identifier</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[0].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">121041</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[0].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">DCM</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[0].TextValue</name>
+      <value type="VipsRefString">0E1HEU</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[0].ValueType</name>
+      <value type="VipsRefString">TEXT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ConceptCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Staining</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ConceptCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">127790008</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ConceptCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Processing type</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">111701</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">DCM</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[1].ValueType</name>
+      <value type="VipsRefString">CODE</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ConceptCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">hematoxylin stain</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ConceptCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">12710003</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ConceptCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Using substance</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">424361007</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[2].ValueType</name>
+      <value type="VipsRefString">CODE</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ConceptCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">water soluble eosin stain</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ConceptCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">36879007</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ConceptCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ConceptNameCodeSequence[0].CodeMeaning</name>
+      <value type="VipsRefString">Using substance</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ConceptNameCodeSequence[0].CodeValue</name>
+      <value type="VipsRefString">424361007</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ConceptNameCodeSequence[0].CodingSchemeDesignator</name>
+      <value type="VipsRefString">SCT</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenPreparationSequence[1].SpecimenPreparationStepContentItemSequence[3].ValueType</name>
+      <value type="VipsRefString">CODE</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenShortDescription</name>
+      <value type="VipsRefString">OCT HE T</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenDescriptionSequence[1].SpecimenUID</name>
+      <value type="VipsRefString">2.25.117848864762332715552540241402261214828</value>
+    </property>
+    <property>
+      <name>dicom.SpecimenLabelInImage</name>
+      <value type="VipsRefString">NO</value>
+    </property>
+    <property>
+      <name>dicom.StudyDate</name>
+      <value type="VipsRefString">20240827</value>
+    </property>
+    <property>
+      <name>dicom.StudyDescription</name>
+      <value type="VipsRefString">Histopathology</value>
+    </property>
+    <property>
+      <name>dicom.StudyID</name>
+      <value type="VipsRefString">PBCWJS</value>
+    </property>
+    <property>
+      <name>dicom.StudyInstanceUID</name>
+      <value type="VipsRefString">2.25.31927199099168004343902245022161688633</value>
+    </property>
+    <property>
+      <name>dicom.StudyTime</name>
+      <value type="VipsRefString">165200</value>
+    </property>
+    <property>
+      <name>dicom.TimezoneOffsetFromUTC</name>
+      <value type="VipsRefString">+0000</value>
+    </property>
+    <property>
+      <name>dicom.TotalPixelMatrixColumns</name>
+      <value type="VipsRefString">103437</value>
+    </property>
+    <property>
+      <name>dicom.TotalPixelMatrixFocalPlanes</name>
+      <value type="VipsRefString">1</value>
+    </property>
+    <property>
+      <name>dicom.TotalPixelMatrixOriginSequence[0].XOffsetInSlideCoordinateSystem</name>
+      <value type="VipsRefString">45.589813232422</value>
+    </property>
+    <property>
+      <name>dicom.TotalPixelMatrixOriginSequence[0].YOffsetInSlideCoordinateSystem</name>
+      <value type="VipsRefString">-12.397486686707</value>
+    </property>
+    <property>
+      <name>dicom.TotalPixelMatrixRows</name>
+      <value type="VipsRefString">21624</value>
+    </property>
+    <property>
+      <name>dicom.TransferSyntaxUID</name>
+      <value type="VipsRefString">1.2.840.10008.1.2.4.50</value>
+    </property>
+    <property>
+      <name>dicom.VolumetricProperties</name>
+      <value type="VipsRefString">VOLUME</value>
+    </property>
+    <property>
+      <name>openslide.associated.thumbnail.height</name>
+      <value type="VipsRefString">401</value>
+    </property>
+    <property>
+      <name>openslide.associated.thumbnail.icc-size</name>
+      <value type="VipsRefString">13113264</value>
+    </property>
+    <property>
+      <name>openslide.associated.thumbnail.width</name>
+      <value type="VipsRefString">1920</value>
+    </property>
+    <property>
+      <name>openslide.icc-size</name>
+      <value type="VipsRefString">13113264</value>
+    </property>
+    <property>
+      <name>openslide.level-count</name>
+      <value type="VipsRefString">3</value>
+    </property>
+    <property>
+      <name>openslide.level[0].downsample</name>
+      <value type="VipsRefString">1</value>
+    </property>
+    <property>
+      <name>openslide.level[0].height</name>
+      <value type="VipsRefString">21624</value>
+    </property>
+    <property>
+      <name>openslide.level[0].tile-height</name>
+      <value type="VipsRefString">256</value>
+    </property>
+    <property>
+      <name>openslide.level[0].tile-width</name>
+      <value type="VipsRefString">256</value>
+    </property>
+    <property>
+      <name>openslide.level[0].width</name>
+      <value type="VipsRefString">103437</value>
+    </property>
+    <property>
+      <name>openslide.level[1].downsample</name>
+      <value type="VipsRefString">4.0000193356278277</value>
+    </property>
+    <property>
+      <name>openslide.level[1].height</name>
+      <value type="VipsRefString">5406</value>
+    </property>
+    <property>
+      <name>openslide.level[1].tile-height</name>
+      <value type="VipsRefString">256</value>
+    </property>
+    <property>
+      <name>openslide.level[1].tile-width</name>
+      <value type="VipsRefString">256</value>
+    </property>
+    <property>
+      <name>openslide.level[1].width</name>
+      <value type="VipsRefString">25859</value>
+    </property>
+    <property>
+      <name>openslide.level[2].downsample</name>
+      <value type="VipsRefString">16.00396633910708</value>
+    </property>
+    <property>
+      <name>openslide.level[2].height</name>
+      <value type="VipsRefString">1351</value>
+    </property>
+    <property>
+      <name>openslide.level[2].tile-height</name>
+      <value type="VipsRefString">256</value>
+    </property>
+    <property>
+      <name>openslide.level[2].tile-width</name>
+      <value type="VipsRefString">256</value>
+    </property>
+    <property>
+      <name>openslide.level[2].width</name>
+      <value type="VipsRefString">6464</value>
+    </property>
+    <property>
+      <name>openslide.mpp-x</name>
+      <value type="VipsRefString">0.26346600000000003</value>
+    </property>
+    <property>
+      <name>openslide.mpp-y</name>
+      <value type="VipsRefString">0.26346600000000003</value>
+    </property>
+    <property>
+      <name>openslide.objective-power</name>
+      <value type="VipsRefString">40</value>
+    </property>
+    <property>
+      <name>openslide.quickhash-1</name>
+      <value type="VipsRefString">57535754cdfc55e7e40e9e93ae55e591aa380370cf73f9abe1c7777ccf67f2a6</value>
+    </property>
+    <property>
+      <name>openslide.vendor</name>
+      <value type="VipsRefString">dicom</value>
+    </property>
+    <property>
+      <name>slide-associated-images</name>
+      <value type="VipsRefString">thumbnail</value>
+    </property>
+    <property>
+      <name>resolution-unit</name>
+      <value type="VipsRefString">in</value>
+    </property>
+    <property>
+      <name>orientation</name>
+      <value type="gint">1</value>
+    </property>
+    <property>
+      <name>vips-sequential</name>
+      <value type="gint">1</value>
+    </property>
+  </properties>
+</image>

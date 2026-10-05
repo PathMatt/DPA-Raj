@@ -1,8 +1,8 @@
 # Better Together · Pathology Visions 2026
 
-One case, followed from a single cell to the other side of the world. A 16:9
-HTML presentation built around a continuous zoom: from a 40x field in a
-community hospital out to Cincinnati, Columbus, Pittsburgh and Nagasaki, then
+One case, followed from a single slide in Cincinnati to the other side of the
+world. A 16:9 HTML presentation built around a continuous zoom: from a 40x
+field at Cincinnati Children's out to Columbus, Pittsburgh and Nagasaki, then
 back down to the same field.
 
 No build step. Serve the folder (`python3 -m http.server`) or deploy to Vercel.

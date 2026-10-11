@@ -439,6 +439,7 @@
   }
 
   function sitesToShow() {
+    if (window.MAP_ALL_SITES) return new Set(Object.keys(SITES));   // for exporting map images
     const shown = new Set(['columbus']);
     ROUTES.forEach(r => { if (S.routes[r.key] >= 1 || (S.packet && S.packet.key === r.key && S.packet.f > 0.85)) { shown.add(r.a); shown.add(r.b); } });
     return shown;
@@ -462,6 +463,7 @@
       }
       ctx.fillStyle = here ? RUST : INK; ctx.strokeStyle = PAPER; ctx.lineWidth = 2 * U;
       ctx.beginPath(); ctx.arc(q[0], q[1], (here ? 5 : 4) * U, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      if (window.MAP_LABELS === false) continue;                       // for exporting map images
       const text = s.name.toUpperCase();
       ctx.font = font(here ? 14 : 12, here ? 800 : 600); track(0.14);
       const tw = ctx.measureText(text).width, lx = q[0] + 12 * U, ly = q[1] - 12 * U;
@@ -816,7 +818,6 @@
     { slide: 's-next', veil: 1, view: 'globe' },
     { slide: 's-status', veil: 1, view: 'globe' },
     { slide: 's-tissue', veil: 1, view: 'globe' },
-    { slide: 's-goes', veil: 1, view: 'globe' },
     { slide: 's-always', veil: 0.92, view: 'globe', learners: true },
     { slide: 's-close', veil: 0.9, view: 'globe', learners: true },
   ];

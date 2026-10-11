@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#fafaf8">
   <title>Better Together · Pathology Visions 2026</title>
-  <link rel="stylesheet" href="assets/fonts.css?v=20261011">
+  <link rel="stylesheet" href="assets/fonts.css?v=20261011b">
   <style>
     :root { color-scheme: light; --sans: "Overpass", "Helvetica Neue", Arial, sans-serif; --mono: "Overpass Mono", ui-monospace, Menlo, monospace; --serif: "Source Serif 4", Georgia, serif; --water: #47698c; --paper: #fafaf8; --ink: #161616; --muted: #6b6b64; --faint: #b0b0a8; --line: rgba(22,22,22,.14); --rust: #9c423c; --veil: 1; }
     * { box-sizing: border-box; }
@@ -345,6 +345,8 @@
     .goes h3 { font-size: 2.2cqw; font-weight: 300; letter-spacing: -.02em; line-height: 1.15; margin-bottom: 1cqw; }
     .goes p { font-size: 1.12cqw; color: var(--muted); line-height: 1.5; }
     .always { top: 22%; }
+    .tissue-close { display: grid; grid-template-columns: 1fr 1.3fr; gap: 3cqw; margin-top: 2.4cqw; align-items: baseline; }
+    .tissue-close .serif { font-size: 1.7cqw; }
     .always-list { list-style: none; padding: 0; margin: 2.4cqw 0 0; display: grid; gap: .8cqw; font-size: 1.9cqw; font-weight: 300; }
     .demo-rail.is-long { gap: 0; }
     .demo-rail.is-long li { padding: .42cqw 0 .42cqw .9cqw; font-size: .95cqw; }
@@ -892,7 +894,7 @@
     <section class="slide" id="s-tissue" aria-label="Tissue intelligence">
       <div class="content">
         <p class="kicker">Where this goes · tissue intelligence</p>
-        <h2 class="h-m">From connected workflows to tissue intelligence.</h2>
+        <h2 class="h-m">Scanner-agnostic. AI-agnostic.<br>A path toward multimodal intelligence.</h2>
         <div class="tissue-grid">
           <div><p class="tag-live">Live today</p><h3>Any scanner</h3><p>Different scanner formats can be supported without forcing one proprietary ecosystem.</p></div>
           <div><p class="tag-live">Live today</p><h3>Any AI</h3><p>Third-party models can appear within the viewing workflow; clinical deployment depends on the particular model and validation.</p></div>
@@ -900,19 +902,7 @@
             <div class="chips plain"><span>H&amp;E morphology</span><span>Multiplex protein</span><span>Spatial RNA</span><span>Molecular results</span><span>The pathology report</span><span>Treatment &amp; outcomes</span></div>
             <p>The ambition: connect diverse data to the case, with appropriate permissions, validation and human oversight.</p></div>
         </div>
-        <p class="small" style="margin-top:2.4cqw;max-width:72cqw">Our strength is not owning every scanner, model or modality. It is designing a place where they can work together around the pathologist.</p>
-      </div>
-    </section>
-
-    <section class="slide" id="s-goes" aria-label="Where this goes">
-      <div class="content">
-        <p class="kicker">Where this goes</p>
-        <div class="goes">
-          <div><h3>Every slide, a teacher.</h3><p>The case that reached Nagasaki today can teach a resident anywhere tomorrow, from the same slide.</p></div>
-          <div><h3>Every case, a dataset.</h3><p>Signed out once, searchable from then on, and governed by the institution that owns it.</p></div>
-          <div><h3>Every pathologist, connected.</h3><p>No one facing a hard case alone, wherever they practice and wherever the glass is.</p></div>
-        </div>
-        <p class="small" style="margin-top:3cqw">One connected platform for pathology. Built by pathologists. Designed to work across scanners, LIS systems and AI tools.</p>
+        <div class="tissue-close"><p class="serif">From connected workflows to tissue intelligence.</p><p class="small">Our strength is not owning every scanner, model or modality. It is designing a place where they can work together around the pathologist.</p></div>
       </div>
     </section>
 
@@ -953,8 +943,8 @@
   <script src="assets/vendor/topojson-client.min.js"></script>
   <script src="assets/vendor/qrcode.js"></script>
   <script src="assets/vendor/openseadragon.min.js"></script>
-  <script src="assets/content.js?v=20261011"></script>
-  <script src="assets/tissue.js?v=20261011"></script>
-  <script src="assets/app.js?v=20261011"></script>
+  <script src="assets/content.js?v=20261011b"></script>
+  <script src="assets/tissue.js?v=20261011b"></script>
+  <script src="assets/app.js?v=20261011b"></script>
 </body>
 </html>

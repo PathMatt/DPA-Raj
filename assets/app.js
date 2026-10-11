@@ -778,24 +778,27 @@
     { slide: 's-workspace', veil: 1, at: 'columbus',
       enter: () => { const h = $('#s-workspace .ws-heading'); h.style.opacity = 0; domZoom($('#s-workspace .ws-frame'), $('#s-workspace .t-slide'), 2200, 500, initWorkspaceViewer); tween(2500, 600, t => { h.style.opacity = t; h.style.transform = 'none'; }); } },
     ...demo('care', 'columbus'),
-    // why Ohio State sends consults as images, then the case leaves
-    { slide: 's-arrival', veil: 1, at: 'columbus', enter: () => { setBars(0); tween(700, 1600, t => setBars(d3.easeCubicOut(t))); } },
     { slide: 's-send1', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true, route: 'r1', enter: send('r1', 'cincinnati', 3800, 1.4) },
-    // 02 · Consult
+    // 02 · Consult, then Archana's consult-program slides
     { slide: 's-card2', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true },
     ...demo('consult', 'cincinnati'),
+    { slide: 's-glass-before', veil: 1, at: 'cincinnati' },
+    { slide: 's-glass-after', veil: 1, at: 'cincinnati' },
+    { slide: 's-arrival', veil: 1, at: 'cincinnati', enter: () => { setBars(0); tween(700, 1600, t => setBars(d3.easeCubicOut(t))); } },
+    { slide: 's-kg', veil: 1, at: 'cincinnati' },
+    { slide: 's-portal', veil: 1, at: 'cincinnati' },
     { slide: 's-send2', veil: 0, view: 'pittsburgh', at: 'pittsburgh', scale: true, route: 'r2', enter: send('r2', 'pittsburgh', 4200, 1.5) },
     // 03 · Discover; the cohort sits after "Build a cohort"
     { slide: 's-card3', veil: 0, view: 'pittsburgh', at: 'pittsburgh', scale: true },
-    ...demo('discover', 'pittsburgh', 0, 4),
+    ...demo('discover', 'pittsburgh', 0, 8),
     { slide: 's-cohort', stage: 0, veil: 1, at: 'pittsburgh', enter: () => { const g = $('#cohort-grid'); g.classList.remove('is-settled'); domZoom(g, $('.is-case', g), 2600, 400, () => g.classList.add('is-settled')); } },
     { slide: 's-cohort', stage: 1, veil: 1, at: 'pittsburgh' },
-    ...demo('discover', 'pittsburgh', 4),
+    ...demo('discover', 'pittsburgh', 8),
     { slide: 's-send3', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true, route: 'r3', enter: send('r3', 'nagasaki', 9000, 1.5) },
     // 04 · Teach
     { slide: 's-card4', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true },
     ...demo('teach', 'nagasaki'),
-    // close: the whole journey, the votes, and back to the same field
+    // close: the whole journey, the second vote, back to the same field, then the platform story
     { slide: 's-world', veil: 0, view: 'globe', at: 'nagasaki', scale: true, learners: true,
       enter: () => { S.spin = false; S.learners = 0; flight(VIEWS.globe, 4200, { rho: 1.3, done: startSpin }); tween(3200, 5000, t => { S.learners = t; }); countTotal(); } },
     { slide: 's-vote2', veil: 0.94, view: 'globe', at: 'nagasaki', learners: true },
@@ -807,15 +810,15 @@
         flight(VIEWS.lab40, 10000, { rho: 1.5 });
         ALL_MARKS.slice(1).forEach((k, i) => tween(10200 + i * 900, 900, t => { S.marks[k] = t; }));
       } },
-    { slide: 's-final', veil: 0, view: 'lab40', at: 'columbus', home: true, scale: true, marks: ALL_MARKS },
+    { slide: 's-why', veil: 1, view: 'globe' },
     { slide: 's-history', veil: 1, view: 'globe' },
     { slide: 's-believe', veil: 1, view: 'globe' },
+    { slide: 's-next', veil: 1, view: 'globe' },
     { slide: 's-status', veil: 1, view: 'globe' },
-    { slide: 's-panel', veil: 1, view: 'globe' },
+    { slide: 's-tissue', veil: 1, view: 'globe' },
+    { slide: 's-goes', veil: 1, view: 'globe' },
+    { slide: 's-always', veil: 0.92, view: 'globe', learners: true },
     { slide: 's-close', veil: 0.9, view: 'globe', learners: true },
-    { slide: 's-b1', veil: 1, view: 'globe' },
-    { slide: 's-b2', veil: 1, view: 'globe' },
-    { slide: 's-b3', veil: 1, view: 'globe' },
   ];
   // inherit the camera from the previous step, and collect finished routes
   STEPS.forEach((s, i) => {
@@ -878,7 +881,7 @@
     const d = CONTENT.demos[el.dataset.demo];
     el.innerHTML = `
       <div class="demo-head"><p class="kicker"><b>${esc(d.kicker)}</b>${esc(d.who)}</p></div>
-      <ol class="demo-rail">${d.steps.map((s, i) => `<li><b>${String(i + 1).padStart(2, '0')}</b>${esc(s.name)}</li>`).join('')}</ol>
+      <ol class="demo-rail${d.rail.length > 9 ? ' is-long' : ''}">${d.rail.map((name, i) => `<li><b>${String(i + 1).padStart(2, '0')}</b>${esc(name)}</li>`).join('')}</ol>
       <div class="demo-main">
         <p class="demo-quote"></p>
         <div class="demo-screen"><div class="demo-chrome"><i></i><i></i><i></i><span></span><em></em></div><div class="demo-body"></div></div>
@@ -886,15 +889,17 @@
       <p class="demo-foot"></p>`;
   });
   function fillDemo(el, i) {
-    const d = CONTENT.demos[el.dataset.demo], s = d.steps[i];
-    $$('.demo-rail li', el).forEach((li, k) => { li.classList.toggle('is-done', k < i); li.classList.toggle('is-here', k === i); });
+    const d = CONTENT.demos[el.dataset.demo], s = d.steps[i], r = s.rail ?? i;
+    $$('.demo-rail li', el).forEach((li, k) => { li.classList.toggle('is-done', k < r); li.classList.toggle('is-here', k === r); });
     $('.demo-quote', el).textContent = `“${s.quote}”`;
     $('.demo-chrome span', el).textContent = s.chrome || d.chrome;
     $('.demo-chrome em', el).textContent = s.tag || '';
     const body = $('.demo-body', el);
     body.style.cssText = 'flex:1;min-height:0;display:flex';
-    body.innerHTML = s.img ? `<img src="${esc(s.img)}" alt="${esc(s.screen)}">` : `<div class="ph">[Screen: ${esc(s.screen)}]</div>`;
-    $('.demo-foot', el).textContent = `${d.kicker} · Step ${i + 1} of ${d.steps.length}`;
+    body.innerHTML = s.html ? `<div class="v">${s.html}</div>`
+      : s.img ? `<img src="${esc(s.img)}" alt="${esc(s.screen)}">`
+      : `<div class="ph">[${s.tag && /still/i.test(s.tag) ? 'Still' : 'Screen'}: ${esc(s.screen.replace(/^Still: /, ''))}]</div>`;
+    $('.demo-foot', el).textContent = s.foot || `${d.kicker} · Step ${r + 1} of ${d.rail.length}`;
   }
   function setDemo(el, i, animate) {
     const main = $('.demo-main', el);

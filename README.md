@@ -39,25 +39,30 @@ the top right are computed from the same value.
 
 ## Story
 
-Content follows the "Better Together · PV 2026" PowerPoint script, with the
+Content follows the "Better Together · PV 2026 v4" PowerPoint script, with the
 route reordered so the case starts at Ohio State and goes to Cincinnati
 Children's for the consult. The words live in `assets/content.js`; bump the
 `?v=` on the script tags in `index.html` after editing so browsers reload.
 
-1. Title (a map cartouche with the four stops), disclosures
-2. The case at 40x at Ohio State: round blue cells, vote 1 (four options),
-   why a second read matters (Ray-Coquard et al., Ann Oncol 2012), the overview
+1. Title (a map cartouche with the four stops and presenters), disclosures
+2. The case at 40x at Ohio State: round blue cells in a 14-year-old (forearm
+   excision), vote 1 (Ewing sarcoma, alveolar rhabdomyosarcoma, CIC-rearranged
+   sarcoma, DSRCT), why a second read matters (Ray-Coquard et al., Ann Oncol
+   2012), the overview with the leg distances
 3. The camera pulls back from the slide to Columbus. 01 · Care: the whole case
-   in one place, Swati's eight demo steps, then Ohio State's 23 h vs 30 min
-   referral data
-4. Leg 1, 159 km to Cincinnati Children's. 02 · Consult: Archana's eight steps
-5. Leg 2, 414 km to Pittsburgh. 03 · Discover: Matt's eight steps, with the
-   cohort grid after "Build a cohort"
+   in one place, then Swati's eight demo steps
+4. Leg 1, 159 km to Cincinnati Children's. 02 · Consult: Archana's eight
+   steps, then her consult-program slides (glass vs digital consult, days to
+   under an hour, kilograms to gigabytes, the LIS-integrated portal)
+5. Leg 2, 414 km to Pittsburgh. 03 · Discover: Matt's thirteen steps, with
+   built visuals for search by image, the ADC Alliance (three views), the
+   diagnostic and prognostic model concepts and the patient-level vision,
+   plus the cohort grid after "Build a cohort"
 6. Leg 3, 11,317 km across the Pacific. 04 · Teach: Junya's seven steps
-7. The whole journey (11,890 km), vote 2, the comparison
-8. The dive back to the same 40x field at Ohio State, with all four sites'
-   annotations; final diagnosis, history, what we believe, status, panel,
-   close, three backup slides
+7. The whole journey (11,890 km), vote 2, the comparison, and the dive back
+   to the same 40x field at Ohio State with all four sites' annotations
+8. Why this exists, how it was built, what we believe, the intelligence
+   layer, status, tissue intelligence, where this goes, better together, close
 
 Each demo step shows the site's step rail, the speaker's line and a screen
 frame holding the placeholder for the live demo. To show a screenshot

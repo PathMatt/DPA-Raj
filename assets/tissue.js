@@ -37,7 +37,7 @@
     g.font = '400 40px "Overpass Mono", monospace'; g.fillText('A1 · H&E', 60, 210);
     g.fillStyle = '#9c423c'; g.fillText('[accession]', 60, 290);
     g.fillStyle = 'rgba(22,22,22,.5)'; g.font = '600 24px "Overpass", sans-serif';
-    g.fillText('STAND-IN: CCDI-MCI · ARMS', 60, H - 96);
+    g.fillText('STAND-IN: CCDI-MCI · CC BY 4.0', 60, H - 96);
     // coverslip
     g.strokeStyle = 'rgba(110,124,134,.45)'; g.lineWidth = 2;
     g.strokeRect(labelW + 1.5 * S, 2 * S, W - labelW - 3.5 * S, H - 4 * S);

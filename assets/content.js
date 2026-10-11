@@ -1,123 +1,177 @@
-// Words for the deck, from "Better Together · PV 2026" (the PowerPoint script).
+// Words for the deck, from "Better Together · PV 2026 v4" (the PowerPoint script).
 // Edit content here; assets/app.js only decides where and when it appears.
 //
-// Each demo step: name (the rail), quote (what the speaker says on screen),
-// screen (placeholder for the live demo), img (optional screenshot, e.g.
-// 'assets/screens/cin-1.jpg', shown instead of the placeholder), notes.
+// Each demo has a rail (the step names) and a list of steps. A step has:
+//   rail   which rail item is current (defaults to its position)
+//   quote  what the speaker says on screen
+//   chrome the title bar of the screen frame (defaults to the demo's)
+//   tag    a flag in the title bar, e.g. "Research concept · not validated"
+//   screen placeholder text for the live demo
+//   img    optional screenshot shown instead of the placeholder
+//   html   optional built visual shown instead of the placeholder
+//   foot   optional footer text (defaults to "Step n of N")
+//   notes  speaker notes (N)
+
+const WSI = 'assets/wsi';
+const tile = (i, label, extra = '') => {
+  const x = (i % 8) * 100 / 7, y = Math.floor(i / 8) * 100 / 5;
+  return `<figure class="v-tile"><div style="background-image:url(${WSI}/cohort.jpg);background-size:800% 600%;background-position:${x}% ${y}%"></div><figcaption>${label}${extra}</figcaption></figure>`;
+};
 
 window.CONTENT = {
   demos: {
     care: {
       kicker: '01 · Care', who: 'Swati Satturwar · The Ohio State University', chrome: 'PathPresenter · The Ohio State University · PV26-001',
+      rail: ['Clinical context', 'Prior material', "Fellow's preview", 'Navigate and measure', 'Order stains', 'AI in the viewer', 'Show a colleague', 'Send for consult'],
       steps: [
-        { name: 'Clinical context', quote: 'Before I look at a single slide, I want to know the patient.',
+        { quote: 'Before I look at a single slide, I want to know the patient.',
           screen: 'Clinical history, clinical images or imaging, and gross photos, all inside the case',
-          notes: 'Swati, beat 1 (0:20 to 0:55). "Before I look at a single slide, I want to know the patient: age, site, history, imaging, the gross. With round blue cells, that context narrows the differential before I see a cell. A prior melanoma, an older patient with a skin nodule, a young man with an abdominal mass: each points somewhere different. Here it\'s all in the case, not in another system."' },
-        { name: 'Prior material', quote: "If there's prior material, I want it next to today's case, without a request.",
-          screen: "Prior biopsy slides and report, open side by side with today's slide",
-          notes: 'Swati, beat 2 (0:55 to 1:20). "If there\'s prior material, I want it next to today\'s case without putting in a request. Here\'s the earlier specimen, slides and report, side by side." Drop this step if the case has no prior material.' },
-        { name: "Fellow's preview", quote: 'My fellow got there first, and left questions pinned to the slide.',
-          screen: 'The fellow\'s annotations and draft diagnosis. Jump between “Nuclear molding and fine chromatin here. Merkel?” and “Is this desmoplastic stroma around the nests?”, then type a reply on one',
-          notes: 'Swati, beat 3 (1:20 to 2:10). "My fellow previewed this case before I got to it. Each annotation is pinned to the exact spot, with a question. Both are fair questions, and the teaching point is that morphology alone won\'t settle a round blue cell tumor. I answer right here on the slide, and the teaching stays with the case instead of disappearing after sign-out."' },
-        { name: 'Navigate and measure', quote: 'I move with the keyboard or by touch, and measure right on the slide.',
+          notes: 'Swati, beat 1 (0:20 to 0:55). "Before I look at a single slide, I want to know the patient: age, site, history, imaging, the gross. With round blue cells, that context narrows the differential before I see a cell. A 14-year-old, a forearm nodule that grew over six months, a prior biopsy that didn\'t settle it. Here it\'s all in the case, not in another system."' },
+        { quote: "If there's prior material, I want it next to today's case, without a request.",
+          screen: "The prior biopsy slides and report, open side by side with today's slide",
+          notes: 'Swati, beat 2 (0:55 to 1:20). "If there\'s prior material, I want it next to today\'s case without putting in a request. Here\'s the earlier biopsy, slides and report, side by side."' },
+        { quote: 'My fellow got there first, and left questions pinned to the slide.',
+          screen: 'The fellow\'s annotations and draft diagnosis. Jump between “More nucleoli and pleomorphism than I\'d expect for Ewing?” and “Myxoid stroma between the lobules here: real or artifact?”, then type a reply on one',
+          notes: 'Swati, beat 3 (1:20 to 2:10). "My fellow previewed this case before I got to it. Each annotation is pinned to the exact spot, with a question. Both are fair questions, and the teaching point is that morphology alone won\'t settle a round cell sarcoma. I answer right here on the slide, and the teaching stays with the case instead of disappearing after sign-out."' },
+        { quote: 'I move with the keyboard or by touch, and measure right on the slide.',
           screen: 'Move between slides with the keyboard. Measure the tumor and mark the best area for stains and molecular testing',
-          notes: 'Swati, beat 4 (2:10 to 2:40, flex). "I move between slides with the keyboard, or by touch on a touchscreen. I measure the tumor and mark the best area for stains and any molecular work, right here." In the 5-minute version, fold this into step 3 and skip the slide.' },
-        { name: 'Order stains', quote: "I order from where I'm looking, and I'm told when the stains are back.",
-          screen: 'The order panel in the viewer with keratin, CK20, synaptophysin, SOX10, CD45, desmin and WT1. Cut to the “stains ready” notification, then open the H&E and the key stain synchronized',
-          notes: 'Swati, beat 5 (2:40 to 3:25). "This is where I need stains, so I order from where I\'m looking: a keratin, CK20 and synaptophysin for Merkel, SOX10 for melanoma, CD45 for lymphoma, desmin and WT1 for desmoplastic small round cell tumor. The order goes to the lab, and I don\'t keep checking. I get notified when the stains are scanned, and they land in the case. The H&E next to the stain that answers the question. When I move one, both move."' },
-        { name: 'AI in the viewer', quote: 'The model ran before I opened the case. I accept, modify or override.',
+          notes: 'Swati, beat 4 (2:10 to 2:40, flex). "I move between slides with the keyboard, or by touch on a touchscreen. I measure the tumor and mark the best area for stains and any molecular work, right here."' },
+        { quote: "I order from where I'm looking, and I'm told when the stains are back.",
+          screen: 'The order panel in the viewer with CD99, NKX2.2, desmin, myogenin, WT1, keratin and TdT. Cut to the “stains ready” notification, then open the H&E and the CD99 synchronized',
+          notes: 'Swati, beat 5 (2:40 to 3:25). "This is where I need stains, so I order from where I\'m looking: CD99, NKX2.2, desmin, myogenin, WT1, keratin and TdT. The order goes to the lab, and I don\'t keep checking. I get notified when the stains are scanned, and they land in the case. The H&E next to the CD99. When I move one, both move."' },
+        { quote: 'The model ran before I opened the case. I accept, modify or override.',
           screen: 'The [model name] result already on the slide. Open it, accept or modify it, and show it carried into the draft report',
           notes: 'Swati, beat 6 (3:25 to 4:05). "AI shouldn\'t be another window or another login. The model ran before I opened the case. The result is on the slide, I can see what it found, and I decide: accept, modify, or override. Whatever I decide is what goes into my report." Model name to confirm with Swati.' },
-        { name: 'Show a colleague', quote: "Lymphoma is on the list. I don't want to sign this out alone.",
+        { quote: "CD99 doesn't settle it. I don't want to sign this out alone.",
           screen: "Share with the hematopathologist, with annotations and a note, and show the reply on the slide. Then switch on de-identification mode and share with Archana at Cincinnati Children's",
-          notes: 'Swati, beat 7 (4:05 to 4:40). "This isn\'t a case I want to sign out alone. With lymphoma on the list, I want our hematopathologist to look, so I share it with my annotations and a note. No Zoom, no walking glass down the hall. Here\'s the reply, inside the case, on the region I asked about. If I want a colleague outside our institution to look, de-identification mode removes the patient\'s identifiers before the case leaves." The outside colleague on screen should be Archana, which sets up her opening.' },
-        { name: 'Send for consult', quote: 'I send only the slides that need to go, with a note.',
+          notes: 'Swati, beat 7 (4:05 to 4:40). "CD99 doesn\'t settle it, and this isn\'t a case I want to sign out alone. I share it with my annotations and a note, and here\'s the reply, inside the case, on the region I asked about. If I want a colleague outside our institution to look, de-identification mode removes the patient\'s identifiers before the case leaves." The outside colleague on screen should be Archana, which sets up her opening.' },
+        { quote: 'I send only the slides that need to go, with a note.',
           screen: "Select the slides to send, not the whole case. Add a note, send to Cincinnati Children's, and show the tracked status",
           notes: 'Swati, beat 8 (4:40 to 5:10). "Last step. I mark the slides that need to go out, just these, add a note, and send them to Cincinnati Children\'s. I can track the consult from here. And this is where Archana picks it up."' },
       ],
     },
+
     consult: {
-      kicker: '02 · Consult', who: "Archana Shenoy · Cincinnati Children's", chrome: "PathPresenter · Cincinnati Children's · PV26-001",
+      kicker: '02 · Consult', who: "Archana Shenoy · Cincinnati Children's", chrome: "PathPresenter · Cincinnati Children's Hospital · PV26-001",
+      rail: ['Email notification', 'In my worklist', 'Everything attached', 'Talk to Swati', 'More stains', 'AI on the consult', 'Report back', 'Archive'],
       steps: [
-        { name: 'Email notification', quote: "Swati showed me this case informally. Now it's a real consult.", chrome: 'Mail · New consult from The Ohio State University',
-          screen: "The email notification that a consult just came in. Open it into PathPresenter, logged in at Cincinnati Children's",
-          notes: 'Archana, beat 0 (0:00 to 0:20). "Swati showed me this case informally first, de-identified. Now she\'s sent it as a real consult, and this is what that looks like on my end: a different institution, a different scanner, a different LIS. As a consultant, I want everything I need, I want to get the answer back fast, and I don\'t want a separate system to do it."' },
-        { name: 'In my worklist', quote: "It's in my worklist next to my own cases, from Ohio State's scanner.",
-          screen: "Your worklist with the incoming consult among your own cases. Show the accession in your LIS and the slide info naming Swati's scanner",
-          notes: 'Archana, beat 1 (0:20 to 0:55). "The consult is in my worklist, next to my own cases. No courier, no glass in the mail, no separate portal to log into. Swati\'s lab scans on a different scanner than ours, and I shouldn\'t have to care. It opens like any of my slides, and it\'s already accessioned in our LIS."' },
-        { name: 'Everything attached', quote: 'Everything came with it. I start exactly where she stopped.',
-          screen: "The referring report, clinical history, Swati's note and annotations, and the stains she already ran, all in the case",
-          notes: 'Archana, beat 2 (0:55 to 1:25). "Everything came with it: her report, the clinical history, her question, her annotations, and the stains she already ran. I\'m not calling her office to find out what was ordered. I start exactly where she stopped." The audience should recognize Swati\'s annotations from her segment.' },
-        { name: 'Talk to Swati', quote: 'I ask on the slide, pinned to the area I mean. No phone tag.',
-          screen: 'A question pinned to a region, “Any imaging? And can your lab cut two more stains?”, then Swati\'s reply opened in the case',
-          notes: 'Archana, beat 3 (1:25 to 2:05). "I have a question, so I ask it on the slide, pinned to the area I mean. No phone tag, no Zoom to schedule. Here\'s her answer, inside the case, sent when it suited her."' },
-        { name: 'More stains', quote: 'Two more stains, whichever lab cuts them, whichever scanner.',
-          screen: 'Request [stain] and [stain]. Cut to the notification that they are scanned and attached, then open one next to the H&E',
-          notes: 'Archana, beat 4 (2:05 to 2:40). "I want [stain] and [stain]. They\'re cut, scanned, and they land in this case with everything else, whichever lab cut them and whichever scanner they came off. I\'m notified when they\'re ready." Stain names depend on the final diagnosis once the case is confirmed.' },
-        { name: 'AI on the consult', quote: 'AI works the same on a consult as on my own cases.',
-          screen: 'The result from the chosen model (Tempus or Primaa) on the slide. Accept or modify it',
-          notes: 'Archana, beat 5 (2:40 to 3:15). "AI works the same on a consult as on my own cases. The result comes back onto the slide, and I accept, modify, or override it." Model still to choose. Paige PanCancer Detect from Tempus fits a round blue cell case better than Primaa\'s breast and skin tools, but it is research use only, so drop or soften the "validated for that scanner" line if you pick it.' },
-        { name: 'Report back', quote: "The signed report goes back into Swati's case in her LIS. Nothing is faxed.", chrome: "[LIS] · Cincinnati Children's consult report · PV26-001",
-          screen: "The consult report from the LIS with the referring information populated. Add stains, the accepted AI result, diagnosis and comment, and show the consult CPT code. Sign out, then show it arriving in Swati's case",
-          notes: 'Archana, beat 6 (3:15 to 4:15). "My report starts with what came in: the patient, the referring diagnosis, and the stains already done. I add my stains, the AI result I accepted, and my diagnosis and comment. The consult code is already right. When I sign out, the completed consult report goes electronically back into Swati\'s original case in Ohio State\'s LIS and she\'s notified. She can then complete her reporting in her own LIS. There\'s no printing a report, faxing it, packaging slides, or shipping anything back." The original script had both sites on Epic Beaker; confirm each site\'s LIS before naming it.' },
-        { name: 'Archive', quote: "The case doesn't disappear. It's one search away.",
-          screen: 'The archived case with slides, both reports, the conversation and every stain together, then found again by search',
-          notes: 'Archana, beat 7 (4:15 to 4:40). "And the case doesn\'t disappear. Slides, both reports, our conversation, every stain, all archived together. If this patient comes back in two years, it\'s one search away. Because it\'s all structured, it can also become research material. That\'s where Matt picks it up."' },
+        { quote: 'A consult arrives like any other email, and opens straight into the case.', chrome: 'Mail · New consult from The Ohio State University',
+          screen: "The email notification that a consult just came in. Open it into PathPresenter, logged in at Cincinnati Children's" },
+        { quote: "It's already in my LIS worklist. No separate login, no separate portal.",
+          screen: "Your worklist with the incoming consult among your own cases. Show the accession in your LIS and the slide info naming Swati's scanner" },
+        { quote: 'Everything came with it.',
+          screen: "The referring report, clinical history, Swati's note and annotations, and the CD99 she already ran, all in the case" },
+        { quote: 'I ask on the slide, pinned to the area I mean. No phone tag.',
+          screen: 'A question pinned to a region, “Any imaging? And can your lab cut two more stains?”, then Swati\'s reply opened in the case' },
+        { quote: 'Two more stains, whichever lab cuts them, whichever scanner.',
+          screen: 'Request ETV4 and WT1. Cut to the notification that they are scanned and attached, then open one next to the H&E' },
+        { quote: 'AI works the same on a consult as on my own cases.',
+          screen: 'The result from the chosen model (Tempus or Primaa) on the slide. Accept or modify it' },
+        { quote: "The signed report goes back into Swati's Beaker case. Nothing is faxed.", chrome: "Beaker · Cincinnati Children's Hospital · PV26-001",
+          screen: "The consult report in Beaker with the referring information populated. Add stains, the accepted AI result, diagnosis and comment, and show the consult CPT code. Sign out, then show it arriving in Swati's case. Keep the diagnosis line blurred" },
+        { quote: "The case doesn't disappear. It's one search away.",
+          screen: 'The archived case with slides, both reports, the conversation and every stain together, then found again by search' },
       ],
     },
+
     discover: {
       kicker: '03 · Discover', who: 'Matthew Hanna · UPMC, Pittsburgh', chrome: 'PathPresenter Research · ADC Alliance',
+      rail: ['Find similar cases', 'The ADC Alliance', 'Data from 35 sites', 'Folders, permissions', 'Searchable lists', 'Build a cohort', 'Aggregate for AI', 'Annotate', 'Build the model', 'Diagnostic model', 'Prognostic model', 'Predict our patient', 'Return and share'],
       steps: [
-        { name: 'Data from 35 sites', quote: 'One case is an anecdote. I need thousands, from many institutions.',
-          screen: 'Incoming data from several contributing sites, slides from different scanners with reports attached, and the de-identification and data use agreement status for each site',
-          notes: 'Matt, beats 0 and 1 (0:00 to 1:05). "Archana just archived the case. For a consult, that\'s the end. For research, it\'s the beginning. At UPMC we\'re building the ADC Alliance: 35 institutions contribute data, we build AI models on it, and those models go back to the institutions that contributed. Data comes in on whatever scanner each one uses, with the reports attached. It arrives de-identified, under each site\'s data use agreement. Nobody ships hard drives."' },
-        { name: 'Folders, permissions', quote: 'The data is organized automatically, but the governance travels with it.',
-          screen: 'Cases sorted into folders by site, project and tumor type. Show that each folder carries its own access permissions and approved data fields',
-          notes: 'Matt, beat 2 (1:05 to 1:45). "Each case lands in the right folder: by site, by project, by tumor type. But where the data lands also determines what I\'m allowed to see and search. Each institution controls which users, projects, and data elements are available under its data use agreement. So the data is organized automatically, but the governance travels with it."' },
-        { name: 'Searchable lists', quote: 'Free text becomes fields I can search, and I can ask for more.',
-          screen: 'A source report next to its extracted fields, then the searchable list. Run an initial search, show the fields available, then a request to the contributing institution for one more field',
-          notes: 'Matt, beat 3 (1:45 to 2:45). "The information lives in the reports, so it gets extracted: diagnosis, site, stains and their results, molecular findings. Free text becomes structured data I can search and sort, and every extracted field links back to its source report so I can verify it. But I can only search what I\'m permitted to use. If I realize the study also needs another data element, I can request that access from the institution. Once they approve it, that field becomes available to the project, without moving or duplicating the underlying data."' },
-        { name: 'Build a cohort', quote: 'Every small round blue cell tumor with a CK20 result, across 35 sites.',
-          screen: 'The query across all sites, the results list, and the traveling case in the results',
-          notes: 'Matt, beat 4 (2:45 to 3:25). "Now I can ask a real question: every small round blue cell tumor with a CK20 result, across all 35 sites. Seconds, not months of chart review. And there\'s our case, the one Swati sent and Archana signed out." If the traveling case cannot be in the alliance data, say "cases like ours".' },
-        { name: 'Aggregate for AI', quote: 'The spread across sites and scanners is what a model needs.',
-          screen: 'The cohort assembled as a dataset, with a breakdown by institution and scanner',
-          notes: 'Matt, beat 5 (3:25 to 3:55). "That cohort becomes a dataset, and what matters is the spread. Thirty-five institutions means many scanners and many staining labs. That is what a model needs if it\'s going to work on Swati\'s slides and on Archana\'s."' },
-        { name: 'Annotate', quote: 'Ground truth means pathologists annotating, and every label is attributed.',
-          screen: 'Annotation tools on a slide, the label set, and annotator assignments with progress',
-          notes: 'Matt, beat 6 (3:55 to 4:35). "Models need ground truth, and ground truth means pathologists annotating. The tools are built for that: regions, labels, assignments across sites, and a record of who annotated what."' },
-        { name: 'Build the model', quote: 'Computer scientists train on the same data and the same labels.',
-          screen: 'The labeled dataset handed to the training environment',
-          notes: 'Matt, beat 7 (4:35 to 5:10, flex). "Then the computer scientists take over, on the same data with the same labels. Nobody emails files, and nobody keeps a private copy on a laptop." Show the real handoff, whether training happens in PathPresenter or in UPMC\'s own environment. In the shorter version, fold this into step 6.' },
-        { name: 'Return and share', quote: 'Contributors get the model back. Others get it through PathPresenter.', tag: 'Vision · shown as a still, not a live click',
+        { rail: 0, quote: 'Have we seen this before? Ask with the slide itself.', chrome: 'PathPresenter Research · ADC Alliance · Search by image', tag: 'Illustrative search concept · not live results',
+          html: `<div class="v-search">
+            <div class="v-query"><p class="v-label">Query · our case</p>
+              <figure class="v-tile v-tile-big"><div style="background-image:url(${WSI}/field40.jpg)"><i class="v-region"></i></div><figcaption>H&amp;E region drawn on our case</figcaption></figure>
+              <p class="v-note">Region selected on the slide, converted to an image embedding, compared across every permitted slide.</p></div>
+            <div class="v-matches"><p class="v-label">Example matches · not study findings</p>
+              <div class="v-grid">${[['07', '0.94', 'A'], ['22', '0.92', 'C'], ['03', '0.91', 'B'], ['31', '0.89', 'A'], ['14', '0.88', 'D'], ['19', '0.86', 'B']].map(([s, c, k], i) => tile(i * 6 + 3, `Site ${s} <b>${c}</b>`, `<span>Scanner ${k}</span>`)).join('')}</div></div>
+            <p class="v-foot">Potential value: similar morphology linked to available records, within institutional permissions. Results shown are illustrative.</p></div>` },
+        { rail: 1, quote: 'Variation across sites is essential. Generalization must be demonstrated, not assumed.', chrome: 'ADC Alliance · Multisite data for generalizable AI',
+          html: `<div class="v-alliance">
+            <svg class="v-dots" viewBox="-110 -110 220 220" aria-hidden="true">${Array.from({ length: 35 }, (_, i) => { const a = i / 35 * Math.PI * 2, r = 78 + (i % 3) * 9, c = ['#161616', '#9c423c', '#47698c', '#9a9a92'][i % 4]; return `<line x1="0" y1="0" x2="${(Math.cos(a) * r).toFixed(1)}" y2="${(Math.sin(a) * r).toFixed(1)}" stroke="rgba(22,22,22,.12)"/><circle cx="${(Math.cos(a) * r).toFixed(1)}" cy="${(Math.sin(a) * r).toFixed(1)}" r="4.2" fill="${c}"/>`; }).join('')}<circle r="34" fill="#fafaf8" stroke="#161616" stroke-width="1.5"/><text y="-4" text-anchor="middle">ADC</text><text y="10" text-anchor="middle">Alliance</text><text y="62" text-anchor="middle" class="v-small">UPMC</text></svg>
+            <div class="v-stats"><div><b>35</b>contributing institutions, each under its own data use agreement</div><div><b>1</b>governed, searchable dataset, with reports attached</div><div><b>Every</b>contributor gets the models back</div>
+              <p class="v-note">Dot colour = scanner platform (illustrative)</p></div>
+            <p class="v-foot">Why pool? One site teaches one scanner, one stain, one population.</p></div>` },
+        { rail: 1, quote: 'Making AI in pathology accessible for all.', chrome: 'AI Data Commons (ADC) Alliance · What it is', foot: '03 · Discover · Step 2 of 13 · The Alliance',
+          html: `<div class="v-two">
+            <div><p class="v-label">The problem</p><dl class="v-list"><dt>Data</dt><dd>Limited, non-diverse data → biased models</dd><dt>Talent</dt><dd>Most sites can't build or sustain AI alone</dd><dt>Silos</dt><dd>Privacy, governance and organizational barriers</dd><dt>Cost</dt><dd>Storage, compute and vendor models</dd></dl>
+              <p class="v-note">Result: poorly generalized models, slow adoption, diminished clinical impact.</p></div>
+            <div><p class="v-label">The deal · data consortium plan</p><dl class="v-list"><dt>De-identified only</dt><dd>Contributed under each site's IRB; WSI plus reports, molecular, treatment, outcomes</dd><dt>Sites own their data</dt><dd>Full ownership and access retained; sites may withdraw</dd><dt>Pitt holds the data</dt><dd>HIPAA-compliant storage on PathPresenter; Pitt covers storage costs</dd><dt>CPACE builds the AI</dt><dd>Central hub for algorithm and tool development</dd><dt>Value comes back</dt><dd>Royalty-free internal-use license to new IP; co-authorship</dd><dt>Steering group</dt><dd>Reviews proposals, sets priorities, resolves disputes</dd></dl></div></div>` },
+        { rail: 1, quote: 'Research to validation to the clinic, all under one roof.', chrome: 'ADC Alliance · Inside the UPMC ecosystem', foot: '03 · Discover · Step 2 of 13 · The Alliance',
+          html: `<div class="v-eco">
+            <p class="v-flowin"><b>ADC Alliance</b> multi-institutional data in →</p>
+            <div class="v-boxes">
+              <div><h4>CPACE</h4><p class="v-sub">Computational Pathology &amp; AI Center of Excellence</p><p class="v-role">Builds the models</p><ul><li>Opened Jan 2025</li><li>14 patents · 10 products</li><li>~30+ engineers &amp; faculty</li></ul></div>
+              <div><h4>DPRC</h4><p class="v-sub">Digital Pathology Research Center</p><p class="v-role">Validates the models</p><ul><li>Inaugurated Jan 2025</li><li>Scanner &amp; tech evaluations</li><li>&gt;27 industry initiatives</li></ul></div>
+              <div><h4>IAL</h4><p class="v-sub">CLIA-certified Image Analysis Lab</p><p class="v-role">Runs them clinically</p><ul><li>IHC quantification</li><li>Ki-67 and CD8 in service</li><li>Results to the LIS</li></ul></div>
+            </div>
+            <div class="v-base"><h4>OCP · Office of Collaborative Pathology</h4><p>The foundation underneath: agreements, project management, and IRB, legal and ethical compliance for every partner. 30+ industry-sponsored study agreements.</p></div></div>` },
+        { rail: 2, quote: 'One case is an anecdote. I need thousands, from many institutions.',
+          screen: 'Incoming data from several contributing sites: slides from different scanners with reports attached, and the de-identification and data use agreement status for each site' },
+        { rail: 3, quote: 'The data is organized automatically, but the governance travels with it.',
+          screen: 'Cases sorted into folders by site, project and tumor type. Show that each folder carries its own access permissions and approved data fields' },
+        { rail: 4, quote: 'Free text becomes fields I can search, and I can ask for more.',
+          screen: 'A source report next to its extracted fields, then the searchable list. Run an initial search, show the fields available, then a request to the contributing institution for one more field' },
+        { rail: 5, quote: 'Every round cell sarcoma with a CD99 result, across 35 sites.',
+          screen: 'The query across all sites, the results list, and the travelling case in the results' },
+        { rail: 6, quote: 'The spread across sites and scanners is what a model needs.',
+          screen: 'The cohort assembled as a dataset, with a breakdown by institution and scanner' },
+        { rail: 7, quote: 'Ground truth means pathologists annotating, and every label is attributed.',
+          screen: 'Annotation tools on a slide, the label set, and annotator assignments with progress' },
+        { rail: 8, quote: 'Computer scientists train on the same data and the same labels.',
+          screen: 'The labeled dataset handed to the training environment' },
+        { rail: 9, quote: 'How a diagnostic model could learn from a governed, multicenter collection.', chrome: 'PathPresenter Research · ADC Alliance', tag: 'Research concept · H&E diagnostic model · not validated',
+          html: `<div class="v-model">
+            <ol class="v-pipe"><li><b>H&amp;E slide</b>Whole-slide image, any scanner</li><li><b>Tiles</b>Thousands of patches per slide</li><li><b>Foundation model</b>Each tile becomes a feature vector</li><li><b>Attention classifier</b>Weighs tiles into one slide-level call</li><li><b>Diagnosis + heatmap</b>Probability, and where it looked</li></ol>
+            <div class="v-three">
+              <div><p class="v-label">Ground truth</p><p>Final signed-out diagnosis, confirmed by IHC and fusion results extracted from the Alliance reports. The model never sees the IHC.</p></div>
+              <div><p class="v-label">Validation · leave-site-out</p><p>Proposed validation: hold out entire institutions; report sensitivity, specificity and performance across scanners.</p></div>
+              <div class="v-hypo"><p class="v-label">Hypothetical output · not a clinical result</p><p class="v-note">Illustration only</p><dl class="v-list v-out"><dt>Class A</dt><dd>—</dd><dt>Class B</dt><dd>—</dd><dt>Other classes</dt><dd>—</dd></dl></div>
+            </div></div>` },
+        { rail: 10, quote: 'Linked slide, clinical and outcome data may enable future prognosis research.', chrome: 'PathPresenter Research · ADC Alliance', tag: 'Research concept · multimodal prognosis · not validated',
+          html: `<div class="v-prog">
+            <div class="v-inputs"><div><b>H&amp;E features</b>Same slide encoder as the diagnostic model</div><div><b>Clinical + pathologic</b>Stage, margins, nodal status, site, age</div><div><b>Treatment received</b>Surgery, radiation, systemic therapy</div><div><b>Outcome</b>Training target: recurrence, survival, follow-up</div></div>
+            <div class="v-arrow">→</div>
+            <div class="v-curve"><p class="v-label">Multimodal survival model</p>
+              <svg viewBox="0 0 200 120" aria-hidden="true"><path d="M20 10 V100 H190" fill="none" stroke="#161616" stroke-width="1"/><path d="M20 15 H55 V25 H90 V32 H130 V38 H185" fill="none" stroke="#161616" stroke-width="1.6"/><path d="M20 15 H40 V35 H70 V52 H100 V66 H140 V74 H185" fill="none" stroke="#9c423c" stroke-width="1.6" stroke-dasharray="4 3"/></svg>
+              <p class="v-note">Schematic risk curves · not observed results</p></div>
+            <p class="v-foot">Before clinical use: external-site validation, calibration and prospective evaluation would be required.</p></div>` },
+        { rail: 11, quote: 'The opportunity: from archived cases toward responsibly validated insights.', chrome: 'PathPresenter Research · ADC Alliance', tag: 'Future research vision · not patient decision support',
+          html: `<div class="v-predict">
+            <figure class="v-tile v-tile-big"><div style="background-image:url(${WSI}/field40.jpg)"><i class="v-heat"></i></div><figcaption>Our case · PV26-001 · H&amp;E with attention heatmap (illustrative)</figcaption></figure>
+            <div class="v-cards"><div><p class="v-label">Diagnostic model</p><p>No validated prediction shown</p></div><div><p class="v-label">Prognostic model</p><p>Not available for this patient</p></div><div><p class="v-label">Similar patients</p><p>Cohort and estimates not established</p><p class="v-note">Hypothetical curves · not clinical evidence</p></div></div>
+            <p class="v-foot">Illustrative only. Observational associations do not establish treatment effects; no model here should guide this patient's care.</p></div>` },
+        { rail: 12, quote: 'Contributors get the model back. Others get it through PathPresenter.', tag: 'Vision · shown as a still, not a live click',
           screen: 'Still: the finished model available in PathPresenter to contributing sites and to other institutions',
-          notes: 'Matt, beat 8 (5:10 to 5:45). Say it as where this is going: "Here\'s what makes an alliance work. The institutions that gave the data get the model back. And through PathPresenter, an institution that never contributed can use it too. Everything we learned along the way is also teaching material. That\'s Junya."' },
+          notes: 'Matt, beat 13 (8:50 to 9:20). Say it as where this is going: "Here\'s what makes an alliance work. The institutions that gave the data get the model back. And through PathPresenter, an institution that never contributed can use it too, both the diagnostic and the prognostic model. Everything we learned along the way is also teaching material. That\'s Junya."' },
       ],
     },
+
     teach: {
       kicker: '04 · Teach', who: 'Junya Fukuoka · Nagasaki University', chrome: 'PathPresenter Education · Nagasaki University',
+      rail: ['Live-slide lecture', 'Share for preview', 'Pre-assessment', 'Teach it live', 'Post-assessment', 'High-yield set', 'Course and conference'],
       steps: [
-        { name: 'Live-slide lecture', quote: 'I start with my PowerPoint and put the whole slide where the photo was.',
-          screen: "Import an existing PowerPoint, place the case's whole slide images into the slides, then zoom inside one",
+        { quote: 'I start with my PowerPoint and put the whole slide where the photo was.',
+          screen: "Import an existing PowerPoint, place the case's whole-slide images into the slides, then zoom inside one",
           notes: 'Junya, beat 1 (0:20 to 1:00). "I start with what every teacher already has: a PowerPoint. I bring it in as it is, and where I used to paste a photo, I put the whole slide. Now the learner doesn\'t see my picture of the tumor. They see the tumor, and they can go anywhere on the slide."' },
-        { name: 'Share for preview', quote: 'One link, any device, nothing to install.',
+        { quote: 'One link, any device, nothing to install.',
           screen: 'Create a share link, then open it on a phone or a second browser',
           notes: 'Junya, beat 2 (1:00 to 1:30). "Before the session, I send one link. Learners preview the presentation and the whole slides on any device, with nothing to install. They come to class having already looked."' },
-        { name: 'Pre-assessment', quote: 'Before I teach, I want to know what they know.',
-          screen: "A question built on the whole slide image with four options (melanoma, lymphoma, Merkel cell carcinoma, DSRCT), the learner's view, then the baseline results",
+        { quote: 'Before I teach, I want to know what they know.',
+          screen: "A question built on the whole-slide image with four options (Ewing sarcoma, alveolar rhabdomyosarcoma, CIC-rearranged sarcoma, DSRCT), the learner's view, then the baseline results",
           notes: 'Junya, beat 3 (1:30 to 2:05). "Before I teach, I want to know what they know. I build the question on the slide itself: here is the H&E, what is your diagnosis? This is where my learners start." The room\'s own vote 1 is the same question; point back to it.' },
-        { name: 'Teach it live', quote: 'Morphology first, then the stains that settled it.',
+        { quote: 'Morphology first, then the stains that settled it.',
           screen: 'Present the deck, zoom the whole slide live, then move to the stain panel',
-          notes: 'Junya, beat 4 (2:05 to 2:40, flex). "Then I teach the case the way Swati and Archana worked it: morphology first, then the stains that settled it. Everyone in the room and everyone online is looking at the same slide." In the shorter version, skip this slide and fold the line into step 5.' },
-        { name: 'Post-assessment', quote: 'The same question afterward. Evidence, not a feeling.',
+          notes: 'Junya, beat 4 (2:05 to 2:40, flex). "Then I teach the case the way Swati and Archana worked it: morphology first, then the stains that settled it. Everyone in the room and everyone online is looking at the same slide."' },
+        { quote: 'The same question afterward. Evidence, not a feeling.',
           screen: 'The same question after the session, then the pre-versus-post comparison',
           notes: 'Junya, beat 5 (2:40 to 3:15). "Afterward, the same question. Now I know whether I taught anything. That is evidence, not a feeling." Use labeled demo data unless real learner data is cleared.' },
-        { name: 'High-yield set', quote: 'One case is a lesson. A set is a skill.',
-          screen: 'A high-yield set of six small round blue cell tumors in self-study mode: Merkel cell carcinoma, small cell carcinoma, melanoma, lymphoma, DSRCT and Ewing sarcoma, each with its key stains',
-          notes: 'Junya, beat 6 (3:15 to 3:55). "One case is a lesson. A set is a skill. I build a high-yield set of small round blue cell tumors, each with its key stains side by side. A resident can work through it alone, at night, as many times as they need." Look-alike pairs: Merkel (CK20 dot-like, synaptophysin) against small cell carcinoma (TTF-1, CK20 negative); melanoma (SOX10, S100) against lymphoma (CD45); DSRCT (keratin, desmin dot-like, WT1 C-terminal) against Ewing sarcoma (CD99 membranous, NKX2.2).' },
-        { name: 'Course and conference', quote: 'I build it once and use it everywhere.',
+        { quote: 'One case is a lesson. A set is a skill.',
+          screen: 'A high-yield set of six small round cell tumors in self-study mode: Ewing sarcoma, CIC-rearranged sarcoma, BCOR-altered sarcoma, alveolar rhabdomyosarcoma, DSRCT and lymphoblastic lymphoma, each with its key stains',
+          notes: 'Junya, beat 6 (3:15 to 3:55). "One case is a lesson. A set is a skill. I build a high-yield set of small round cell tumors, each with its key stains side by side. A resident can work through it alone, at night, as many times as they need."' },
+        { quote: 'I build it once and use it everywhere.',
           screen: 'The same material inside a course with modules, then a conference view with an in-room and online audience on one slide',
-          notes: 'Junya, beat 7 (3:55 to 4:30). "The same material goes into a course, with modules learners take at their own pace. Or into a conference, with the room and the online audience on the same slide. I build it once and use it everywhere." Then the journey and the closing line: "One case, four of us, one platform. That\'s better together."' },
+          notes: 'Junya, beat 7 (3:55 to 4:30). "The same material goes into a course, with modules learners take at their own pace. Or into a conference, with the room and the online audience on the same slide. I build it once and use it everywhere."' },
       ],
     },
   },
@@ -125,33 +179,29 @@ window.CONTENT = {
   // Speaker notes for the slides that are not demo steps, by slide id.
   notes: {
     's-title': 'Raj. Welcome. One case, four institutions, one platform, and no glass shipped. Keep this under a minute.',
-    's-disclosures': 'Raj. Read the relationships plainly. Sponsored session; every institution on stage uses PathPresenter; the case is de-identified; the handoffs were re-enacted on the platform for today. Fill in the three relationships still marked to confirm.',
-    's-case': 'Raj. Present the case: site, age, presentation. Let the H&E sit for a beat. "Every pathologist in this room has had this case on their desk." Fill in age, site and specimen once the case is confirmed. The slide on screen is a stand-in until the case\'s own H&E is added. Drag to move, scroll to zoom.',
-    's-vote1': 'Raj. Open the poll and give the room 45 to 60 seconds. This vote is also the pre-assessment: Junya asks the same question at the end, so the room sees its own before and after. Keep the four options in step with the case script.',
-    's-second': 'Raj. A population-based study across three European regions: of 1,463 patients, the first pathologist and the expert agreed fully in 56 percent; 35 percent differed in grade or subtype; 8 percent were completely discordant, such as benign versus malignant or a different tumor type. Round blue cell tumors live in exactly this territory. That is why this case travels.',
+    's-disclosures': 'Raj, 20 seconds. Read the relationships plainly: I founded PathPresenter and sit on its board; Matt is a senior advisor; Swati, Archana and Junya have nothing to disclose. Then the four ground rules: sponsored session, and every institution on stage uses PathPresenter; every speaker is a practicing pathologist showing their own workflow; the case is de-identified; the handoffs were re-enacted on the platform for today.',
+    's-case': 'Raj. Present the case: a 14-year-old, a forearm excision, a nodule growing over six months, a prior biopsy that was inconclusive. Let the H&E sit for a beat. "Every pathologist in this room has had this case on their desk." The slide on screen is a stand-in until the case\'s own H&E is added. Drag to move, scroll to zoom.',
+    's-vote1': 'Raj. Open the poll and give the room 45 to 60 seconds. This vote is also the pre-assessment: we ask the same question at the end, so the room sees its own before and after. Don\'t reveal anything about the answer; it stays sealed until the second vote.',
+    's-second': 'Raj, 30 seconds. A population-based study across three European regions: of 1,463 patients, the first pathologist and the expert agreed fully in 56 percent; 35 percent differed in grade or subtype; 8 percent were completely discordant, such as benign versus malignant or a different tumor type. Round cell sarcomas live in exactly this territory. That is why this case travels.',
     's-overview': 'Raj. This is the overview. Four stops, each a question a pathologist actually asks. Every speaker demos live, in the same format: what the pathologist needs, then where it lives in PathPresenter. The last click of each segment is the first screen of the next. Hand to Swati as the camera pulls back from the slide to Ohio State.',
-    's-card1': 'Swati, beat 0 (0:00 to 0:20). "This is the case we\'ll follow through the whole session: a small round blue cell tumor. Every one of you has had this case on your desk. I\'m going to work it up the way I would on a normal morning. At each step I\'ll tell you what I need as the pathologist, then show you where it is." Her segment runs 5:10 in the final script.',
+    's-card1': 'Swati, beat 0 (0:00 to 0:20). "This is the case we\'ll follow through the whole session: a small round blue cell tumor in a 14-year-old. Every one of you has had this case on your desk. I\'m going to work it up the way I would on a normal morning. At each step I\'ll tell you what I need as the pathologist, then show you where it is." Her segment runs 5:10.',
     's-workspace': 'Swati. The whole case in one place, before the steps. The H&E tile is live: drag and scroll to move around the slide.',
-    's-send1': 'Transition, about 10 seconds; Raj or silent. 159 km, Columbus to Cincinnati. The slides travel as whole-slide images in Ohio State\'s own scanner format, nothing converted, no glass shipped.',
-    's-card2': 'Archana, beat 0 (0:00 to 0:20). Open from the email notification. "Swati showed me this case informally first, de-identified. Now she\'s sent it as a real consult, and this is what that looks like on my end: a different institution, a different scanner, a different LIS." Her segment runs 4:40.',
-    's-arrival': 'Swati, 20 seconds, after her demo and before the case leaves for Cincinnati: why Ohio State sends consults as images. Carried over from Matt Cecchini\'s draft: OSU Wexner community pathology consult program, presented September 2025, publication pending. Confirm the figures and the wording with Swati before showing, or hide the slide.',
-    's-send2': 'Transition, about 10 seconds. 414 km, Cincinnati to Pittsburgh. The archived case enters a shared research collection; nobody ships hard drives.',
-    's-card3': 'Matt, beat 0 (0:00 to 0:30). "Archana just archived the case. For a consult, that\'s the end. For research, it\'s the beginning. One case is an anecdote. I need thousands, from many institutions." His segment runs 5:45.',
+    's-send1': 'Transition, about 10 seconds; Raj or silent. 159 km. The slides travel as whole-slide images in Ohio State\'s own scanner format: nothing converted, no glass shipped.',
+    's-card2': 'Archana takes the clicker. Let the divider sit for a beat. Her segment runs 4:40, plus about two minutes for her consult-program slides at the end.',
+    's-glass-before': 'Archana, 15 seconds. The glass consult: slides packaged, in transit, unboxed, interpreted, reported, and shipped back. Six steps, two shipments, and the patient waits through all of them.',
+    's-glass-after': 'Archana, 15 seconds. The digital consult: reviewed by the first pathologist, transferred electronically, reviewed by the second, reported. Four steps, all in a day\'s work.',
+    's-arrival': 'Archana, 20 seconds. Her Cincinnati Children\'s consult figures: glass by courier takes 24 hours locally and up to 72 internationally; whole-slide images arrive in 30 minutes to an hour, regardless of dock availability or working days. Confirm the figures before showing.',
+    's-kg': 'Archana, 15 seconds. A consult box weighs more than a kilogram once it is packed, and it travels both ways. Whole-slide images weigh nothing, and the shipping cost goes with it.',
+    's-portal': 'Archana, about 45 seconds. Her consult-portal slides, merged into one: the LIS is the ground truth, so demographics flow into PathPresenter without re-entry; the workflow is the same for internal and external cases; molecular results come back tagged to the original referred case; and the referring institution can see key studies without waiting for slides to return. Then: "That\'s where Matt picks it up."',
+    's-send2': 'Transition, about 10 seconds. 414 km. The archived case enters a shared research collection; nobody ships hard drives.',
+    's-card3': 'Matt, beat 0 (0:00 to 0:20), suggested words: "Archana signed it out and archived it. Now it\'s one case among thousands, and the question changes from what is this to have we seen this before." His segment runs about 9:20 without the two optional Alliance deep-dive slides, and about 10:50 with them. That is roughly twice the other segments, so decide on the deep-dives and the flex beats at the dry run.',
     's-cohort': 'Matt. The cohort, visualized: the traveling case pulls back into the collection, then the query narrows it. If the traveling case cannot be in the alliance data, say "cases like ours".',
     's-send3': 'Transition, about 10 seconds. 11,317 km across the Pacific, into a teaching collection. Still no glass shipped.',
     's-card4': 'Junya, beat 0 (0:00 to 0:20). "Matt turned one case into a dataset. I\'m going to turn it into teaching, for a resident down the hall and for a pathologist on the other side of the world, at the same time." His segment runs 4:50.',
-    's-world': 'Junya or Raj. 159 plus 414 plus 11,317 km: 11,890 km in all. Four sites, three handoffs, no glass shipped. Then straight into the second vote.',
-    's-vote2': 'Junya runs this as his post-assessment: same question, same QR. If the poll can run as a PathPresenter quiz, this is the live demo of beat 5.',
-    's-compare': 'Junya. Fill in live from the poll. "Now I know whether I taught anything. That is evidence, not a feeling."',
-    's-home': 'Raj or Junya. Every site\'s work sits on the same field, in the same case. The camera dives back to Ohio State and the 40x field.',
-    's-final': 'Swati, Archana or Raj reveals the final diagnosis and the three teaching points. Fill in once the case is confirmed.',
-    's-history': 'Raj. The build order is the argument: education in 2018, research after the FDA asked, consults when pathologists were locked out of their labs, primary diagnosis last. Every piece the audience just saw was built for the person signing out the case. The 70,000+ users figure is carried over from Matt Cecchini\'s draft; confirm before showing.',
-    's-believe': 'Raj, about 60 seconds. Open with the mission, spoken rather than on the slide: "Our mission is to give every pathologist the whole case, the right colleague and the knowledge to act on it, wherever they practice. You saw every piece of that today." Then one sentence per row.',
-    's-status': 'Raj, about 45 seconds. "Here is what\'s coming, and where each piece stands. Every row carries a label, because you should hold us to it." Before the dry run, resolve every bracket with the team, and don\'t give dates you can\'t keep. This slide must have no brackets on the day.',
-    's-panel': 'Raj moderates. One answer per panelist per question, then open to the room.',
-    's-close': 'Raj, after the panel, about 15 seconds. "One case traveled 11,890 kilometers today, and no glass moved. Pathology shouldn\'t be limited by where the glass is. Thank you." Leave this up during the room\'s questions. The QR code opens the case as a teaching module.',
-    's-b1': 'Only if asked how the consult reached both LISs.',
-    's-b2': 'Only if asked how AI results get into the viewer and the report.',
-    's-b3': 'Only if asked how clinical cases are governed once they enter a shared research collection.',
+    's-world': 'Raj. 159 plus 414 plus 11,317 km: 11,890 km in all. Four sites, three handoffs, no glass shipped. Then straight into the second vote.',
+    's-vote2': 'Same question, same QR. This is the post-assessment; the room sees its own before and after.',
+    's-compare': 'Fill in live from the poll. "Now we know whether we taught anything. That is evidence, not a feeling."',
+    's-home': 'Every site\'s work sits on the same field, in the same case. The camera dives back to Ohio State and the 40x field.',
+    's-close': 'Leave this up during the room\'s questions; the QR opens the case as a teaching module.',
   },
 };

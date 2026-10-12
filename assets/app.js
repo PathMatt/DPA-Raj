@@ -769,6 +769,7 @@
     // the opening, at 40x at Ohio State
     { slide: 's-title', veil: 0.9, view: 'lab40', enter: () => { setTitle(0); tween(300, 3200, setTitle); } },
     { slide: 's-disclosures', veil: 1, view: 'lab40' },
+    { slide: 's-question', veil: 1, view: 'lab40' },
     { slide: 's-case', veil: 0, view: 'lab40', at: 'columbus', scale: true, marks: ['start'], captionDelay: 2400,
       enter: () => { S.cam = { ...VIEWS.lab4 }; S.marks.start = 0; flight(VIEWS.lab40, 3000, { rho: 1 }); tween(2700, 900, t => { S.marks.start = t; }); } },
     { slide: 's-vote1', veil: 0, view: 'lab40', at: 'columbus', scale: true, marks: ['start'] },
@@ -857,7 +858,7 @@
     $('#cohort-grid').classList.add('is-settled');
     $$('.slide.is-waiting').forEach(el => el.classList.remove('is-waiting'));
     const h = $('#s-workspace .ws-heading'); h.style.opacity = 1; h.style.transform = 'none';
-    if (st.slide === 's-workspace') initWorkspaceViewer();
+    // if (st.slide === 's-workspace') initWorkspaceViewer();
     S.pan = { x: 0, y: 0 };
     $('#rv-open').classList.toggle('is-on', st.view === 'lab40' && st.veil < 0.5);
     $('#rv-hint').classList.toggle('is-on', st.view === 'lab40' && st.veil < 0.5);
@@ -889,19 +890,138 @@
       </div>
       <p class="demo-foot"></p>`;
   });
+  // function fillDemo(el, i) {
+  //   const d = CONTENT.demos[el.dataset.demo], s = d.steps[i], r = s.rail ?? i;
+  //   $$('.demo-rail li', el).forEach((li, k) => { li.classList.toggle('is-done', k < r); li.classList.toggle('is-here', k === r); });
+  //   $('.demo-quote', el).textContent = `“${s.quote}”`;
+  //   $('.demo-chrome span', el).textContent = s.chrome || d.chrome;
+  //   $('.demo-chrome em', el).textContent = s.tag || '';
+  //   const body = $('.demo-body', el);
+  //   body.style.cssText = 'flex:1;min-height:0;display:flex';
+  //   body.innerHTML = s.html ? `<div class="v">${s.html}</div>`
+  //     : s.img ? `<img src="${esc(s.img)}" alt="${esc(s.screen)}">`
+  //     : `<div class="ph">[${s.tag && /still/i.test(s.tag) ? 'Still' : 'Screen'}: ${esc(s.screen.replace(/^Still: /, ''))}]</div>`;
+  //   $('.demo-foot', el).textContent = s.foot || `${d.kicker} · Step ${r + 1} of ${d.rail.length}`;
+  // }
   function fillDemo(el, i) {
-    const d = CONTENT.demos[el.dataset.demo], s = d.steps[i], r = s.rail ?? i;
-    $$('.demo-rail li', el).forEach((li, k) => { li.classList.toggle('is-done', k < r); li.classList.toggle('is-here', k === r); });
-    $('.demo-quote', el).textContent = `“${s.quote}”`;
-    $('.demo-chrome span', el).textContent = s.chrome || d.chrome;
-    $('.demo-chrome em', el).textContent = s.tag || '';
-    const body = $('.demo-body', el);
-    body.style.cssText = 'flex:1;min-height:0;display:flex';
-    body.innerHTML = s.html ? `<div class="v">${s.html}</div>`
-      : s.img ? `<img src="${esc(s.img)}" alt="${esc(s.screen)}">`
-      : `<div class="ph">[${s.tag && /still/i.test(s.tag) ? 'Still' : 'Screen'}: ${esc(s.screen.replace(/^Still: /, ''))}]</div>`;
-    $('.demo-foot', el).textContent = s.foot || `${d.kicker} · Step ${r + 1} of ${d.rail.length}`;
+  const d = CONTENT.demos[el.dataset.demo];
+  const s = d.steps[i];
+
+  $$('.demo-rail li', el).forEach((li, k) => {
+    li.classList.toggle('is-done', k < i);
+    li.classList.toggle('is-here', k === i);
+  });
+
+  $('.demo-quote', el).textContent = `“${s.quote}”`;
+  $('.demo-chrome span', el).textContent = s.chrome || d.chrome;
+  $('.demo-chrome em', el).textContent = s.tag || '';
+
+  const body = $('.demo-body', el);
+  body.style.cssText = 'flex:1;min-height:0;display:flex;overflow:hidden;';
+
+  if (s.previewImage && s.iframe) {
+    const preview = document.createElement('button');
+    const image = document.createElement('img');
+    const iframe = document.createElement('iframe');
+
+    preview.type = 'button';
+    preview.className = 'demo-image-toggle';
+    preview.style.cssText = 'display:flex;flex:1;min-width:0;min-height:0;width:100%;padding:0;border:0;background:black;cursor:pointer;pointer-events:auto;';
+    preview.setAttribute('aria-label', 'Open live-slide lecture');
+    image.src = s.previewImage.src;
+    image.alt = s.previewImage.alt;
+    iframe.title = s.screen || s.name;
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = 'no-referrer';
+    iframe.style.cssText = 'display:block;flex:1;width:100%;height:100%;min-height:0;border:0;';
+    preview.append(image);
+    preview.addEventListener('click', event => {
+      event.stopPropagation();
+      iframe.src = s.iframe;
+      body.replaceChildren(iframe);
+    }, { once: true });
+    body.replaceChildren(preview);
+  } else if (s.iframe && !s.images) {
+    const iframe = document.createElement('iframe');
+    iframe.src = s.iframe;
+    iframe.title = s.screen || s.name;
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = 'no-referrer';
+    iframe.style.cssText = 'display:block;flex:1;width:100%;height:100%;min-height:0;border:0;';
+    body.replaceChildren(iframe);
+  } else if (s.images) {
+    let imageIndex = 0;
+    const toggle = document.createElement('button');
+    const image = document.createElement('img');
+    const iframe = s.iframe ? document.createElement('iframe') : null;
+    if (iframe) {
+      iframe.title = s.screen || s.name;
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'no-referrer';
+      iframe.style.cssText = 'display:block;flex:1;width:100%;height:100%;min-height:0;border:0;';
+    }
+    const setImage = () => {
+      const currentImage = s.images[imageIndex];
+      image.src = currentImage.src;
+      image.alt = currentImage.alt;
+      toggle.setAttribute(
+        'aria-label',
+        imageIndex < s.images.length - 1
+          ? `Show image ${imageIndex + 2} of ${s.images.length}`
+          : iframe
+          ? (s.iframeAction || 'Open presentation preview')
+          : `Continue to ${d.steps[i + 1]?.name || 'next step'}`
+      );
+    };
+
+    toggle.type = 'button';
+    toggle.className = 'demo-image-toggle';
+    toggle.style.cssText = 'display:flex;flex:1;min-width:0;min-height:0;width:100%;padding:0;border:0;background:transparent;cursor:pointer;pointer-events:auto;';
+    toggle.addEventListener('click', event => {
+      event.stopPropagation();
+      if (imageIndex < s.images.length - 1) {
+        imageIndex += 1;
+        setImage();
+      } else if (iframe) {
+        iframe.src = s.iframe;
+        body.replaceChildren(iframe);
+      } else {
+        next();
+      }
+    });
+    toggle.append(image);
+    setImage();
+    body.replaceChildren(toggle);
+  } else if (s.video) {
+    const video = document.createElement('video');
+
+    video.src = s.video;
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.controls = false;
+    video.disablePictureInPicture = true;
+    video.preload = 'auto';
+    video.style.cssText =
+      'display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;';
+
+    body.replaceChildren(video);
+
+    video.play().catch((error) => {
+      console.warn('Video autoplay failed:', error);
+    });
+  } else if (s.img) {
+    body.innerHTML =
+      `<img src="${esc(s.img)}" alt="${esc(s.screen || '')}">`;
+  } else {
+    body.innerHTML =
+      `<div class="ph">[Screen: ${esc(s.screen || '')}]</div>`;
   }
+
+  $('.demo-foot', el).textContent =
+    `${d.kicker} · Step ${i + 1} of ${d.steps.length}`;
+}
   function setDemo(el, i, animate) {
     const main = $('.demo-main', el);
     if (!animate || RM) { fillDemo(el, i); return; }
@@ -969,7 +1089,7 @@
     S.pan = clampPan(S.pan.x + sx * (before - after), S.pan.y + sy * (before - after));
     S.cam = { ...S.cam, w };
   }
-  const onStage = e => !e.target.closest('.panel, button, a, .ws-osd, #reviewer');
+  const onStage = e => !e.target.closest('.panel, button, a, iframe, .ws-osd, #reviewer');
   let drag = null;
   deck.addEventListener('pointerdown', e => {
     if (!interactive() || !onStage(e) || e.button > 0) return;
@@ -1002,7 +1122,7 @@
   });
 
   deck.addEventListener('click', e => {
-    if (e.target.closest('a, .ws-osd, #reviewer, #rv-open')) return;
+    if (e.target.closest('a, iframe, .ws-osd, #reviewer, #rv-open')) return;
     if (current.view === 'lab40' && current.veil < 0.5 && onStage(e)) return;   // the stage is a viewer here
     next();
   });

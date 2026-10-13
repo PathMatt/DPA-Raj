@@ -906,10 +906,11 @@
   function fillDemo(el, i) {
   const d = CONTENT.demos[el.dataset.demo];
   const s = d.steps[i];
+  const r = s.rail ?? i;   // several steps can share one rail item (Discover's Alliance views)
 
   $$('.demo-rail li', el).forEach((li, k) => {
-    li.classList.toggle('is-done', k < i);
-    li.classList.toggle('is-here', k === i);
+    li.classList.toggle('is-done', k < r);
+    li.classList.toggle('is-here', k === r);
   });
 
   $('.demo-quote', el).textContent = `“${s.quote}”`;
@@ -919,7 +920,10 @@
   const body = $('.demo-body', el);
   body.style.cssText = 'flex:1;min-height:0;display:flex;overflow:hidden;';
 
-  if (s.previewImage && s.iframe) {
+  if (s.html) {
+    // a visual built in content.js (Discover's search, Alliance and model concepts)
+    body.innerHTML = `<div class="v">${s.html}</div>`;
+  } else if (s.previewImage && s.iframe) {
     const preview = document.createElement('button');
     const image = document.createElement('img');
     const iframe = document.createElement('iframe');
@@ -1015,12 +1019,13 @@
     body.innerHTML =
       `<img src="${esc(s.img)}" alt="${esc(s.screen || '')}">`;
   } else {
+    const still = s.tag && /still/i.test(s.tag);
     body.innerHTML =
-      `<div class="ph">[Screen: ${esc(s.screen || '')}]</div>`;
+      `<div class="ph">[${still ? 'Still' : 'Screen'}: ${esc((s.screen || '').replace(/^Still: /, ''))}]</div>`;
   }
 
   $('.demo-foot', el).textContent =
-    `${d.kicker} · Step ${i + 1} of ${d.steps.length}`;
+    s.foot || `${d.kicker} · Step ${r + 1} of ${(d.rail || d.steps).length}`;
 }
   function setDemo(el, i, animate) {
     const main = $('.demo-main', el);

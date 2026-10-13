@@ -39,35 +39,37 @@ the top right are computed from the same value.
 
 ## Story
 
-Content follows the "Better Together · PV 2026 v4" PowerPoint script, with the
-route reordered so the case starts at Ohio State and goes to Cincinnati
-Children's for the consult. The words live in `assets/content.js`; bump the
-`?v=` on the script tags in `index.html` after editing so browsers reload.
+Content follows the final PowerPoint script ("Hopefully final deck"), built on
+Dharmik's branch, which adds the opening question slide and the demo
+screenshots and live PathPresenter links. The words live in
+`assets/content.js`; bump the `?v=` on the script tags in `index.html` after
+editing so browsers reload.
 
-1. Title (a map cartouche with the four stops and presenters), disclosures
+1. Title (a map cartouche with the four stops and presenters), disclosures,
+   the question that started it (diagnose, consult, discover, teach)
 2. The case at 40x at Ohio State: round blue cells in a 14-year-old (forearm
    excision), vote 1 (Ewing sarcoma, alveolar rhabdomyosarcoma, CIC-rearranged
    sarcoma, DSRCT), why a second read matters (Ray-Coquard et al., Ann Oncol
    2012), the overview with the leg distances
 3. The camera pulls back from the slide to Columbus. 01 · Care: the whole case
    in one place, then Swati's eight demo steps
-4. Leg 1, 159 km to Cincinnati Children's. 02 · Consult: Archana's eight
-   steps, then her consult-program slides (glass vs digital consult, days to
-   under an hour, kilograms to gigabytes, the LIS-integrated portal)
-5. Leg 2, 414 km to Pittsburgh. 03 · Discover: Matt's thirteen steps, with
-   built visuals for search by image, the ADC Alliance (three views), the
-   diagnostic and prognostic model concepts and the patient-level vision,
-   plus the cohort grid after "Build a cohort"
+4. Leg 1, 159 km to Cincinnati Children's. 02 · Consult: glass vs digital
+   consult, Archana's seven steps, then days to under an hour and the
+   LIS-integrated portal
+5. Leg 2, 414 km to Pittsburgh. 03 · Discover: Matt's eight-step rail, with
+   built visuals for search by image and the ADC Alliance, the contributing
+   datasets, and the cohort grid after "Build a cohort"
 6. Leg 3, 11,317 km across the Pacific. 04 · Teach: Junya's seven steps
 7. The whole journey (11,890 km), vote 2, the comparison, and the dive back
    to the same 40x field at Ohio State with all four sites' annotations
-8. Why this exists, how it was built, what we believe, the intelligence
-   layer, status, tissue intelligence, where this goes, better together, close
+8. The diagnosis (CIC-rearranged sarcoma), how it was built, the case never
+   started over, the intelligence layer, status, tissue intelligence, better
+   together, close, thank you (both with the QR to the case)
 
 Each demo step shows the site's step rail, the speaker's line and a screen
-frame holding the placeholder for the live demo. To show a screenshot
-instead, add `img: 'assets/screens/<file>.jpg'` to that step in
-`assets/content.js`.
+frame. A step can carry `images` (clicked through in order), an `iframe` to a
+live PathPresenter link, a single `img`, a built `html` visual, or nothing, in
+which case the frame shows the `screen` text as a placeholder.
 
 ## Placeholders
 

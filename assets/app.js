@@ -779,24 +779,23 @@
     { slide: 's-card1', veil: 0, view: 'columbus', at: 'columbus', scale: true, captionDelay: 7000,
       enter: () => flight(VIEWS.columbus, 7500, { rho: 1.6, ease: d3.easeSinInOut }) },
     { slide: 's-workspace', veil: 1, at: 'columbus',
-      enter: () => { const h = $('#s-workspace .ws-heading'); h.style.opacity = 0; domZoom($('#s-workspace .ws-frame'), $('#s-workspace .t-slide'), 2200, 500, initWorkspaceViewer); tween(2500, 600, t => { h.style.opacity = t; h.style.transform = 'none'; }); } },
+      enter: () => { const h = $('#s-workspace .ws-heading'); h.style.opacity = 0; domZoom($('#s-workspace .ws-frame'), $('#s-workspace .t-slide') || $('#s-workspace .workspace-viewer'), 2200, 500, () => $('#ws-viewer') && initWorkspaceViewer()); tween(2500, 600, t => { h.style.opacity = t; h.style.transform = 'none'; }); } },
     ...demo('care', 'columbus'),
     { slide: 's-send1', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true, route: 'r1', enter: send('r1', 'cincinnati', 3800, 1.4) },
-    // 02 · Consult, then Archana's consult-program slides
+    // 02 · Consult: glass versus digital, the demo, then Archana's consult-program slides
     { slide: 's-card2', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true },
-    ...demo('consult', 'cincinnati'),
     { slide: 's-glass-before', veil: 1, at: 'cincinnati' },
     { slide: 's-glass-after', veil: 1, at: 'cincinnati' },
+    ...demo('consult', 'cincinnati'),
     { slide: 's-arrival', veil: 1, at: 'cincinnati', enter: () => { setBars(0); tween(700, 1600, t => setBars(d3.easeCubicOut(t))); } },
-    { slide: 's-kg', veil: 1, at: 'cincinnati' },
     { slide: 's-portal', veil: 1, at: 'cincinnati' },
     { slide: 's-send2', veil: 0, view: 'pittsburgh', at: 'pittsburgh', scale: true, route: 'r2', enter: send('r2', 'pittsburgh', 4200, 1.5) },
     // 03 · Discover; the cohort sits after "Build a cohort"
     { slide: 's-card3', veil: 0, view: 'pittsburgh', at: 'pittsburgh', scale: true },
-    ...demo('discover', 'pittsburgh', 0, 8),
+    ...demo('discover', 'pittsburgh', 0, 7),
     { slide: 's-cohort', stage: 0, veil: 1, at: 'pittsburgh', enter: () => { const g = $('#cohort-grid'); g.classList.remove('is-settled'); domZoom(g, $('.is-case', g), 2600, 400, () => g.classList.add('is-settled')); } },
     { slide: 's-cohort', stage: 1, veil: 1, at: 'pittsburgh' },
-    ...demo('discover', 'pittsburgh', 8),
+    ...demo('discover', 'pittsburgh', 7),
     { slide: 's-send3', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true, route: 'r3', enter: send('r3', 'nagasaki', 9000, 1.5) },
     // 04 · Teach
     { slide: 's-card4', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true },
@@ -813,14 +812,15 @@
         flight(VIEWS.lab40, 10000, { rho: 1.5 });
         ALL_MARKS.slice(1).forEach((k, i) => tween(10200 + i * 900, 900, t => { S.marks[k] = t; }));
       } },
-    { slide: 's-why', veil: 1, view: 'globe' },
+    { slide: 's-diagnosis', veil: 1, view: 'lab40' },
     { slide: 's-history', veil: 1, view: 'globe' },
-    { slide: 's-believe', veil: 1, view: 'globe' },
+    { slide: 's-never', veil: 1, view: 'globe' },
     { slide: 's-next', veil: 1, view: 'globe' },
     { slide: 's-status', veil: 1, view: 'globe' },
     { slide: 's-tissue', veil: 1, view: 'globe' },
     { slide: 's-always', veil: 0.92, view: 'globe', learners: true },
     { slide: 's-close', veil: 0.9, view: 'globe', learners: true },
+    { slide: 's-thanks', veil: 0.9, view: 'globe', learners: true },
   ];
   // inherit the camera from the previous step, and collect finished routes
   STEPS.forEach((s, i) => {

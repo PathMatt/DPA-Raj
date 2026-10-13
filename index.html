@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#fafaf8">
   <title>Better Together · Pathology Visions 2026</title>
-  <link rel="stylesheet" href="assets/fonts.css?v=20261013">
+  <link rel="stylesheet" href="assets/fonts.css?v=20261013b">
   <style>
     :root {
       color-scheme: light;
@@ -2716,6 +2716,87 @@
         transform: none;
       }
     }
+    /* diagnosis, the case never started over, thank you */
+    .dx-cards h3 {
+      font-size: 1.9cqw;
+    }
+
+    .dx-cards .is-key {
+      border-top-color: var(--rust);
+    }
+
+    .dx-cards .is-key h3 {
+      color: var(--rust);
+    }
+
+    .never-cols,
+    .never-principles {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2cqw;
+    }
+
+    .never-cols {
+      margin-top: 2.2cqw;
+    }
+
+    .never-cols>div {
+      border-top: 1.5px solid var(--ink);
+      padding-top: .9cqw;
+    }
+
+    .never-cols .num {
+      font-size: .8cqw;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: var(--rust);
+      text-transform: uppercase;
+    }
+
+    .never-cols ul {
+      list-style: none;
+      padding: 0;
+      margin: .7cqw 0 0;
+      display: grid;
+      gap: .35cqw;
+      font-size: 1.12cqw;
+    }
+
+    .never-principles {
+      margin-top: 2.4cqw;
+      padding-top: 1.4cqw;
+      border-top: 1px solid var(--line);
+    }
+
+    .never-principles h3 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.45cqw;
+      font-weight: 400;
+    }
+
+    .never-principles p {
+      font-size: 1.02cqw;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-top: .4cqw;
+    }
+
+    .qr-img {
+      display: block;
+      object-fit: contain;
+      background: #fff;
+      image-rendering: pixelated;
+    }
+
+    .booth {
+      margin-top: 2cqw;
+      font-family: var(--mono);
+      font-size: 1.1cqw;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--rust);
+    }
   </style>
 </head>
 
@@ -2799,8 +2880,7 @@
           <p class="kicker">Sheet PV26-001</p>
         </div>
         <h1 class="h-xl title-word" id="title-word">Better Together</h1>
-        <p class="title-sub">One case, one platform, four institutions. Followed from a single slide in Columbus to the
-          other side of the world.</p>
+        <p class="title-sub">One case, one platform, four institutions. The many ways we practice pathology—connected.</p>
         <ol class="stops">
           <li><b>Care</b><span>Swati Satturwar</span><small>The Ohio State University</small></li>
           <li><b>Consult</b><span>Archana Shenoy</span><small>Cincinnati Children's</small></li>
@@ -2841,7 +2921,7 @@
             </tr>
             <tr>
               <td>Rajendra Singh<small>University of Pennsylvania</small></td>
-              <td>Founder; board member</td>
+              <td>Founder</td>
             </tr>
             <tr>
               <td>Matthew Hanna<small>UPMC</small></td>
@@ -2884,7 +2964,7 @@
           <li><b>Teach</b><span>Education</span></li>
         </ul>
         <p class="question-summary">Four essential roles. Too often, four separate systems.</p>
-        <p class="question-conclusion">The problem is not the digital slide. It is everything that happens around it.</p>
+        <p class="question-conclusion">Scanning the slide was the easy part. Connecting everything around it is harder.</p>
       </div>
     </section>
 
@@ -2903,7 +2983,6 @@
           <dt>History</dt>
           <dd>Nodule growing over six months. Prior biopsy inconclusive.</dd>
         </dl>
-        <p class="body" style="margin-top:1.2cqw">Every pathologist in this room has had this case on their desk.</p>
         <p class="note" style="margin-top:1cqw">On screen: a stand-in slide until the case's own H&amp;E is added.
           CCDI-MCI, Children's Oncology Group, via NCI Imaging Data Commons, CC BY 4.0.</p>
       </div>
@@ -2939,8 +3018,7 @@
           <div><b>35%</b>Grade or subtype changed</div>
           <div><b>8%</b>Complete discordance</div>
         </div>
-        <p class="serif" style="font-size:1.7cqw;margin-top:2.2cqw">Round cell sarcomas live in exactly this territory.
-        </p>
+        <p class="serif" style="font-size:1.7cqw;margin-top:2.2cqw">Small round cell tumors are exactly the cases we send out for a second opinion.</p>
         <p class="note" style="margin-top:1.2cqw">Ray-Coquard I, et al. Ann Oncol 2012;23:2442–9 · Rhône-Alpes, Veneto
           and Aquitaine</p>
       </div>
@@ -2955,28 +3033,28 @@
             <p class="num">01 · Care</p>
             <h3>The Ohio State University</h3>
             <p class="who">Swati Satturwar</p>
-            <p class="q">What do I need before I sign this out?</p>
+            <p class="q">Can I review everything I need to make the right diagnosis, in one place?</p>
           </div>
           <div>
             <p class="km-tag">159 km</p>
             <p class="num">02 · Consult</p>
             <h3>Cincinnati Children's</h3>
             <p class="who">Archana Shenoy</p>
-            <p class="q">Can someone else help?</p>
+            <p class="q">When my colleague needs another opinion, can we make it easy for her to get it?</p>
           </div>
           <div>
             <p class="km-tag">414 km</p>
             <p class="num">03 · Discover</p>
             <h3>UPMC</h3>
             <p class="who">Matthew Hanna</p>
-            <p class="q">Have we seen this before?</p>
+            <p class="q">Can the cases we see every day help us answer bigger questions?</p>
           </div>
           <div>
             <p class="km-tag">11,317 km</p>
             <p class="num">04 · Teach</p>
             <h3>Nagasaki University</h3>
             <p class="who">Junya Fukuoka</p>
-            <p class="q">How do we teach what we learned?</p>
+            <p class="q">Can we share what we've learned with the next generation of pathologists?</p>
           </div>
         </div>
         <p class="small" style="margin-top:2.6cqw;max-width:70cqw">Four pathologists will show how clinical context,
@@ -2991,7 +3069,7 @@
         <p class="num">STOP 01 · CARE</p>
         <h2 class="h-l">The Ohio State University</h2>
         <p class="who">Dr. Swati Satturwar</p>
-        <p class="q">What do I need before I sign this out?</p>
+        <p class="q">How do I sign the case in one place, with all its metadata and AI?</p>
       </div>
     </section>
 
@@ -3021,11 +3099,8 @@
         <p class="num">STOP 02 · CONSULT</p>
         <h2 class="h-l">Cincinnati Children's Hospital</h2>
         <p class="who">Dr. Archana Shenoy</p>
-        <p class="q">Can someone else help?</p>
+        <p class="q">When my colleague needs another opinion, can we make it easy for her to get it?</p>
       </div>
-    </section>
-
-    <section class="slide demo" id="s-demo-consult" data-demo="consult" data-stage="0" aria-label="Consult demo">
     </section>
 
     <section class="slide" id="s-glass-before" aria-label="The glass consult">
@@ -3042,12 +3117,15 @@
     <section class="slide" id="s-glass-after" aria-label="The digital consult">
       <div class="content">
         <p class="kicker">Cincinnati Children's · After</p>
-        <h2 class="h-m">The digital consult: all in a day's work</h2>
+        <h2 class="h-m">What changes when the slides can be shared electronically?</h2>
         <figure class="infographic"><img src="assets/img/digital-consult.jpg"
             alt="Digital slide reviewed by pathologist, electronic transfer, review by pathologist 2, reporting">
         </figure>
         <p class="deck-foot">02 · Consult · Dr. Archana Shenoy</p>
       </div>
+    </section>
+
+    <section class="slide demo" id="s-demo-consult" data-demo="consult" data-stage="0" aria-label="Consult demo">
     </section>
 
     <section class="slide" id="s-arrival" aria-label="From days to under an hour">
@@ -3070,32 +3148,11 @@
             </div>
           </div>
         </div>
-        <p class="serif" style="font-size:1.7cqw;margin-top:2.6cqw">No courier windows. No loading-dock hours. No
-          business days.</p>
+        <p class="serif" style="font-size:1.7cqw;margin-top:2.6cqw">From waiting for slides to making them available for review.</p>
         <p class="deck-foot">02 · Consult · Dr. Archana Shenoy</p>
       </div>
     </section>
 
-    <section class="slide" id="s-kg" aria-label="From kilograms to gigabytes">
-      <div class="content">
-        <p class="kicker">Cincinnati Children's · Dr. Archana Shenoy</p>
-        <h2 class="h-m">From kilograms to gigabytes</h2>
-        <div class="versus">
-          <div>
-            <p class="label-sm">Glass, by courier</p>
-            <p class="stat-hero">1 kg+</p>
-            <p class="small">Boxes, packing and a courier, both ways</p>
-          </div>
-          <div>
-            <p class="label-sm">Whole-slide images</p>
-            <p class="stat-hero rust">0 kg</p>
-            <p class="small">Nothing to pack, insure, ship or lose</p>
-          </div>
-        </div>
-        <p class="serif" style="font-size:1.7cqw;margin-top:3cqw">No weight to ship, and no shipping cost.</p>
-        <p class="deck-foot">02 · Consult · Dr. Archana Shenoy</p>
-      </div>
-    </section>
 
     <section class="slide" id="s-portal" aria-label="Consult portal">
       <div class="content">
@@ -3104,7 +3161,7 @@
         <div class="three" style="grid-template-columns:repeat(4,1fr)">
           <div>
             <p class="num-sm">01</p>
-            <h3>LIS as ground truth</h3>
+            <h3>Patient and case information comes from the LIS, avoiding duplicate entry.</h3>
             <p>Patient demographics and associated information transmit from the LIS to the PathPresenter image
               management system.</p>
             <p class="why">Why: no duplicate entry, and no identification errors.</p>
@@ -3148,7 +3205,7 @@
         <p class="num">STOP 03 · DISCOVER</p>
         <h2 class="h-l">UPMC, Pittsburgh</h2>
         <p class="who">Dr. Matthew Hanna</p>
-        <p class="q">Have we seen this before?</p>
+        <p class="q">Have we seen this before? How do we make it computable?</p>
       </div>
     </section>
 
@@ -3272,38 +3329,38 @@
       </div>
     </section>
 
-    <section class="slide" id="s-why" aria-label="Why this exists">
+    <section class="slide" id="s-diagnosis" aria-label="The diagnosis">
       <div class="content">
-        <p class="kicker">Why this exists</p>
-        <h2 class="h-l">We digitized the microscope.<br><span class="muted-ink">And fragmented the pathologist.</span>
-        </h2>
-        <div class="silos">
-          <div><i class="lock" aria-hidden="true"></i>
-            <h3>Sign-out viewer</h3>
-            <p>its own login</p>
+        <p class="kicker">Case PV26-001 · The diagnosis</p>
+        <h2 class="h-l serif">CIC-rearranged sarcoma</h2>
+        <p class="body" style="max-width:64cqw;margin-top:1.2cqw">Patchy CD99 and nuclear ETV4 and WT1 pointed the way in
+          Columbus. DUX4 and fusion testing in Cincinnati settled it.</p>
+        <div class="three dx-cards">
+          <div>
+            <h3>CD99</h3>
+            <p>Patchy, not diffuse · Ohio State</p>
           </div>
-          <div><i class="lock" aria-hidden="true"></i>
-            <h3>Consult portal</h3>
-            <p>its own login</p>
+          <div>
+            <h3>ETV4 · WT1</h3>
+            <p>Nuclear · Ohio State</p>
           </div>
-          <div><i class="lock" aria-hidden="true"></i>
-            <h3>Teaching files</h3>
-            <p>its own copy of the slide</p>
-          </div>
-          <div><i class="lock" aria-hidden="true"></i>
-            <h3>Research database</h3>
-            <p>its own export</p>
+          <div class="is-key">
+            <h3>DUX4 · Fusion</h3>
+            <p>Cincinnati Children's · confirms it</p>
           </div>
         </div>
-        <p class="serif" style="font-size:1.7cqw;margin-top:3cqw;max-width:66cqw">The fragmentation is not the
-          pathologist's problem to manage. It is the platform's problem to solve.</p>
+        <p class="serif" style="font-size:1.7cqw;margin-top:2.6cqw;max-width:66cqw">It behaves more aggressively than
+          Ewing sarcoma and responds less well to Ewing-type chemotherapy. Getting the name right changes what the
+          oncologist does next.</p>
+        <p class="note" style="margin-top:1.4cqw">Entity features: WHO Classification of Tumours, Soft Tissue and Bone
+          Tumours, 5th ed. (2020)</p>
       </div>
     </section>
 
     <section class="slide" id="s-history" aria-label="How it was built">
       <div class="content">
         <p class="kicker">How it was built</p>
-        <h2 class="h-m">We built around the pathologist—not around a product category.</h2>
+        <h2 class="h-m">We built around the pathologist;<br>not around a product category.</h2>
         <div class="timeline">
           <div>
             <p class="when">2018 · TEACH</p>
@@ -3313,7 +3370,7 @@
           <div>
             <p class="when">RESEARCH</p>
             <p class="quote">“Then the FDA asked for research-grade data at scale.”</p>
-            <p class="today">Today: the research platform for CHTN's six divisions</p>
+            <p class="today">Today: the research platform for CHTN's six divisions, ADC Alliance and many others</p>
           </div>
           <div>
             <p class="when">THE PANDEMIC</p>
@@ -3331,35 +3388,48 @@
       </div>
     </section>
 
-    <section class="slide" id="s-believe" aria-label="What we believe">
+    <section class="slide" id="s-never" aria-label="The case never started over">
       <div class="content">
-        <p class="kicker">What we believe</p>
-        <h2 class="h-m">What makes one platform different</h2>
-        <ol class="beliefs">
-          <li>
-            <h3>Start with the pathologist, not the technology.</h3>
-            <p>Swati never left the case: history, priors, stains, AI and the consult were all in one place.</p>
-          </li>
-          <li>
-            <h3>The case carries its context across workflows.</h3>
-            <p>11,890 km, no glass shipped. A community pathologist reaches the same expert as an academic center, and a
-              learner in Nagasaki opens the same slide as one in Columbus.</p>
-          </li>
-          <li>
-            <h3>Expertise should cross institutional boundaries.</h3>
-            <p>An informal, de-identified look, then a real consult, and the signed report came home on its own.</p>
-          </li>
-          <li>
-            <h3>Clinical work should create reusable knowledge.</h3>
-            <p>A fellow touched this case first, and a learner across the world touched it last. As AI pre-reads more
-              cases, we intend to keep it that way.</p>
-          </li>
-          <li>
-            <h3>AI should be integrated, validated and accountable.</h3>
-            <p>The AI ran before anyone opened the case, and a pathologist accepted, modified or overrode every result.
-            </p>
-          </li>
-        </ol>
+        <p class="kicker">What makes one platform different</p>
+        <h2 class="h-m">The case never started over.</h2>
+        <p class="body" style="margin-top:.8cqw">Every stop added to one record. Nothing was re-entered, re-scanned,
+          re-uploaded or re-explained.</p>
+        <div class="never-cols">
+          <div>
+            <p class="num">01 · Columbus · Care</p>
+            <ul><li>History and priors</li><li>The fellow's questions</li><li>CD99 · ETV4 · WT1</li><li>Block marked for molecular</li></ul>
+          </div>
+          <div>
+            <p class="num">02 · Cincinnati · Consult</p>
+            <ul><li>Chat on the case</li><li>Consensus conference</li><li>DUX4 · FISH · fusion</li><li>Final report, back home</li></ul>
+          </div>
+          <div>
+            <p class="num">03 · Pittsburgh · Discover</p>
+            <ul><li>Similar cases by image</li><li>Under-18 cohort, 35 sites</li><li>Ground-truth labels</li><li>Governed export</li></ul>
+          </div>
+          <div>
+            <p class="num">04 · Nagasaki · Teach</p>
+            <ul><li>Live-slide lecture</li><li>Pre- and post-assessment</li><li>High-yield set</li><li>Course and conference</li></ul>
+          </div>
+        </div>
+        <div class="never-principles">
+          <div>
+            <h3>Pathologist-first</h3>
+            <p>Built for the person signing out: every step began with what the pathologist needs.</p>
+          </div>
+          <div>
+            <h3>Context travels with the case</h3>
+            <p>Archana started exactly where Swati stopped, without a phone call or a courier.</p>
+          </div>
+          <div>
+            <h3>Neutral by design</h3>
+            <p>Any scanner, LIS or AI model, inside the systems an institution already runs.</p>
+          </div>
+          <div>
+            <h3>The pathologist decides</h3>
+            <p>AI works in the background. The pathologist accepts, modifies or overrides, and signs.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -3453,7 +3523,7 @@
     <section class="slide" id="s-tissue" aria-label="Tissue intelligence">
       <div class="content">
         <p class="kicker">Where this goes · tissue intelligence</p>
-        <h2 class="h-m">Scanner-agnostic. AI-agnostic.<br>A path toward multimodal intelligence.</h2>
+        <h2 class="h-m">Scanner-agnostic. AI-agnostic.<br>Next, modality-agnostic.</h2>
         <div class="tissue-grid">
           <div>
             <p class="tag-live">Live today</p>
@@ -3478,8 +3548,8 @@
         </div>
         <div class="tissue-close">
           <p class="serif">From connected workflows to tissue intelligence.</p>
-          <p class="small">Our strength is not owning every scanner, model or modality. It is designing a place where
-            they can work together around the pathologist.</p>
+          <p class="small">We don't need to own every scanner, model or modality. We need them to work together, around the
+            pathologist.</p>
         </div>
       </div>
     </section>
@@ -3487,14 +3557,13 @@
     <section class="slide" id="s-always" aria-label="Better together">
       <div class="content always">
         <p class="kicker">Better together</p>
-        <h2 class="h-l">Pathology has always been better together.</h2>
+        <h2 class="h-l">Pathology has always been a collaborative profession.</h2>
         <ul class="always-list">
           <li>The microscope had a second head.</li>
           <li>The hallway had a second opinion.</li>
           <li>The sign-out room had a resident.</li>
         </ul>
-        <p class="serif" style="font-size:2.3cqw;margin-top:2.4cqw">The next generation of pathology software should,
-          too.</p>
+        <p class="serif" style="font-size:2.3cqw;margin-top:2.4cqw">Our technology should make that easier—not harder.</p>
       </div>
     </section>
 
@@ -3510,9 +3579,26 @@
             University<br>Rajendra Singh · University of Pennsylvania · PathPresenter</p>
         </div>
         <div style="display:grid;gap:.8cqw;justify-items:end;max-width:18cqw;text-align:right">
-          <div class="qr ph" data-qr="module">[QR to the teaching module]</div>
+          <img class="qr qr-img" src="assets/img/case-qr.png" alt="QR code to case PV26-001 in PathPresenter">
           <p class="kicker" style="margin:0">Take the case home</p>
-          <p class="note">Open PV26-001 as a teaching module, with every slide and stain from today.</p>
+          <p class="note">Open PV26-001 on your phone and take the case with you.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="s-thanks" aria-label="Thank you">
+      <div class="close-wrap">
+        <div>
+          <p class="kicker">Better Together · PV 2026</p>
+          <h2 class="h-xl">Thank you</h2>
+          <p class="serif" style="font-size:2.1cqw;margin-top:1.6cqw;line-height:1.35">Expect more from your IMS.<br>Get
+            more with PathPresenter.</p>
+          <p class="booth">Visit us in Booth #413!</p>
+        </div>
+        <div style="display:grid;gap:.8cqw;justify-items:end;max-width:18cqw;text-align:right">
+          <img class="qr qr-img" src="assets/img/case-qr.png" alt="QR code to case PV26-001 in PathPresenter">
+          <p class="kicker" style="margin:0">Take the case home</p>
+          <p class="note">Open PV26-001 on your phone and take the case with you.</p>
         </div>
       </div>
     </section>
@@ -3528,9 +3614,9 @@
   <script src="assets/vendor/topojson-client.min.js"></script>
   <script src="assets/vendor/qrcode.js"></script>
   <script src="assets/vendor/openseadragon.min.js"></script>
-  <script src="assets/content.js?v=20261013"></script>
-  <script src="assets/tissue.js?v=20261013"></script>
-  <script src="assets/app.js?v=20261013"></script>
+  <script src="assets/content.js?v=20261013b"></script>
+  <script src="assets/tissue.js?v=20261013b"></script>
+  <script src="assets/app.js?v=20261013b"></script>
 </body>
 
 </html>

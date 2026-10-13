@@ -1,17 +1,14 @@
-// The case slide. The tissue is a real whole-slide image used as a stand-in
-// until the case's own H&E is added: alveolar rhabdomyosarcoma, head and neck,
-// 3-year-old (patient PBCWJS), frozen-section H&E scanned at 40x
-// (0.2635 µm/px). Childhood Cancer Data Initiative Molecular Characterization
-// Initiative (CCDI-MCI), Children's Oncology Group, via the NCI Imaging Data
-// Commons, CC BY 4.0.
+// The case slide: PV26-001, H&E, scanned at 40x (0.2633 µm/px, Aperio GT450).
+// The whole scan is shown from an overview image; a 4.3 x 3.2 mm region around
+// the opening field is tiled at full resolution in assets/wsi/case_files.
 //
 // Coordinates are millimetres from the centre of the opening 40x field, y down.
 
 (function () {
-  const MPP = 0.000263466;                                // mm per level-0 pixel
-  const SCAN = { w: 103437, h: 21624 };                   // full scan, level-0 px
-  const CENTRE = { x: 91290, y: 13090 };                  // opening field, level-0 px
-  const CROP = { x: 84600, y: 6500, w: 12200, h: 8600 };  // the fragment that is tiled
+  const MPP = 0.000263265;                                // mm per level-0 pixel
+  const SCAN = { w: 96125, h: 72948 };                    // full scan, level-0 px
+  const CENTRE = { x: 59700, y: 45100 };                  // opening field, level-0 px
+  const CROP = { x: 53000, y: 38500, w: 16384, h: 12288 };  // the fragment that is tiled
   const mm = px => px * MPP;
 
   // Rectangles in mm relative to the opening field: [left, top, width, height]
@@ -36,8 +33,6 @@
     g.fillStyle = '#161616'; g.font = '500 52px "Overpass Mono", monospace'; g.fillText('PV26-001', 60, 120);
     g.font = '400 40px "Overpass Mono", monospace'; g.fillText('A1 · H&E', 60, 210);
     g.fillStyle = '#9c423c'; g.fillText('[accession]', 60, 290);
-    g.fillStyle = 'rgba(22,22,22,.5)'; g.font = '600 24px "Overpass", sans-serif';
-    g.fillText('STAND-IN: CCDI-MCI · CC BY 4.0', 60, H - 96);
     // coverslip
     g.strokeStyle = 'rgba(110,124,134,.45)'; g.lineWidth = 2;
     g.strokeRect(labelW + 1.5 * S, 2 * S, W - labelW - 3.5 * S, H - 4 * S);
@@ -45,6 +40,6 @@
   }
 
   window.TISSUE = { MPP, SCAN, CENTRE, CROP, OVERVIEW, TILES, GLASS, glass,
-    dzi: 'assets/wsi/case.dzi', tiles: 'assets/wsi/case_files', spriteCells: 42, maxLevel: Math.ceil(Math.log2(Math.max(CROP.w, CROP.h))),
+    dzi: 'assets/wsi/case.dzi', tiles: 'assets/wsi/case_files', spriteCells: 48, maxLevel: Math.ceil(Math.log2(Math.max(CROP.w, CROP.h))),
     FIELD40: { w: 0.5, h: 0.28125 } };
 })();

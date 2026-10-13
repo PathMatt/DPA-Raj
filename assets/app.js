@@ -46,8 +46,8 @@
   const TOTAL_KM = ROUTES.reduce((s, r) => s + r.km, 0);
   $$('[data-dist="pittsburgh-nagasaki"]').forEach(el => { el.textContent = (Math.round(ROUTES[3].km / 100) * 100).toLocaleString(); });
 
-  // Annotations on the opening 40x field, in mm from its centre (y down). They sit
-  // on real structures in the stand-in slide; the labels are placeholders.
+  // Annotations on the opening 40x field, in mm from its centre (y down). The
+  // labels are placeholders.
   const MARKS = {
     start: { color: INK, items: [{ type: 'circle', x: 0.0925, y: 0.0045, r: 0.022, label: '[the feature]', dx: 0.03, dy: -0.012 }] },
     columbus: { color: RUST, tag: 'OSU', items: [
@@ -253,7 +253,10 @@
     const ga = clamp01((glassW - 4 * U) / (14 * U));
     drawLayer(TEX.glass, G.w / 1000, G.h / 1000, cx + G.cx * kmm, cy + G.cy * kmm, k, ga);
     const O = T.OVERVIEW;
+    // multiply, so the scan's white background takes on the glass beneath it
+    ctx.globalCompositeOperation = 'multiply';
     if (ready(TEX.overview)) drawLayer(TEX.overview, O[2] / 1000, O[3] / 1000, cx + (O[0] + O[2] / 2) * kmm, cy + (O[1] + O[3] / 2) * kmm, k, ga);
+    ctx.globalCompositeOperation = 'source-over';
     drawTiles(cx, cy, kmm);
     // as the slide shrinks it turns into tiles: the case becoming data
     const tA = Math.min(clamp01((glassW - 70 * U) / (90 * U)), clamp01((900 * U - glassW) / (400 * U)));
@@ -641,7 +644,7 @@
     if (ready(TEX.field40) && ready(TEX.sprite)) buildCohort();
   }
   [TEX.field40, TEX.sprite].forEach(im => im.addEventListener('load', paintThumbs));
-  // The collection: crops of the stand-in slide, one of them the case.
+  // The collection: crops from around the case slide, one of them the opening field.
   function buildCohort() {
     const grid = $('#cohort-grid'); grid.innerHTML = '';
     const cols = 18, rows = 12, r = d3.randomLcg(42), caseIndex = 6 * cols + 9;

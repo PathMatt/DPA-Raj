@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#fafaf8">
   <title>Better Together · Pathology Visions 2026</title>
-  <link rel="stylesheet" href="assets/fonts.css?v=20261013b">
+  <link rel="stylesheet" href="assets/fonts.css?v=20261013c">
   <style>
     :root {
       color-scheme: light;
@@ -2803,8 +2803,8 @@
 <body>
   <!--
     CONFIG: every placeholder that is not inline text lives here.
-    - The slide is a stand-in whole-slide image (CCDI-MCI alveolar rhabdomyosarcoma,
-      CC BY 4.0) set up in assets/tissue.js. See README for swapping in the real case.
+    - The slide is the case's own H&E, set up in assets/tissue.js. See README
+      for swapping in a different slide.
     - sites: the four stops. The case starts at Ohio State, goes to Cincinnati
       Children's for a consult, then UPMC and Nagasaki.
     - pollUrl / moduleUrl: when set, a real QR code is drawn.
@@ -2859,8 +2859,7 @@
     <div class="reviewer" id="reviewer" hidden>
       <div class="reviewer-bar">
         <p class="kicker" style="margin:0">Slide viewer</p>
-        <p class="rv-title">PV26-001 · <span class="muted">stand-in slide until the case's own H&amp;E is added ·
-            CCDI-MCI via NCI Imaging Data Commons, CC BY 4.0</span></p>
+        <p class="rv-title">PV26-001 · <span class="muted">H&amp;E · 40×</span></p>
         <span class="rv-mag" id="rv-mag">40×</span>
         <button type="button" data-rv="out" aria-label="Zoom out">−</button>
         <button type="button" data-rv="in" aria-label="Zoom in">+</button>
@@ -2983,8 +2982,6 @@
           <dt>History</dt>
           <dd>Nodule growing over six months. Prior biopsy inconclusive.</dd>
         </dl>
-        <p class="note" style="margin-top:1cqw">On screen: a stand-in slide until the case's own H&amp;E is added.
-          CCDI-MCI, Children's Oncology Group, via NCI Imaging Data Commons, CC BY 4.0.</p>
       </div>
     </section>
 
@@ -3227,7 +3224,7 @@
           <p class="small" style="margin-top:.8cqw">Seconds, not months of chart review. The travelling case is among
             them.</p>
         </div>
-        <p class="note" style="margin-top:auto">ADC Alliance, PathPresenter Research. Tiles are crops of the stand-in
+        <p class="note" style="margin-top:auto">ADC Alliance, PathPresenter Research. Tiles are crops of the case
           slide, for illustration.</p>
       </div>
     </section>
@@ -3614,9 +3611,9 @@
   <script src="assets/vendor/topojson-client.min.js"></script>
   <script src="assets/vendor/qrcode.js"></script>
   <script src="assets/vendor/openseadragon.min.js"></script>
-  <script src="assets/content.js?v=20261013b"></script>
-  <script src="assets/tissue.js?v=20261013b"></script>
-  <script src="assets/app.js?v=20261013b"></script>
+  <script src="assets/content.js?v=20261013c"></script>
+  <script src="assets/tissue.js?v=20261013c"></script>
+  <script src="assets/app.js?v=20261013c"></script>
 </body>
 
 </html>

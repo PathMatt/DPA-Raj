@@ -16,10 +16,9 @@
 //   notes  speaker notes (N)
 
 const WSI = 'assets/wsi';
-const tile = (i, label, extra = '') => {
-  const x = (i % 8) * 100 / 7, y = Math.floor(i / 8) * 100 / 5;
-  return `<figure class="v-tile"><div style="background-image:url(${WSI}/cohort.jpg);background-size:800% 600%;background-position:${x}% ${y}%"></div><figcaption>${label}${extra}</figcaption></figure>`;
-};
+// look-alike cases from other sources, for the image-search matches
+const match = (n, label, extra = '') =>
+  `<figure class="v-tile"><div style="background-image:url(assets/img/matches/match-${n}.jpg)"></div><figcaption>${label}${extra}</figcaption></figure>`;
 
 window.CONTENT = {
   demos: {
@@ -202,8 +201,9 @@ window.CONTENT = {
               <figure class="v-tile v-tile-big"><div style="background-image:url(${WSI}/field40.jpg)"><i class="v-region"></i></div><figcaption>H&amp;E region drawn on our case</figcaption></figure>
               <p class="v-note">Region selected on the slide, converted to an image embedding, compared across every permitted slide.</p></div>
             <div class="v-matches"><p class="v-label">Example matches · not study findings</p>
-              <div class="v-grid">${[['07', '0.94', 'A'], ['22', '0.92', 'C'], ['03', '0.91', 'B'], ['31', '0.89', 'A'], ['14', '0.88', 'D'], ['19', '0.86', 'B']].map(([s, c, k], i) => tile([30, 23, 31, 19, 39, 6][i], `Site ${s} <b>${c}</b>`, `<span>Scanner ${k}</span>`)).join('')}</div></div>
-            <p class="v-foot">Potential value: similar morphology linked to available records, within institutional permissions. Results shown are illustrative.</p></div>` },
+              <div class="v-grid">${[['07', '0.94', 'A'], ['22', '0.92', 'C'], ['03', '0.91', 'B'], ['31', '0.89', 'A'], ['14', '0.88', 'D'], ['19', '0.86', 'B']].map(([s, c, k], i) => match(i + 1, `Site ${s} <b>${c}</b>`, `<span>Scanner ${k}</span>`)).join('')}</div></div>
+            <p class="v-foot">Potential value: similar morphology linked to available records, within institutional permissions. Results shown are illustrative.</p>
+            <p class="v-credit">Match images: Wikimedia Commons, CC BY-SA 3.0 / 4.0 and CC BY 2.0 (credits in README)</p></div>` },
         {
           rail: 1, notes: 'Matt, beat 2 (1:05 to 1:50). "That\'s why we built the ADC Alliance at UPMC. A model trained at one hospital learns that hospital: its scanner, its stain, its patients. Then it stumbles the first time it sees somebody else\'s slides. So we pooled the data. Thirty-five institutions contribute slides with their reports attached, de-identified, each under its own data use agreement. The result is one governed dataset with the real-world variation built in, and that variation is exactly what a model needs to generalize. The deal is simple: the institutions that contribute get the models back. Let me show you how a case moves through it." The 35-node ring is a schematic; dot colours are illustrative.',
           quote: 'Variation across sites is essential. Generalization must be demonstrated, not assumed.', chrome: 'ADC Alliance · Multisite data for generalizable AI',

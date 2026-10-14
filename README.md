@@ -89,7 +89,7 @@ which case the frame shows the `screen` text as a placeholder.
   - `assets/wsi/field40.jpg`: the opening 40x field, used for the case's tile
     in the cohort grid and the image-search query in Discover.
   - `assets/wsi/cohort.jpg`: 48 crops from around the slide (8 x 6 sprite)
-    standing in for other cases in the cohort grid and search results.
+    standing in for other cases in the cohort grid.
   Vercel serves these as static files straight from the repo, so a push to
   `main` publishes them; no separate storage is involved.
 - To swap in another slide: crop the region to tile and build the pyramid
@@ -100,6 +100,19 @@ which case the frame shows the `screen` text as a placeholder.
   overview, 40x still and sprite, and update `MPP`, `SCAN`, `CENTRE` and
   `CROP` in `assets/tissue.js` (level-0 pixels; `CENTRE` is the middle of the
   opening 40x field) and `spriteCells`.
+- The six image-search matches in Discover (`assets/img/matches/`) are
+  look-alike small round cell tumours from Wikimedia Commons, cropped to 4:3
+  and resized. They are not labelled on the slide, so the diagnosis stays
+  sealed until the second vote. Credits (licences apply to the crops too):
+  1. Ewing sarcoma: "Ewing Sarcoma (2274259503).jpg", Ed Uthman, CC BY 2.0
+  2. CIC-DUX4 sarcoma: "CIC-DUX-sarcoma.jpg", Jensflorian, CC BY-SA 4.0
+  3. Alveolar rhabdomyosarcoma: "Alveolar rhabdomyosarcoma 1.jpg", Humpath,
+     CC BY-SA 3.0
+  4. Desmoplastic small round cell tumour: "Desmoplastic small round cell
+     tumour - high mag.jpg", Nephron, CC BY-SA 3.0
+  5. PNET: "PNET Histopathology HE 200x.jpg", Marvin 101, CC BY-SA 3.0
+  6. Wilms tumour, blastema: "Wilms tumour - very high mag.jpg", Nephron,
+     CC BY-SA 3.0
 - Annotation positions on the 40x field are in `MARKS` in `assets/app.js`,
   in millimetres from the field centre.
 

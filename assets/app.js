@@ -49,7 +49,6 @@
   // Annotations on the opening 40x field, in mm from its centre (y down). The
   // labels are placeholders.
   const MARKS = {
-    start: { color: INK, items: [{ type: 'circle', x: 0.0925, y: 0.0045, r: 0.022, label: '[the feature]', dx: 0.03, dy: -0.012 }] },
     columbus: { color: RUST, tag: 'OSU', items: [
       { type: 'num', n: 1, x: 0.045, y: -0.0465, r: 0.009, label: "[annotations · fellow's questions]", dx: 0.014, dy: -0.004 },
       { type: 'num', n: 2, x: 0.155, y: -0.0665, r: 0.009 },
@@ -767,15 +766,15 @@
   // A site's demo: one step per stage of its demo slide, words from content.js.
   const demo = (key, at, from = 0, to) => CONTENT.demos[key].steps.slice(from, to)
     .map((d, i) => ({ slide: `s-demo-${key}`, stage: from + i, veil: 1, at, notes: d.notes }));
-  const ALL_MARKS = ['start', 'columbus', 'cincinnati', 'pittsburgh', 'nagasaki'];
+  const ALL_MARKS = ['columbus', 'cincinnati', 'pittsburgh', 'nagasaki'];
   const STEPS = [
     // the opening, at 40x at Ohio State
     { slide: 's-title', veil: 0.9, view: 'lab40', enter: () => { setTitle(0); tween(300, 3200, setTitle); } },
     { slide: 's-disclosures', veil: 1, view: 'lab40' },
     { slide: 's-question', veil: 1, view: 'lab40' },
-    { slide: 's-case', veil: 0, view: 'lab40', at: 'columbus', scale: true, marks: ['start'], captionDelay: 2400,
-      enter: () => { S.cam = { ...VIEWS.lab4 }; S.marks.start = 0; flight(VIEWS.lab40, 3000, { rho: 1 }); tween(2700, 900, t => { S.marks.start = t; }); } },
-    { slide: 's-vote1', veil: 0, view: 'lab40', at: 'columbus', scale: true, marks: ['start'] },
+    { slide: 's-case', veil: 0, view: 'lab40', at: 'columbus', scale: true, captionDelay: 2400,
+      enter: () => { S.cam = { ...VIEWS.lab4 }; flight(VIEWS.lab40, 3000, { rho: 1 }); } },
+    { slide: 's-vote1', veil: 0, view: 'lab40', at: 'columbus', scale: true },
     { slide: 's-second', veil: 1, view: 'lab40' },
     { slide: 's-overview', veil: 1, view: 'lab40' },
     // 01 · Care: pull back from the slide to Columbus
@@ -811,9 +810,9 @@
     { slide: 's-home', veil: 0, view: 'lab40', at: 'columbus', home: true, scale: true, marks: ALL_MARKS, captionDelay: 9800,
       enter: () => {
         S.spin = false;
-        ALL_MARKS.forEach(k => { S.marks[k] = k === 'start' ? 1 : 0; });
+        ALL_MARKS.forEach(k => { S.marks[k] = 0; });
         flight(VIEWS.lab40, 10000, { rho: 1.5 });
-        ALL_MARKS.slice(1).forEach((k, i) => tween(10200 + i * 900, 900, t => { S.marks[k] = t; }));
+        ALL_MARKS.forEach((k, i) => tween(10200 + i * 900, 900, t => { S.marks[k] = t; }));
       } },
     { slide: 's-diagnosis', veil: 1, view: 'lab40' },
     { slide: 's-history', veil: 1, view: 'globe' },

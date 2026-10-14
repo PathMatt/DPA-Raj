@@ -594,6 +594,21 @@
       flex: none;
     }
 
+    /* the differential sits where the case panel was, sized to its list */
+    #s-vote1 .vote {
+      top: auto;
+      padding-bottom: 2.6cqw;
+    }
+
+    .ddx li::before {
+      content: "";
+      flex: none;
+      width: 1.2cqw;
+      height: 1.5px;
+      background: var(--rust);
+      align-self: center;
+    }
+
     .vote-foot {
       margin-top: auto;
       display: flex;
@@ -3218,20 +3233,16 @@
       </div>
     </section>
 
-    <section class="slide" id="s-vote1" aria-label="Vote 1">
+    <section class="slide" id="s-vote1" aria-label="Differential diagnosis">
       <div class="panel vote">
-        <p class="kicker">Vote 1 of 2 · Before anyone helps</p>
-        <h2 class="h-l">What is your read?</h2>
-        <ol class="options">
-          <li><b>A</b>Ewing sarcoma</li>
-          <li><b>B</b>Alveolar rhabdomyosarcoma</li>
-          <li><b>C</b>CIC-rearranged sarcoma</li>
-          <li><b>D</b>Desmoplastic small round cell tumor</li>
+        <p class="kicker">Case PV26-001 · Before anyone helps</p>
+        <h2 class="h-l">Differential diagnosis</h2>
+        <ol class="options ddx">
+          <li>Ewing sarcoma</li>
+          <li>Alveolar rhabdomyosarcoma</li>
+          <li>CIC-rearranged sarcoma</li>
+          <li>Desmoplastic small round cell tumor</li>
         </ol>
-        <div class="vote-foot">
-          <div class="qr ph" data-qr="poll">[QR code to the poll]</div>
-          <p class="kicker" style="margin:0">Scan to vote<br>60 seconds</p>
-        </div>
       </div>
     </section>
 
@@ -3842,10 +3853,10 @@
   <script src="assets/vendor/topojson-client.min.js"></script>
   <script src="assets/vendor/qrcode.js"></script>
   <script src="assets/vendor/openseadragon.min.js"></script>
-  <script src="assets/geo/data.js?v=20261014c"></script>
-  <script src="assets/content.js?v=20261014c"></script>
-  <script src="assets/tissue.js?v=20261014c"></script>
-  <script src="assets/app.js?v=20261014c"></script>
+  <script src="assets/geo/data.js?v=20261014e"></script>
+  <script src="assets/content.js?v=20261014e"></script>
+  <script src="assets/tissue.js?v=20261014e"></script>
+  <script src="assets/app.js?v=20261014e"></script>
 </body>
 
 </html>

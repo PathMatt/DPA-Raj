@@ -89,9 +89,8 @@
     });
     return { type: 'MultiLineString', coordinates: lines };
   };
-  Promise.all(['countries-110m', 'countries-50m', 'states-10m', 'great-lakes-50m', 'japan-10m', 'context']
-    .map(n => fetch(`assets/geo/${n}.json`).then(r => r.json())))
-    .then(([c110, c50, st, lakes, jp, cx]) => {
+  Promise.resolve(window.GEO_DATA)
+    .then(({ countries110: c110, countries50: c50, states10: st, lakes50: lakes, japan10: jp, context: cx }) => {
       const ml = lines => pieces({ type: 'MultiLineString', coordinates: lines });
       GEO.ctx = { major: ml(cx.major), secondary: ml(cx.secondary), rivers: ml(cx.rivers), places: cx.places };
       const isJp = f => f.properties && f.properties.name === 'Japan';
@@ -114,7 +113,8 @@
       };
       GEO.graticule = d3.geoGraticule10();
       GEO.ready = true;
-    });
+    })
+    .catch(error => { console.error('Failed to load geographic map data:', error); });
 
   // ---------- textures ----------
   const loadImage = src => { const im = new Image(); im.src = src; return im; };

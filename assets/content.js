@@ -9,6 +9,7 @@
 //   screen placeholder text for the live demo
 //   img    optional screenshot shown instead of the placeholder
 //   html   optional built visual shown instead of the placeholder
+//   clickHtml optional alternate built visual toggled by clicking the screen
 //   foot   optional footer text (defaults to "Step n of N")
 //   notes  speaker notes (N)
 
@@ -31,7 +32,7 @@ window.CONTENT = {
             { src: 'assets/wsi/clinical-dashboard.png', alt: 'Open the clinical dashboard' },
             { src: 'assets/wsi/in_worklist.png', alt: 'View the case in the worklist' }
           ],
-           iframe: 'https://pathpresenter.net/public/display?token=b4e0dff7',
+          iframe: 'https://pathpresenter.net/public/display?token=b4e0dff7',
           notes: 'Swati, beat 6 (3:25 to 4:05). "AI shouldn\'t be another window or another login. The model ran before I opened the case. The result is on the slide, I can see what it found, and I decide: accept, modify, or override. Whatever I decide is what goes into my report." Model name to confirm with Swati.'
         },
         {
@@ -39,7 +40,16 @@ window.CONTENT = {
           screen: 'Clinical history and patient information',
           images: [
             { src: 'assets/wsi/clinical-context.png', alt: 'Whole-slide overview' },
-            { src: 'assets/wsi/clinical-context-info.png', alt: 'Higher-magnification tissue detail' }
+            { src: 'assets/wsi/clinical-context-info.png', alt: 'Higher-magnification tissue detail' },
+            { src: 'assets/wsi/slide-tray-select.png', alt: 'Whole-slide overview' },
+            { src: 'assets/wsi/slidetray-open.png', alt: 'Higher-magnification tissue detail' },
+            { src: 'assets/wsi/gross-dialog-open.png', alt: 'Higher-magnification tissue detailss' },
+            { src: 'assets/wsi/add-gross-img.png', alt: 'Higher-magnification tissue detailss' },
+            { src: 'assets/wsi/gross-img-check.png', alt: 'Gross image added to the case' },
+            { src: 'assets/wsi/add-click-img-gross.png', alt: 'Higher-magnification tissue detailss' },
+            { src: 'assets/wsi/clinical-img-select.png', alt: 'Higher-magnification tissue detailss' },
+            { src: 'assets/wsi/select-H&Eagain.png', alt: 'Higher-magnification tissue detailss' },
+
           ],
           notes: 'Swati, beat 1 (0:20 to 0:55). "Before I look at a single slide, I want to know the patient: age, site, history, imaging, the gross. With round blue cells, that context narrows the differential before I see a cell. A prior melanoma, an older patient with a skin nodule, a young man with an abdominal mass: each points somewhere different. Here it\'s all in the case, not in another system."'
         },
@@ -47,11 +57,14 @@ window.CONTENT = {
           quote: "If there's prior material, I want it next to today's case, without a request.",
           screen: "Prior biopsy slides and report, open side by side with today's slide",
           images: [
-            { src: 'assets/wsi/slide-tray-select.png', alt: 'Whole-slide overview' },
-            { src: 'assets/wsi/slidetray-open.png', alt: 'Higher-magnification tissue detail' },
-            { src: 'assets/wsi/add-gross-img.png', alt: 'Higher-magnification tissue detailss' },
-            { src: 'assets/wsi/gross-img-check.png', alt: 'Gross image added to the case' },
-            { src: 'assets/wsi/select-gross-viewer.png', alt: 'Higher-magnification tissue detailssss' },
+            { src: 'assets/wsi/select-H&Eagain.png', alt: 'Higher-magnification tissue detailss' },
+            { src: 'assets/wsi/add-prior-img.png', alt: 'Higher-magnification tissue detailss' },
+            { src: 'assets/wsi/view-prior-img.png', alt: 'Higher-magnification tissue detailssss' },
+            { src: 'assets/wsi/select-for-side-by.png', alt: 'Higher-magnification tissue detailssss' },
+            { src: 'assets/wsi/prior-side-by-side.png', alt: 'Higher-magnification tissue detailssss' },
+            { src: 'assets/wsi/compare-drowdown.png', alt: 'Higher-magnification tissue detailssss' },
+            { src: 'assets/wsi/final-view-prior.png', alt: 'Higher-magnification tissue detailssss' },
+
           ],
           notes: 'Swati, beat 2 (0:55 to 1:20). "If there\'s prior material, I want it next to today\'s case without putting in a request. Here\'s the earlier specimen, slides and report, side by side." Drop this step if the case has no prior material.'
         },
@@ -59,13 +72,12 @@ window.CONTENT = {
           quote: 'My fellow got there first, and left questions pinned to the slide.',
           screen: 'The fellow\'s annotations and draft diagnosis. Jump between “Nuclear molding and fine chromatin here. Merkel?” and “Is this desmoplastic stroma around the nests?”, then type a reply on one',
           images: [
-            { src: 'assets/wsi/select-H&E.png', alt: 'Whole-slide overview' },
-            { src: 'assets/wsi/report-issue-screen.png', alt: 'Higher-magnification tissue detail' },
-            { src: 'assets/wsi/report-issue-dropdown.png', alt: 'Higher-magnification tissue detailss' },
-            { src: 'assets/wsi/slide-issue-selected.png', alt: 'Gross image added to the case' },
-            { src: 'assets/wsi/select-issue-again.png', alt: 'Gross image added to the case' },
-            { src: 'assets/wsi/software-issue.png', alt: 'Higher-magnification tissue detailssss' },
-            { src: 'assets/wsi/select-H&E.png', alt: 'Higher-magnification tissue detailssss' },
+            { src: 'assets/wsi/final-view-prior.png', alt: 'Higher-magnification tissue detailssss' },
+            { src: 'assets/wsi/close-fellow.png', alt: 'Whole-slide overview' },
+
+            { src: 'assets/wsi/fellow-chat-single.png', alt: 'Whole-slide overview' },
+            { src: 'assets/wsi/fellow-chat.png', alt: 'Whole-slide overview' },
+            { src: 'assets/wsi/fellow-final-screen.png', alt: 'Higher-magnification tissue detail' },
           ],
           notes: 'Swati, beat 3 (1:20 to 2:10). "My fellow previewed this case before I got to it. Each annotation is pinned to the exact spot, with a question. Both are fair questions, and the teaching point is that morphology alone won\'t settle a round blue cell tumor. I answer right here on the slide, and the teaching stays with the case instead of disappearing after sign-out."'
         },
@@ -73,11 +85,15 @@ window.CONTENT = {
           quote: "I order from where I'm looking, and I'm told when the stains are back.",
           screen: 'The order panel in the viewer with keratin, CK20, synaptophysin, SOX10, CD45, desmin and WT1. Cut to the “stains ready” notification, then open the H&E and the key stain synchronized',
           images: [
+            { src: 'assets/wsi/fellow-final-screen.png', alt: 'Higher-magnification tissue detail' },
             { src: 'assets/wsi/order-stain-select.png', alt: 'Select stains to order' },
             { src: 'assets/wsi/order-stain-open.png', alt: 'Open the order stains panel' },
-            { src: 'assets/wsi/order-stain-view.png', alt: 'Open the order stains in the viewer' },
-            { src: 'assets/wsi/order-stain-side-by-side.png', alt: 'View the slide and stain side by side' },
-            { src: 'assets/wsi/order-stain-side-by-side-selected.png', alt: 'Select the stain to compare side by side' },
+            { src: 'assets/wsi/select-order-stain-dropdown.png', alt: 'Open the order stains panel' },
+            { src: 'assets/wsi/order-stain-select-from-dropdown.png', alt: 'Open the order stains panel' },
+            { src: 'assets/wsi/order-stain-select.png', alt: 'Select stains to order' },
+            { src: 'assets/wsi/notification-dropdown.png', alt: 'Open the order stains in the viewer' },
+            { src: 'assets/wsi/final-order-stain.png', alt: 'Open the order stains in the viewer' },
+
           ],
           notes: 'Swati, beat 5 (2:40 to 3:25). "This is where I need stains, so I order from where I\'m looking: a keratin, CK20 and synaptophysin for Merkel, SOX10 for melanoma, CD45 for lymphoma, desmin and WT1 for desmoplastic small round cell tumor. The order goes to the lab, and I don\'t keep checking. I get notified when the stains are scanned, and they land in the case. The H&E next to the stain that answers the question. When I move one, both move."'
         },
@@ -86,10 +102,12 @@ window.CONTENT = {
           quote: 'I move with the keyboard or by touch, and measure right on the slide.',
           screen: 'Move between slides with the keyboard. Measure the tumor and mark the best area for stains and molecular testing',
           images: [
-            { src: 'assets/wsi/navigate-measure.png', alt: 'Select annotation tool' },
-            { src: 'assets/wsi/annoation-draw.png', alt: 'Draw an annotation on the slide' },
-            { src: 'assets/wsi/annoatation-save.png', alt: 'Save the slide annotation' },
-            { src: 'assets/wsi/annotation-preview.png', alt: 'Preview the saved annotation' },
+            { src: 'assets/wsi/navigate-screen.png', alt: 'Select annotation tool' },
+            { src: 'assets/wsi/navigate-compare.png', alt: 'Select annotation tool' },
+            { src: 'assets/wsi/measure-compare.png', alt: 'Select annotation tool' },
+            { src: 'assets/wsi/navigate-side-by-side.png', alt: 'Select annotation tool' },
+            { src: 'assets/wsi/final-measure.png', alt: 'Select annotation tool' },
+
           ],
           notes: 'Swati, beat 4 (2:10 to 2:40, flex). "I move between slides with the keyboard, or by touch on a touchscreen. I measure the tumor and mark the best area for stains and any molecular work, right here." In the 5-minute version, fold this into step 3 and skip the slide.'
         },
@@ -97,20 +115,18 @@ window.CONTENT = {
           quote: "CD99 doesn't settle it. I don't want to sign this out alone.",
           screen: "Share with the hematopathologist, with annotations and a note, and show the reply on the slide. Then switch on de-identification mode and share with Archana at Cincinnati Children's",
           images: [
-            { src: 'assets/wsi/show-collegue.png', alt: 'Then switch on de-identification mode' },
-            { src: 'assets/wsi/didmode.png', alt: 'De-Identified Mode' },
+            { src: 'assets/wsi/d-ID-on.png', alt: 'Then switch on de-identification mode' },
+            { src: 'assets/wsi/d-ID-off.png', alt: 'De-Identified Mode' },
           ],
-          iframe: 'https://pathpresenter.net/public/display?token=b4e0dff7',
+
           notes: 'Swati, beat 7 (4:05 to 4:40). "CD99 doesn\'t settle it, and this isn\'t a case I want to sign out alone. I share it with my annotations and a note, and here\'s the reply, inside the case, on the region I asked about. If I want a colleague outside our institution to look, de-identification mode removes the patient\'s identifiers before the case leaves." The outside colleague on screen should be Archana, which sets up her opening.'
         },
         {
           quote: 'I send only the slides that need to go, with a note.',
           screen: "Select the slides to send, not the whole case. Add a note, send to Cincinnati Children's, and show the tracked status",
           images: [
-            { src: 'assets/wsi/chat.png', alt: 'Open a chat with a colleague' },
-            { src: 'assets/wsi/case-chat.png', alt: 'Discuss the case with a colleague' },
-            { src: 'assets/wsi/chat-with-consult.png', alt: 'Discuss the case with a colleague' },
-            { src: 'assets/wsi/send-consult.png', alt: 'Report to Consultant' },
+            { src: 'assets/wsi/d-ID-on.png', alt: 'Then switch on de-identification mode' },
+            { src: 'assets/wsi/add-tags.png', alt: 'Then switch on de-identification mode' },
             { src: 'assets/wsi/share-report-consult.png', alt: 'Share Report for Consult' },
           ],
           notes: 'Swati, beat 8 (4:40 to 5:10). "Last step. I mark the slides that need to go out, just these, add a note, and send them to Cincinnati Children\'s. I can track the consult from here. And this is where Archana picks it up."'
@@ -127,18 +143,19 @@ window.CONTENT = {
           screen: "The email notification that a consult just came in. Open it into PathPresenter, logged in at Cincinnati Children's",
           images: [
             { src: 'assets/wsi/consult/email-notfication.png', alt: 'Email notification for a new consult' },
-            { src: 'assets/wsi/consult/consult-notification.png', alt: 'Consult notification in PathPresenter' }
           ]
         },
         {
           quote: 'Everything came with it.',
           screen: "The referring report, clinical history, Swati's note and annotations, and the CD99 she already ran, all in the case",
           images: [
-            { src: 'assets/wsi/consult/everything-attached-info.png', alt: 'View all information attached to the consult' },
+            { src: 'assets/wsi/consult/everything-attached.png', alt: 'View all information attached to the consult' },
             { src: 'assets/wsi/consult/case-info.png', alt: 'View the case information' },
             { src: 'assets/wsi/consult/case-info-with-report.png', alt: 'View case information with the report' },
-            { src: 'assets/wsi/consult/case-report.png', alt: 'View the consult case report' }
-          ]
+
+          ],
+          iframe: 'assets/wsi/consult/PV26-001_Preliminary_Report_DEMO.pdf',
+          iframeAction: 'Open preliminary report PDF'
         },
         {
           quote: 'We join the conference, review the slide together, and discuss what matters. All in one place.',
@@ -153,6 +170,7 @@ window.CONTENT = {
           screen: 'A question pinned to a region, “Any imaging? And can your lab cut two more stains?”, then Swati\'s reply opened in the case',
           images: [
             { src: 'assets/wsi/consult/chat-main.png', alt: 'Open the consult chat' },
+            { src: 'assets/wsi/consult/blank-chat.png', alt: 'Open the consult chat' },
             { src: 'assets/wsi/consult/chat-single.png', alt: 'Open the consult chat with swati' },
             { src: 'assets/wsi/consult/chat-with-swati.png', alt: 'Chat with Swati about the consult' }
           ]
@@ -162,23 +180,34 @@ window.CONTENT = {
           screen: 'Request ETV4 and WT1. Cut to the notification that they are scanned and attached, then open one next to the H&E',
           images: [
             { src: 'assets/wsi/consult/more-order-stain.png', alt: 'Open the stain ordering options' },
-            { src: 'assets/wsi/consult/Order-stain-more.png', alt: 'Select additional stains for the consult' }
+            { src: 'assets/wsi/consult/order-stain-dropdown.png', alt: 'Open the stain ordering options' },
+            { src: 'assets/wsi/consult/open-dropdown.png', alt: 'Open the stain ordering options' },
+            { src: 'assets/wsi/consult/Order-stain-more.png', alt: 'Select additional stains for the consult' },
+            { src: 'assets/wsi/consult/more-order-stain.png', alt: 'Open the stain ordering options' },
           ]
         },
         {
           quote: "The case doesn't disappear. It's one search away.",
           screen: 'The archived case with slides, both reports, the conversation and every stain together, then found again by search',
           images: [
-            { src: 'assets/wsi/consult/case-report.png', alt: 'Consult case report' }
+            { src: 'assets/wsi/consult/more-order-stain.png', alt: 'Open the stain ordering options' },
+            { src: 'assets/wsi/consult/order-stain-dropdown.png', alt: 'Open the stain ordering options' },
+            { src: 'assets/wsi/consult/molicular-dropdown.png', alt: 'Consult case report' },
+            { src: 'assets/wsi/consult/molicular.png', alt: 'Consult case report' },
+            { src: 'assets/wsi/consult/more-order-stain.png', alt: 'Open the stain ordering options' },
           ]
         },
 
         {
+
           quote: "The signed report goes back into Swati's Beaker case. Nothing is faxed.", chrome: "Beaker · Cincinnati Children's Hospital · PV26-001",
           screen: "The consult report in Beaker with the referring information populated. Add stains, the accepted AI result, diagnosis and comment, and show the consult CPT code. Sign out, then show it arriving in Swati's case. Keep the diagnosis line blurred",
           images: [
-            { src: 'assets/wsi/consult/case-report.png', alt: 'Consult report sent back to the referring case' }
-          ]
+            { src: 'assets/wsi/consult/final-report-mail.png', alt: 'Open the stain ordering options' },
+            { src: 'assets/wsi/consult/again-move-report.png', alt: 'Open the stain ordering options' },
+          ],
+          iframe: 'assets/wsi/consult/final-report.pdf',
+          iframeAction: 'Open preliminary report PDF'
         },
 
       ],
@@ -186,70 +215,103 @@ window.CONTENT = {
 
     discover: {
       kicker: '03 · Discover', who: 'Matthew Hanna · UPMC, Pittsburgh', chrome: 'PathPresenter Research · ADC Alliance',
-      rail: ['Find similar cases', 'The ADC Alliance', 'Data from 35 sites', 'Folders, permissions', 'Searchable lists', 'Build a cohort', 'Aggregate for AI', 'Annotate', 'Build the model', 'Diagnostic model', 'Prognostic model', 'Predict our patient', 'Return and share'],
+      rail: ['Find similar cases', 'The ADC Alliance', 'Data from 35 sites', 'Searchable list', 'Folders, permissions', 'Build a cohort', 'Annotate', 'Build the model', 'Diagnostic model', 'Prognostic model', 'Predict our patient', 'Return and share'],
       steps: [
         {
-          rail: 0, quote: 'Have we seen this before? Ask with the slide itself.', chrome: 'PathPresenter Research · ADC Alliance · Search by image', tag: 'Illustrative search concept · not live results',
-          html: `<div class="v-search">
-            <div class="v-query"><p class="v-label">Query · our case</p>
-              <figure class="v-tile v-tile-big"><div style="background-image:url(${WSI}/field40.jpg)"><i class="v-region"></i></div><figcaption>H&amp;E region drawn on our case</figcaption></figure>
-              <p class="v-note">Region selected on the slide, converted to an image embedding, compared across every permitted slide.</p></div>
-            <div class="v-matches"><p class="v-label">Example matches · not study findings</p>
-              <div class="v-grid">${[['07', '0.94', 'A'], ['22', '0.92', 'C'], ['03', '0.91', 'B'], ['31', '0.89', 'A'], ['14', '0.88', 'D'], ['19', '0.86', 'B']].map(([s, c, k], i) => tile(i * 6 + 3, `Site ${s} <b>${c}</b>`, `<span>Scanner ${k}</span>`)).join('')}</div></div>
-            <p class="v-foot">Potential value: similar morphology linked to available records, within institutional permissions. Results shown are illustrative.</p></div>` },
+          rail: 0, quote: 'Have we seen this before? Ask with the slide itself.', chrome: 'PathPresenter Research · ADC Alliance · Search by image',
+          html: `<div class="v-search-graphic">
+           <p class="v-foot2"> Illustrative search concept · not live results</p>
+         
+            <img src="${WSI}/research/find-similar-case-graphics.png" alt="Illustrative image search showing a pathology case matched with six example slides.">
+            <p class="v-foot">Potential value: similar morphology linked to available records, within institutional permissions. Results shown are illustrative.</p>
+          </div>` },
         {
           rail: 1, quote: 'Variation across sites is essential. Generalization must be demonstrated, not assumed.', chrome: 'ADC Alliance · Multisite data for generalizable AI',
-          html: `<div class="v-alliance">
-            <svg class="v-dots" viewBox="-110 -110 220 220" aria-hidden="true">${Array.from({ length: 35 }, (_, i) => { const a = i / 35 * Math.PI * 2, r = 78 + (i % 3) * 9, c = ['#161616', '#9c423c', '#47698c', '#9a9a92'][i % 4]; return `<line x1="0" y1="0" x2="${(Math.cos(a) * r).toFixed(1)}" y2="${(Math.sin(a) * r).toFixed(1)}" stroke="rgba(22,22,22,.12)"/><circle cx="${(Math.cos(a) * r).toFixed(1)}" cy="${(Math.sin(a) * r).toFixed(1)}" r="4.2" fill="${c}"/>`; }).join('')}<circle r="34" fill="#fafaf8" stroke="#161616" stroke-width="1.5"/><text y="-4" text-anchor="middle">ADC</text><text y="10" text-anchor="middle">Alliance</text><text y="62" text-anchor="middle" class="v-small">UPMC</text></svg>
-            <div class="v-stats"><div><b>35</b>contributing institutions, each under its own data use agreement</div><div><b>1</b>governed, searchable dataset, with reports attached</div><div><b>Every</b>contributor gets the models back</div>
-              <p class="v-note">Dot colour = scanner platform (illustrative)</p></div>
-            <p class="v-foot">Why pool? One site teaches one scanner, one stain, one population.</p></div>` },
-        {
-          rail: 1, quote: 'Making AI in pathology accessible for all.', chrome: 'AI Data Commons (ADC) Alliance · What it is', foot: '03 · Discover · Step 2 of 13 · The Alliance',
-          html: `<div class="v-two">
-            <div><p class="v-label">The problem</p><dl class="v-list"><dt>Data</dt><dd>Limited, non-diverse data → biased models</dd><dt>Talent</dt><dd>Most sites can't build or sustain AI alone</dd><dt>Silos</dt><dd>Privacy, governance and organizational barriers</dd><dt>Cost</dt><dd>Storage, compute and vendor models</dd></dl>
-              <p class="v-note">Result: poorly generalized models, slow adoption, diminished clinical impact.</p></div>
-            <div><p class="v-label">The deal · data consortium plan</p><dl class="v-list"><dt>De-identified only</dt><dd>Contributed under each site's IRB; WSI plus reports, molecular, treatment, outcomes</dd><dt>Sites own their data</dt><dd>Full ownership and access retained; sites may withdraw</dd><dt>Pitt holds the data</dt><dd>HIPAA-compliant storage on PathPresenter; Pitt covers storage costs</dd><dt>CPACE builds the AI</dt><dd>Central hub for algorithm and tool development</dd><dt>Value comes back</dt><dd>Royalty-free internal-use license to new IP; co-authorship</dd><dt>Steering group</dt><dd>Reviews proposals, sets priorities, resolves disputes</dd></dl></div></div>` },
-        {
-          rail: 1, quote: 'Research to validation to the clinic, all under one roof.', chrome: 'ADC Alliance · Inside the UPMC ecosystem', foot: '03 · Discover · Step 2 of 13 · The Alliance',
-          html: `<div class="v-eco">
-            <p class="v-flowin"><b>ADC Alliance</b> multi-institutional data in →</p>
-            <div class="v-boxes">
-              <div><h4>CPACE</h4><p class="v-sub">Computational Pathology &amp; AI Center of Excellence</p><p class="v-role">Builds the models</p><ul><li>Opened Jan 2025</li><li>14 patents · 10 products</li><li>~30+ engineers &amp; faculty</li></ul></div>
-              <div><h4>DPRC</h4><p class="v-sub">Digital Pathology Research Center</p><p class="v-role">Validates the models</p><ul><li>Inaugurated Jan 2025</li><li>Scanner &amp; tech evaluations</li><li>&gt;27 industry initiatives</li></ul></div>
-              <div><h4>IAL</h4><p class="v-sub">CLIA-certified Image Analysis Lab</p><p class="v-role">Runs them clinically</p><ul><li>IHC quantification</li><li>Ki-67 and CD8 in service</li><li>Results to the LIS</li></ul></div>
+          html: `<div class="v-alliance-layout">
+            <img class="v-alliance-graphic" src="${WSI}/research/the-adc-alliance-graphcis.png" alt="ADC Alliance connects UPMC with contributing institutions.">
+            <div class="v-alliance-cards">
+              <div class="v-alliance-card"><strong>35</strong><p>contributing institutions, each under its own data use agreement</p></div>
+              <div class="v-alliance-card"><strong>1</strong><p>governed, searchable dataset, with reports attached</p></div>
+              <div class="v-alliance-card"><strong>Every</strong><p>contributor gets the models back</p></div>
+              <div class="v-alliance-card v-alliance-card-takeaway"><p>Why pool? One site teaches one scanner, one stain, one population.</p></div>
             </div>
-            <div class="v-base"><h4>OCP · Office of Collaborative Pathology</h4><p>The foundation underneath: agreements, project management, and IRB, legal and ethical compliance for every partner. 30+ industry-sponsored study agreements.</p></div></div>` },
+          </div>`,
+          clickHtml: `<div class="v-alliance-details">
+            <section class="v-alliance-problem">
+              <p class="v-label">The problem</p>
+              <div><strong>Data</strong><p>Limited, non-diverse data → biased models</p></div>
+              <div><strong>Talent</strong><p>Most sites can't build or sustain AI alone</p></div>
+              <div><strong>Silos</strong><p>Privacy, governance and organizational barriers</p></div>
+              <div><strong>Cost</strong><p>Storage, compute and vendor models</p></div>
+              <p class="v-alliance-result"><b>Result:</b> poorly generalized models, slow adoption, diminished clinical impact.</p>
+            </section>
+            <div class="v-alliance-deal-wrap">
+              <p class="v-label">The deal · data consortium plan</p>
+              <div class="v-alliance-deal">
+                <article><strong>De-identified only</strong><p>Contributed under each site's IRB; WSI plus reports, molecular, treatment, outcomes</p></article>
+                <article><strong>Sites own their data</strong><p>Full ownership and access retained; sites may withdraw</p></article>
+                <article><strong>Pitt holds the data</strong><p>HIPAA-compliant storage on PathPresenter; Pitt covers storage costs</p></article>
+                <article><strong>CPACE builds the AI</strong><p>Central hub for algorithm and tool development</p></article>
+                <article class="v-alliance-card v-alliance-card-takeaway"><p>Royalty-free internal-use license to new IP; co-authorship</p></article>
+                <article><strong>Steering group</strong><p>Reviews proposals, sets priorities, resolves disputes</p></article>
+              </div>
+            </div>
+          </div>` },
         {
           rail: 2, quote: 'One case is an anecdote. I need thousands, from many institutions.',
-          screen: 'Incoming data from several contributing sites: slides from different scanners with reports attached, and the de-identification and data use agreement status for each site'
+          images: [
+            { src: `${WSI}/research/data-from-35-grpahics.png`, alt: 'Data from 35 contributing sites' },
+            { src: `${WSI}/research/data-from-35-grpahics-search.png`, alt: 'Search across data from 35 sites' }
+          ]
         },
         {
-          rail: 3, quote: 'The data is organized automatically, but the governance travels with it.',
+          rail: 3, quote: 'Free text becomes fields I can search, and I can ask for more.',
+          images: [
+            { src: `${WSI}/research/searchable-list.png`, alt: 'Searchable list of available cases' },
+            { src: `${WSI}/research/request-access.png`, alt: 'Request access to a dataset' },
+            { src: `${WSI}/research/request-metadata.png`, alt: 'Request metadata for a dataset' },
+            { src: `${WSI}/research/searchable-list.png`, alt: 'Updated searchable list of available cases' },
+            { src: `${WSI}/research/approved-access.png`, alt: 'Dataset access approved' },
+            { src: `${WSI}/research/request-for-research.png`, alt: 'Research request for additional data' }
+          ],
+          screen: 'Searchable list, access and metadata requests, approval, and research request'
+        },
+        {
+          rail: 4, quote: 'The data is organized automatically, but the governance travels with it.',
+          img: `${WSI}/research/folder-permission.png`,
           screen: 'Cases sorted into folders by site, project and tumor type. Show that each folder carries its own access permissions and approved data fields'
         },
         {
-          rail: 4, quote: 'Free text becomes fields I can search, and I can ask for more.',
-          screen: 'A source report next to its extracted fields, then the searchable list. Run an initial search, show the fields available, then a request to the contributing institution for one more field'
-        },
-        {
           rail: 5, quote: 'Every round cell sarcoma with a CD99 result, across 35 sites.',
+          images: [
+            { src: `${WSI}/research/buid-cohort.png`, alt: 'Build a cohort' },
+            { src: `${WSI}/research/project-details.png`, alt: 'Enter project details' },
+            { src: `${WSI}/research/document.png`, alt: 'Review project documents' },
+            { src: `${WSI}/research/roi.png`, alt: 'Define the region of interest' },
+            { src: `${WSI}/research/label.png`, alt: 'Label cohort cases' },
+            { src: `${WSI}/research/case-report.png`, alt: 'Review case reports' },
+            { src: `${WSI}/research/preview-ecrf.png`, alt: 'Preview the electronic case report form' },
+            { src: `${WSI}/research/dataset.png`, alt: 'Review the cohort dataset' },
+            { src: `${WSI}/research/assign-dataset.png`, alt: 'Assign the dataset' },
+            { src: `${WSI}/research/project-launch.png`, alt: 'Launch the cohort project' }
+          ],
           screen: 'The query across all sites, the results list, and the travelling case in the results'
         },
         {
-          rail: 6, quote: 'The spread across sites and scanners is what a model needs.',
-          screen: 'The cohort assembled as a dataset, with a breakdown by institution and scanner'
-        },
-        {
-          rail: 7, quote: 'Ground truth means pathologists annotating, and every label is attributed.',
+          rail: 6, quote: 'Ground truth means pathologists annotating, and every label is attributed.',
+          images: [
+            { src: `${WSI}/research/assign-project-screen.png`, alt: 'Assign pathologists to an annotation project' },
+            { src: `${WSI}/research/assign-project-list.png`, alt: 'Annotation project assignments list' },
+            { src: `${WSI}/research/open-project.png`, alt: 'Open the annotation project' }
+          ],
           screen: 'Annotation tools on a slide, the label set, and annotator assignments with progress'
         },
         {
-          rail: 8, quote: 'Computer scientists train on the same data and the same labels.',
+          rail: 7, quote: 'Computer scientists train on the same data and the same labels.',
           screen: 'The labeled dataset handed to the training environment'
         },
         {
-          rail: 9, quote: 'How a diagnostic model could learn from a governed, multicenter collection.', chrome: 'PathPresenter Research · ADC Alliance', tag: 'Research concept · H&E diagnostic model · not validated',
+          rail: 8, quote: 'How a diagnostic model could learn from a governed, multicenter collection.', chrome: 'PathPresenter Research · ADC Alliance', tag: 'Research concept · H&E diagnostic model · not validated',
           html: `<div class="v-model">
             <ol class="v-pipe"><li><b>H&amp;E slide</b>Whole-slide image, any scanner</li><li><b>Tiles</b>Thousands of patches per slide</li><li><b>Foundation model</b>Each tile becomes a feature vector</li><li><b>Attention classifier</b>Weighs tiles into one slide-level call</li><li><b>Diagnosis + heatmap</b>Probability, and where it looked</li></ol>
             <div class="v-three">
@@ -258,7 +320,7 @@ window.CONTENT = {
               <div class="v-hypo"><p class="v-label">Hypothetical output · not a clinical result</p><p class="v-note">Illustration only</p><dl class="v-list v-out"><dt>Class A</dt><dd>—</dd><dt>Class B</dt><dd>—</dd><dt>Other classes</dt><dd>—</dd></dl></div>
             </div></div>` },
         {
-          rail: 10, quote: 'Linked slide, clinical and outcome data may enable future prognosis research.', chrome: 'PathPresenter Research · ADC Alliance', tag: 'Research concept · multimodal prognosis · not validated',
+          rail: 9, quote: 'Linked slide, clinical and outcome data may enable future prognosis research.', chrome: 'PathPresenter Research · ADC Alliance', tag: 'Research concept · multimodal prognosis · not validated',
           html: `<div class="v-prog">
             <div class="v-inputs"><div><b>H&amp;E features</b>Same slide encoder as the diagnostic model</div><div><b>Clinical + pathologic</b>Stage, margins, nodal status, site, age</div><div><b>Treatment received</b>Surgery, radiation, systemic therapy</div><div><b>Outcome</b>Training target: recurrence, survival, follow-up</div></div>
             <div class="v-arrow">→</div>
@@ -267,13 +329,13 @@ window.CONTENT = {
               <p class="v-note">Schematic risk curves · not observed results</p></div>
             <p class="v-foot">Before clinical use: external-site validation, calibration and prospective evaluation would be required.</p></div>` },
         {
-          rail: 11, quote: 'The opportunity: from archived cases toward responsibly validated insights.', chrome: 'PathPresenter Research · ADC Alliance', tag: 'Future research vision · not patient decision support',
+          rail: 10, quote: 'The opportunity: from archived cases toward responsibly validated insights.', chrome: 'PathPresenter Research · ADC Alliance', tag: 'Future research vision · not patient decision support',
           html: `<div class="v-predict">
             <figure class="v-tile v-tile-big"><div style="background-image:url(${WSI}/field40.jpg)"><i class="v-heat"></i></div><figcaption>Our case · PV26-001 · H&amp;E with attention heatmap (illustrative)</figcaption></figure>
             <div class="v-cards"><div><p class="v-label">Diagnostic model</p><p>No validated prediction shown</p></div><div><p class="v-label">Prognostic model</p><p>Not available for this patient</p></div><div><p class="v-label">Similar patients</p><p>Cohort and estimates not established</p><p class="v-note">Hypothetical curves · not clinical evidence</p></div></div>
             <p class="v-foot">Illustrative only. Observational associations do not establish treatment effects; no model here should guide this patient's care.</p></div>` },
         {
-          rail: 12, quote: 'Contributors get the model back. Others get it through PathPresenter.', tag: 'Vision · shown as a still, not a live click',
+          rail: 11, quote: 'Contributors get the model back. Others get it through PathPresenter.', tag: 'Vision · shown as a still, not a live click',
           screen: 'Still: the finished model available in PathPresenter to contributing sites and to other institutions',
           notes: 'Matt, beat 13 (8:50 to 9:20). Say it as where this is going: "Here\'s what makes an alliance work. The institutions that gave the data get the model back. And through PathPresenter, an institution that never contributed can use it too, both the diagnostic and the prognostic model. Everything we learned along the way is also teaching material. That\'s Junya."'
         },

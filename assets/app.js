@@ -779,7 +779,7 @@
     { slide: 's-card1', veil: 0, view: 'columbus', at: 'columbus', scale: true, captionDelay: 7000,
       enter: () => flight(VIEWS.columbus, 7500, { rho: 1.6, ease: d3.easeSinInOut }) },
     { slide: 's-workspace', veil: 1, at: 'columbus',
-      enter: () => { const h = $('#s-workspace .ws-heading'); h.style.opacity = 0; domZoom($('#s-workspace .ws-frame'), $('#s-workspace .t-slide'), 2200, 500, initWorkspaceViewer); tween(2500, 600, t => { h.style.opacity = t; h.style.transform = 'none'; }); } },
+      enter: () => { const h = $('#s-workspace .ws-heading'); h.style.opacity = 0; domZoom($('#s-workspace .ws-frame'), $('#s-workspace .workspace-viewer'), 2200, 500); tween(2500, 600, t => { h.style.opacity = t; h.style.transform = 'none'; }); } },
     ...demo('care', 'columbus'),
     { slide: 's-send1', veil: 0, view: 'cincinnati', at: 'cincinnati', scale: true, route: 'r1', enter: send('r1', 'cincinnati', 3800, 1.4) },
     // 02 · Consult, then Archana's consult-program slides
@@ -906,10 +906,11 @@
   function fillDemo(el, i) {
   const d = CONTENT.demos[el.dataset.demo];
   const s = d.steps[i];
+  const activeRail = s.rail ?? i;
 
   $$('.demo-rail li', el).forEach((li, k) => {
-    li.classList.toggle('is-done', k < i);
-    li.classList.toggle('is-here', k === i);
+    li.classList.toggle('is-done', k < activeRail);
+    li.classList.toggle('is-here', k === activeRail);
   });
 
   $('.demo-quote', el).textContent = `“${s.quote}”`;
@@ -1011,6 +1012,32 @@
     video.play().catch((error) => {
       console.warn('Video autoplay failed:', error);
     });
+  } else if (s.html && s.clickHtml) {
+    let showingAlternate = false;
+    const toggle = document.createElement('button');
+    const render = () => {
+      toggle.innerHTML = `<div class="v">${showingAlternate ? s.clickHtml : s.html}</div>`;
+      toggle.setAttribute(
+        'aria-label',
+        showingAlternate ? `Continue to ${d.rail[(s.rail ?? i) + 1] || 'next step'}` : 'Show second screen'
+      );
+    };
+
+    toggle.type = 'button';
+    toggle.className = 'demo-html-toggle';
+    render();
+    toggle.addEventListener('click', event => {
+      event.stopPropagation();
+      if (showingAlternate) {
+        next();
+        return;
+      }
+      showingAlternate = true;
+      render();
+    });
+    body.replaceChildren(toggle);
+  } else if (s.html) {
+    body.innerHTML = `<div class="v">${s.html}</div>`;
   } else if (s.img) {
     body.innerHTML =
       `<img src="${esc(s.img)}" alt="${esc(s.screen || '')}">`;

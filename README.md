@@ -102,7 +102,7 @@ which case the frame shows the `screen` text as a placeholder.
   opening 40x field) and `spriteCells`.
 - The six image-search matches in Discover (`assets/img/matches/`) are
   look-alike small round cell tumours from Wikimedia Commons, cropped to 4:3
-  and resized. They are not labelled on the slide, so the diagnosis stays
+  to a similar high-power field, and resized. They are not labelled on the slide, so the diagnosis stays
   sealed until the second vote. Credits (licences apply to the crops too):
   1. Ewing sarcoma: "Ewing Sarcoma (2274259503).jpg", Ed Uthman, CC BY 2.0
   2. CIC-DUX4 sarcoma: "CIC-DUX-sarcoma.jpg", Jensflorian, CC BY-SA 4.0
@@ -110,7 +110,7 @@ which case the frame shows the `screen` text as a placeholder.
      CC BY-SA 3.0
   4. Desmoplastic small round cell tumour: "Desmoplastic small round cell
      tumour - high mag.jpg", Nephron, CC BY-SA 3.0
-  5. PNET: "PNET Histopathology HE 200x.jpg", Marvin 101, CC BY-SA 3.0
+  5. Ewing sarcoma: "Ewing sarcoma - very high mag.jpg", Nephron, CC BY-SA 3.0
   6. Wilms tumour, blastema: "Wilms tumour - very high mag.jpg", Nephron,
      CC BY-SA 3.0
 - Annotation positions on the 40x field are in `MARKS` in `assets/app.js`,

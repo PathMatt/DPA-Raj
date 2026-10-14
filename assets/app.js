@@ -89,9 +89,8 @@
     });
     return { type: 'MultiLineString', coordinates: lines };
   };
-  Promise.all(['countries-110m', 'countries-50m', 'states-10m', 'great-lakes-50m', 'japan-10m', 'context']
-    .map(n => fetch(`assets/geo/${n}.json`).then(r => r.json())))
-    .then(([c110, c50, st, lakes, jp, cx]) => {
+  Promise.resolve(window.GEO_DATA)
+    .then(({ countries110: c110, countries50: c50, states10: st, lakes50: lakes, japan10: jp, context: cx }) => {
       const ml = lines => pieces({ type: 'MultiLineString', coordinates: lines });
       GEO.ctx = { major: ml(cx.major), secondary: ml(cx.secondary), rivers: ml(cx.rivers), places: cx.places };
       const isJp = f => f.properties && f.properties.name === 'Japan';
@@ -114,7 +113,8 @@
       };
       GEO.graticule = d3.geoGraticule10();
       GEO.ready = true;
-    });
+    })
+    .catch(error => { console.error('Failed to load geographic map data:', error); });
 
   // ---------- textures ----------
   const loadImage = src => { const im = new Image(); im.src = src; return im; };
@@ -923,7 +923,7 @@
   const body = $('.demo-body', el);
   body.style.cssText = 'flex:1;min-height:0;display:flex;overflow:hidden;';
 
-  if (s.html) {
+  if (s.html && !s.clickHtml) {
     // a visual built in content.js (Discover's search, Alliance and model concepts)
     body.innerHTML = `<div class="v">${s.html}</div>`;
   } else if (s.previewImage && s.iframe) {
@@ -1018,6 +1018,32 @@
     video.play().catch((error) => {
       console.warn('Video autoplay failed:', error);
     });
+  } else if (s.html && s.clickHtml) {
+    let showingAlternate = false;
+    const toggle = document.createElement('button');
+    const render = () => {
+      toggle.innerHTML = `<div class="v">${showingAlternate ? s.clickHtml : s.html}</div>`;
+      toggle.setAttribute(
+        'aria-label',
+        showingAlternate ? `Continue to ${d.rail[(s.rail ?? i) + 1] || 'next step'}` : 'Show second screen'
+      );
+    };
+
+    toggle.type = 'button';
+    toggle.className = 'demo-html-toggle';
+    render();
+    toggle.addEventListener('click', event => {
+      event.stopPropagation();
+      if (showingAlternate) {
+        next();
+        return;
+      }
+      showingAlternate = true;
+      render();
+    });
+    body.replaceChildren(toggle);
+  } else if (s.html) {
+    body.innerHTML = `<div class="v">${s.html}</div>`;
   } else if (s.img) {
     body.innerHTML =
       `<img src="${esc(s.img)}" alt="${esc(s.screen || '')}">`;

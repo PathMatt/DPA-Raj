@@ -627,10 +627,10 @@
   }
 
   // Zoom a DOM element out from one of its children, scaling about a fixed point.
-  function domZoom(frame, focus, dur, delay = 0, onDone) {
+  function domZoom(frame, focus, dur, delay = 0, onDone, maxScale = Infinity) {
     frame.style.transform = 'none';
     const d = deck.getBoundingClientRect(), fr = frame.getBoundingClientRect(), t = focus.getBoundingClientRect();
-    const s0 = Math.max(d.width / t.width, d.height / t.height);
+    const s0 = Math.min(maxScale, Math.max(d.width / t.width, d.height / t.height));
     const dc = [d.left + d.width / 2, d.top + d.height / 2], tc = [t.left + t.width / 2, t.top + t.height / 2];
     const Fp = [(dc[0] - tc[0] * s0) / (1 - s0), (dc[1] - tc[1] * s0) / (1 - s0)];
     const set = z => {
@@ -649,21 +649,27 @@
   // The collection: crops from around the case slide, one of them the opening field.
   function buildCohort() {
     const grid = $('#cohort-grid'); grid.innerHTML = '';
-    const cols = 18, rows = 12, r = d3.randomLcg(42), caseIndex = 6 * cols + 9;
+    // square tiles; the sprite holds 48 native-resolution 384 px crops (8 x 6)
+    const cols = 12, rows = 8, C = 384, px = 320, r = d3.randomLcg(42), caseIndex = 4 * cols + 6;
     const matches = new Set();
-    while (matches.size < 17) { const i = Math.floor(r() * cols * rows); if (i !== caseIndex) matches.add(i); }
+    while (matches.size < 9) { const i = Math.floor(r() * cols * rows); if (i !== caseIndex) matches.add(i); }
     for (let i = 0; i < cols * rows; i++) {
-      const c = document.createElement('canvas'); c.width = 256; c.height = 192;   // 2x, sharp on high-DPI screens
+      const c = document.createElement('canvas'); c.width = px; c.height = px;
       const g = c.getContext('2d');
       if (i === caseIndex) {
-        const f = TEX.field40;
-        g.drawImage(f, f.naturalWidth * 0.393, f.naturalHeight * 0.358, f.naturalWidth * 0.2133, f.naturalHeight * 0.2844, 0, 0, 256, 192);   // same ~0.13 mm field as the sprite crops
+        // the opening field at the same scale as the crops (384 px of the 2400 px still)
+        const f = TEX.field40, sw = f.naturalWidth * 384 / 2400;
+        g.drawImage(f, (f.naturalWidth - sw) / 2, (f.naturalHeight - sw) / 2, sw, sw, 0, 0, px, px);
         c.className = 'is-case';
       } else {
-        const cell = Math.floor(r() * TISSUE.spriteCells), sx = (cell % 8) * 256, sy = Math.floor(cell / 8) * 192;
-        g.filter = `hue-rotate(${(r() - 0.5) * 24}deg) saturate(${0.75 + r() * 0.5}) brightness(${0.94 + r() * 0.12})`;
-        if (r() < 0.5) { g.translate(256, 192); g.rotate(Math.PI); }
-        g.drawImage(TEX.sprite, sx, sy, 256, 192, 0, 0, 256, 192);
+        // matches use the most tumour-like crops (sheets of round cells), the rest any crop
+        const TUMOUR = [30, 45, 33, 15, 34, 32, 35, 8, 46, 43, 13, 19];
+        const cell = matches.has(i) ? TUMOUR[Math.floor(r() * TUMOUR.length)] : Math.floor(r() * TISSUE.spriteCells);
+        const sx = (cell % 8) * C, sy = Math.floor(cell / 8) * C;
+        // a little stain and scanner variation between sites, not enough to muddy the tissue
+        g.filter = `hue-rotate(${(r() - 0.5) * 14}deg) saturate(${0.92 + r() * 0.16}) brightness(${0.97 + r() * 0.06})`;
+        if (r() < 0.5) { g.translate(px, px); g.rotate(Math.PI); }
+        g.drawImage(TEX.sprite, sx, sy, C, C, 0, 0, px, px);
         if (matches.has(i)) c.className = 'is-match';
       }
       grid.appendChild(c);
@@ -797,7 +803,7 @@
     // 03 · Discover; the cohort sits after "Build a cohort"
     { slide: 's-card3', veil: 0, view: 'pittsburgh', at: 'pittsburgh', scale: true },
     ...demo('discover', 'pittsburgh', 0, 7),
-    { slide: 's-cohort', stage: 0, veil: 1, at: 'pittsburgh', enter: () => { const g = $('#cohort-grid'); g.classList.remove('is-settled'); domZoom(g, $('.is-case', g), 2600, 400, () => g.classList.add('is-settled')); } },
+    { slide: 's-cohort', stage: 0, veil: 1, at: 'pittsburgh', enter: () => { const g = $('#cohort-grid'); g.classList.remove('is-settled'); g.style.transform = 'none'; const c = $('.is-case', g); domZoom(g, c, 2600, 400, () => g.classList.add('is-settled'), 1.5 * c.width / c.getBoundingClientRect().width); } },
     { slide: 's-cohort', stage: 1, veil: 1, at: 'pittsburgh' },
     ...demo('discover', 'pittsburgh', 7),
     { slide: 's-send3', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true, route: 'r3', enter: send('r3', 'nagasaki', 9000, 1.5) },

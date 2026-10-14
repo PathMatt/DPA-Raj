@@ -250,7 +250,10 @@
     if (glassW < 2) return;
     // the glass fades into a dot once it is a few pixels wide
     const ga = clamp01((glassW - 4 * U) / (14 * U));
-    drawLayer(TEX.glass, G.w / 1000, G.h / 1000, cx + G.cx * kmm, cy + G.cy * kmm, k, ga);
+    // zoomed into the tissue, the glass tint would grey the overview around the
+    // full-resolution tiles, so it fades out once the slide is several screens wide
+    const gIn = clamp01((7 * W - glassW) / (4 * W));
+    drawLayer(TEX.glass, G.w / 1000, G.h / 1000, cx + G.cx * kmm, cy + G.cy * kmm, k, ga * gIn);
     const O = T.OVERVIEW;
     // multiply, so the scan's white background takes on the glass beneath it
     ctx.globalCompositeOperation = 'multiply';
@@ -650,17 +653,17 @@
     const matches = new Set();
     while (matches.size < 17) { const i = Math.floor(r() * cols * rows); if (i !== caseIndex) matches.add(i); }
     for (let i = 0; i < cols * rows; i++) {
-      const c = document.createElement('canvas'); c.width = 128; c.height = 96;
+      const c = document.createElement('canvas'); c.width = 256; c.height = 192;   // 2x, sharp on high-DPI screens
       const g = c.getContext('2d');
       if (i === caseIndex) {
         const f = TEX.field40;
-        g.drawImage(f, f.naturalWidth * 0.3, f.naturalHeight * 0.15, f.naturalWidth * 0.5, f.naturalHeight * 0.667, 0, 0, 128, 96);
+        g.drawImage(f, f.naturalWidth * 0.393, f.naturalHeight * 0.358, f.naturalWidth * 0.2133, f.naturalHeight * 0.2844, 0, 0, 256, 192);   // same ~0.13 mm field as the sprite crops
         c.className = 'is-case';
       } else {
         const cell = Math.floor(r() * TISSUE.spriteCells), sx = (cell % 8) * 256, sy = Math.floor(cell / 8) * 192;
         g.filter = `hue-rotate(${(r() - 0.5) * 24}deg) saturate(${0.75 + r() * 0.5}) brightness(${0.94 + r() * 0.12})`;
-        if (r() < 0.5) { g.translate(128, 96); g.rotate(Math.PI); }
-        g.drawImage(TEX.sprite, sx, sy, 256, 192, 0, 0, 128, 96);
+        if (r() < 0.5) { g.translate(256, 192); g.rotate(Math.PI); }
+        g.drawImage(TEX.sprite, sx, sy, 256, 192, 0, 0, 256, 192);
         if (matches.has(i)) c.className = 'is-match';
       }
       grid.appendChild(c);
@@ -766,7 +769,6 @@
   // A site's demo: one step per stage of its demo slide, words from content.js.
   const demo = (key, at, from = 0, to) => CONTENT.demos[key].steps.slice(from, to)
     .map((d, i) => ({ slide: `s-demo-${key}`, stage: from + i, veil: 1, at, notes: d.notes }));
-  const ALL_MARKS = ['columbus', 'cincinnati', 'pittsburgh', 'nagasaki'];
   const STEPS = [
     // the opening, at 40x at Ohio State
     { slide: 's-title', veil: 0.9, view: 'lab40', enter: () => { setTitle(0); tween(300, 3200, setTitle); } },
@@ -802,18 +804,11 @@
     // 04 · Teach
     { slide: 's-card4', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true },
     ...demo('teach', 'nagasaki'),
-    // close: the whole journey, the second vote, back to the same field, then the platform story
+    // close: the whole journey, back to the same field, then the platform story
     { slide: 's-world', veil: 0, view: 'globe', at: 'nagasaki', scale: true, learners: true,
       enter: () => { S.spin = false; S.learners = 0; flight(VIEWS.globe, 4200, { rho: 1.3, done: startSpin }); tween(3200, 5000, t => { S.learners = t; }); countTotal(); } },
-    { slide: 's-vote2', veil: 0.94, view: 'globe', at: 'nagasaki', learners: true },
-    { slide: 's-compare', veil: 0.94, view: 'globe', at: 'nagasaki', learners: true },
-    { slide: 's-home', veil: 0, view: 'lab40', at: 'columbus', home: true, scale: true, marks: ALL_MARKS, captionDelay: 9800,
-      enter: () => {
-        S.spin = false;
-        ALL_MARKS.forEach(k => { S.marks[k] = 0; });
-        flight(VIEWS.lab40, 10000, { rho: 1.5 });
-        ALL_MARKS.forEach((k, i) => tween(10200 + i * 900, 900, t => { S.marks[k] = t; }));
-      } },
+    { slide: 's-home', veil: 0, view: 'lab40', at: 'columbus', home: true, scale: true, captionDelay: 9800,
+      enter: () => { S.spin = false; flight(VIEWS.lab40, 10000, { rho: 1.5 }); } },
     { slide: 's-diagnosis', veil: 1, view: 'lab40' },
     { slide: 's-history', veil: 1, view: 'globe' },
     { slide: 's-never', veil: 1, view: 'globe' },

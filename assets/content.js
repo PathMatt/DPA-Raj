@@ -5,7 +5,7 @@
 //   rail   which rail item is current (defaults to its position)
 //   quote  what the speaker says on screen
 //   chrome the title bar of the screen frame (defaults to the demo's)
-//   tag    a flag in the title bar, e.g. "Illustrative search concept"
+//   tag    a flag in the title bar, e.g. "Research concept · not validated"
 //   screen what the live demo shows (the placeholder text when there is no media)
 //   images screenshots, clicked through in order; then the iframe, if there is one
 //   iframe a live PathPresenter link (iframeAction labels the click that opens it)
@@ -183,7 +183,7 @@ window.CONTENT = {
             { src: 'assets/wsi/consult/Order-stain-more.png', alt: 'Additional stain selected' },
             { src: 'assets/wsi/consult/more-order-stain.png', alt: 'Stain ordered' },
           ],
-          notes: 'Archana, beat 4 (2:05 to 2:40). Request DUX4. "These will tell me which way this goes. They\'re cut, scanned, and they land in this case with everything else, whichever lab cut them and whichever scanner they came off. I\'m notified when they\'re ready." Don\'t name the diagnosis yet; it stays sealed until the second vote.'
+          notes: 'Archana, beat 4 (2:05 to 2:40). Request DUX4. "These will tell me which way this goes. They\'re cut, scanned, and they land in this case with everything else, whichever lab cut them and whichever scanner they came off. I\'m notified when they\'re ready." Don\'t name the diagnosis yet; it is revealed at the end.'
         },
         {
           quote: 'Can I mark the tumor, assess adequacy, and request the molecular testing needed to resolve the diagnosis?', chrome: "Beaker · Cincinnati Children's Hospital · PV26-001",
@@ -205,7 +205,7 @@ window.CONTENT = {
           ],
           iframe: 'assets/wsi/consult/final-report.pdf',
           iframeAction: 'Open the final report',
-          notes: 'Archana, beat 6 (3:15 to 4:15). "My report starts with what came in: the patient, the referring diagnosis, and the stains already done. I add my stains, the AI result I accepted, and my diagnosis and comment, which I\'ll keep to myself until the end so you can vote again. The consult code is already right. When I sign out, the completed consult report goes electronically back into Swati\'s original Beaker case, and she\'s notified. She completes her reporting in her own LIS. There\'s no printing a report, faxing it, packaging slides, or shipping anything back."'
+          notes: 'Archana, beat 6 (3:15 to 4:15). "My report starts with what came in: the patient, the referring diagnosis, and the stains already done. I add my stains, the AI result I accepted, and my diagnosis and comment, which I\'ll keep to myself until the end. The consult code is already right. When I sign out, the completed consult report goes electronically back into Swati\'s original Beaker case, and she\'s notified. She completes her reporting in her own LIS. There\'s no printing a report, faxing it, packaging slides, or shipping anything back."'
         },
       ],
     },
@@ -216,12 +216,12 @@ window.CONTENT = {
       steps: [
         {
           rail: 0, notes: 'Matt, beat 1 (0:20 to 1:05). "Before I write a single query, I start with the image. I draw a region on our case and ask the Alliance the question every pathologist asks: have we seen this before? The search runs on the pixels, not the words. The region becomes an image embedding, and it is compared against every slide this project is permitted to see. Back come the closest matches, from different sites, different scanners, different staining labs. Each one is a real case with a report, IHC, molecular results, treatment and follow-up behind it. For the pathologist, that\'s a reference library. For the researcher, it\'s the first glimpse of a cohort. But to search 35 institutions at once, you first need 35 institutions willing to work together." Site numbers, scanners and similarity scores are placeholders, not results.',
-          quote: 'Have we seen this before? Ask with the slide itself.', chrome: 'PathPresenter Research · ADC Alliance · Search by image', tag: 'Illustrative search concept · not live results',
+          quote: 'Have we seen this before? Ask with the slide itself.', chrome: 'PathPresenter Research · ADC Alliance · Search by image',
           html: `<div class="v-search">
             <div class="v-query"><p class="v-label">Query · our case</p>
               <figure class="v-tile v-tile-big"><div style="background-image:url(${WSI}/field40.jpg)"><i class="v-region"></i></div><figcaption>H&amp;E region drawn on our case</figcaption></figure>
               <p class="v-note">Region selected on the slide, converted to an image embedding, compared across every permitted slide.</p></div>
-            <div class="v-matches"><p class="v-label">Example matches · not study findings</p>
+            <div class="v-matches"><p class="v-label">Similar cases</p>
               <div class="v-grid">${[['07', '0.94', 'A'], ['22', '0.92', 'C'], ['03', '0.91', 'B'], ['31', '0.89', 'A'], ['14', '0.88', 'D'], ['19', '0.86', 'B']].map(([s, c, k], i) => match(i + 1, `Site ${s} <b>${c}</b>`, `<span>Scanner ${k}</span>`)).join('')}</div></div>
             <p class="v-foot">Potential value: similar morphology linked to available records, within institutional permissions. Results shown are illustrative.</p>
             <p class="v-credit">Match images: Wikimedia Commons, CC BY-SA 3.0 / 4.0 and CC BY 2.0 (credits in README)</p></div>` },
@@ -355,7 +355,7 @@ window.CONTENT = {
           ],
           iframe: 'https://pathpresenter.net/public/takeAssessment?token=9a3149d0',
           iframeAction: 'Open the assessment',
-          notes: 'Junya, beat 3 (1:30 to 2:05). "Before I teach, I want to know what they know. I build the question on the slide itself: here is the H&E, what is your diagnosis? This is where my learners start." The room\'s own Vote 1 is the same question with the same four options; point back to it, but don\'t show the answer.'
+          notes: 'Junya, beat 3 (1:30 to 2:05). "Before I teach, I want to know what they know. I build the question on the slide itself: here is the H&E, what is your diagnosis? This is where my learners start." It is the same differential Raj showed at the start; point back to it, but don\'t show the answer.'
         },
         {
           quote: 'Before I teach, I want to know what they know.',
@@ -406,7 +406,7 @@ window.CONTENT = {
             { src: 'assets/wsi/education/conference-poster-list.png', alt: 'Conference poster list' },
             { src: 'assets/wsi/education/conferencce-poster-view.png', alt: 'A conference poster' }
           ],
-          notes: 'Junya. The conference: the room and the online audience on the same slide. Then the journey slide; Raj takes the second vote.'
+          notes: 'Junya. The conference: the room and the online audience on the same slide. Then the journey slide.'
         },
       ],
     },
@@ -434,9 +434,7 @@ window.CONTENT = {
     's-cohort': 'Matt. The cohort, visualized: the traveling case pulls back into the collection, then the query narrows it. If the traveling case cannot be in the alliance data, say "cases like ours".',
     's-send3': 'Transition, about 10 seconds. 11,317 km across the Pacific, into a teaching collection. Still no glass shipped.',
     's-card4': 'Junya, beat 0 (0:00 to 0:20). "Matt turned one case into a dataset. I\'m going to turn it into teaching, for a resident down the hall and for a pathologist on the other side of the world, at the same time." His segment runs 4:50.',
-    's-world': 'Raj. 159 plus 414 plus 11,317 km: 11,890 km in all. Four sites, three handoffs, no glass shipped. Then straight into the second vote.',
-    's-vote2': 'Same question, same QR. This is the post-assessment; the room sees its own before and after.',
-    's-compare': 'Fill in live from the poll. "Now we know whether we taught anything. That is evidence, not a feeling."',
+    's-world': 'Raj. 159 plus 414 plus 11,317 km: 11,890 km in all. Four sites, three handoffs, no glass shipped. Then back to the field at Ohio State.',
     's-home': 'Every site\'s work sits on the same field, in the same case. The camera dives back to Ohio State and the 40x field.',
     's-diagnosis': 'Archana, about 30 seconds, then hand back to Raj. "CIC-rearranged sarcoma." Walk what settled it: the CD99 was patchy instead of diffusely membranous; ETV4 and WT1 were nuclear, which pointed to a CIC rearrangement; DUX4 and fusion testing at Cincinnati Children\'s confirmed it. Then why it matters: it behaves worse than Ewing sarcoma and responds less to Ewing-type chemotherapy, so the name changes the conversation with the oncologist. Raj, one line to turn into the close: "Four institutions, one answer, and the patient never waited for a box to arrive. That\'s what better together means." Confirm the stains and molecular result the case actually has before showing.',
     's-history': 'Raj, 45 seconds. "We built around the pathologist, not around a product category. In 2018 I needed a better way to teach. Then the FDA asked whether we could collect research-grade data at scale, so we built research. Then the pandemic locked pathologists out of their labs, and they started sending each other consults, so we built consults. Primary diagnosis came last. The build order is the argument: every module you saw today began as a gap we hit as pathologists, and was built for the person signing out the case." The 70,000+ users figure is carried over from an earlier draft; confirm before showing.',

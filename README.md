@@ -19,7 +19,7 @@ offline.
   for labels and headings, Overpass Mono for coordinates and distances, and
   Source Serif 4 italic for water and quotes. Fonts are vendored in `assets/fonts`. Home and End jump to the first and last slide.
 - `#12` in the URL opens slide 12.
-- Whenever the slide is on screen at 40x (the opening case, both votes, the
+- Whenever the slide is on screen at 40x (the opening case, the differential, the
   return home and the final diagnosis) the stage is a slide viewer: drag to
   move, scroll or pinch to zoom, double-click to zoom in, `+`/`-` to zoom and
   `0` to reset. Clicks don't advance on those views; arrow keys and clickers
@@ -48,8 +48,8 @@ editing so browsers reload.
 1. Title (a map cartouche with the four stops and presenters), disclosures,
    the question that started it (diagnose, consult, discover, teach)
 2. The case at 40x at Ohio State: round blue cells in a 14-year-old (forearm
-   excision), vote 1 (Ewing sarcoma, alveolar rhabdomyosarcoma, CIC-rearranged
-   sarcoma, DSRCT), why a second read matters (Ray-Coquard et al., Ann Oncol
+   excision), the differential (Ewing sarcoma, alveolar rhabdomyosarcoma,
+   CIC-rearranged sarcoma, DSRCT), why a second read matters (Ray-Coquard et al., Ann Oncol
    2012), the overview with the leg distances
 3. The camera pulls back from the slide to Columbus. 01 · Care: the whole case
    in one place, then Swati's eight demo steps
@@ -60,7 +60,7 @@ editing so browsers reload.
    built visuals for search by image and the ADC Alliance, the contributing
    datasets, and the cohort grid after "Build a cohort"
 6. Leg 3, 11,317 km across the Pacific. 04 · Teach: Junya's seven steps
-7. The whole journey (11,890 km), vote 2, the comparison, and the dive back
+7. The whole journey (11,890 km), and the dive back
    to the same 40x field at Ohio State with all four sites' annotations
 8. The diagnosis (CIC-rearranged sarcoma), how it was built, the case never
    started over, the intelligence layer, status, tissue intelligence, better
@@ -103,7 +103,7 @@ which case the frame shows the `screen` text as a placeholder.
 - The six image-search matches in Discover (`assets/img/matches/`) are
   look-alike small round cell tumours from Wikimedia Commons, cropped to 4:3
   to a similar high-power field, and resized. They are not labelled on the slide, so the diagnosis stays
-  sealed until the second vote. Credits (licences apply to the crops too):
+  sealed until the reveal at the end. Credits (licences apply to the crops too):
   1. Ewing sarcoma: "Ewing Sarcoma (2274259503).jpg", Ed Uthman, CC BY 2.0
   2. CIC-DUX4 sarcoma: "CIC-DUX-sarcoma.jpg", Jensflorian, CC BY-SA 4.0
   3. Alveolar rhabdomyosarcoma: "Alveolar rhabdomyosarcoma 1.jpg", Humpath,

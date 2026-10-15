@@ -13,6 +13,11 @@ offline.
 
 - Right arrow, Space, Enter, Page Down or click: next. Left arrow or Page Up: back.
 - If a zoom or animation is playing, the next press finishes it instead of advancing.
+- On demo steps with a click-through (screenshots, then the live PathPresenter
+  view if there is one), the keys move one screen at a time, and the footer
+  shows "Screen n of N". Clicking the screen does the same. Going back into
+  such a step lands on its last screenshot. If you click inside a live view,
+  click outside it again before using the keys.
 - Going back jumps straight to the finished state of the earlier slide.
 - `F` toggles fullscreen. `N` shows the speaker notes from the script.
 - Type is set like a map: Overpass (from the Highway Gothic road-sign lineage)

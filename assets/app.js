@@ -906,6 +906,17 @@
   //     : `<div class="ph">[${s.tag && /still/i.test(s.tag) ? 'Still' : 'Screen'}: ${esc(s.screen.replace(/^Still: /, ''))}]</div>`;
   //   $('.demo-foot', el).textContent = s.foot || `${d.kicker} · Step ${r + 1} of ${d.rail.length}`;
   // }
+  // A demo step with a click-through (screenshots, a preview then the live view,
+  // or two built screens) is a set of frames. Clicks and the arrow keys both move
+  // through them before the deck moves on; see next() and prev().
+  let sub = null;            // { k, n, show(k) } for the step on screen
+  let subFromEnd = false;    // stepping back into a step lands on its last screenshot
+  const makeIframe = (src, title) => {
+    const f = document.createElement('iframe');
+    f.src = src; f.title = title || ''; f.allowFullscreen = true; f.referrerPolicy = 'no-referrer';
+    f.style.cssText = 'display:block;flex:1;width:100%;height:100%;min-height:0;border:0;';
+    return f;
+  };
   function fillDemo(el, i) {
   const d = CONTENT.demos[el.dataset.demo];
   const s = d.steps[i];
@@ -922,83 +933,41 @@
 
   const body = $('.demo-body', el);
   body.style.cssText = 'flex:1;min-height:0;display:flex;overflow:hidden;';
+  const foot = s.foot || `${d.kicker} · Step ${r + 1} of ${(d.rail || d.steps).length}`;
+  $('.demo-foot', el).textContent = foot;
 
-  if (s.html && !s.clickHtml) {
-    // a visual built in content.js (Discover's search, Alliance and model concepts)
-    body.innerHTML = `<div class="v">${s.html}</div>`;
-  } else if (s.previewImage && s.iframe) {
-    const preview = document.createElement('button');
-    const image = document.createElement('img');
-    const iframe = document.createElement('iframe');
+  const frames = s.previewImage && s.iframe ? [{ img: s.previewImage }, { iframe: s.iframe }]
+    : s.images ? [...s.images.map(img => ({ img })), ...(s.iframe ? [{ iframe: s.iframe }] : [])]
+    : s.html && s.clickHtml ? [{ html: s.html }, { html: s.clickHtml }]
+    : null;
+  const fromEnd = subFromEnd; subFromEnd = false;
+  sub = null;
 
-    preview.type = 'button';
-    preview.className = 'demo-image-toggle';
-    preview.style.cssText = 'display:flex;flex:1;min-width:0;min-height:0;width:100%;padding:0;border:0;background:black;cursor:pointer;pointer-events:auto;';
-    preview.setAttribute('aria-label', 'Open live-slide lecture');
-    image.src = s.previewImage.src;
-    image.alt = s.previewImage.alt;
-    iframe.title = s.screen || s.name;
-    iframe.allowFullscreen = true;
-    iframe.referrerPolicy = 'no-referrer';
-    iframe.style.cssText = 'display:block;flex:1;width:100%;height:100%;min-height:0;border:0;';
-    preview.append(image);
-    preview.addEventListener('click', event => {
-      event.stopPropagation();
-      iframe.src = s.iframe;
-      body.replaceChildren(iframe);
-    }, { once: true });
-    body.replaceChildren(preview);
-  } else if (s.iframe && !s.images) {
-    const iframe = document.createElement('iframe');
-    iframe.src = s.iframe;
-    iframe.title = s.screen || s.name;
-    iframe.allowFullscreen = true;
-    iframe.referrerPolicy = 'no-referrer';
-    iframe.style.cssText = 'display:block;flex:1;width:100%;height:100%;min-height:0;border:0;';
-    body.replaceChildren(iframe);
-  } else if (s.images) {
-    let imageIndex = 0;
-    const toggle = document.createElement('button');
-    const image = document.createElement('img');
-    const iframe = s.iframe ? document.createElement('iframe') : null;
-    if (iframe) {
-      iframe.title = s.screen || s.name;
-      iframe.allowFullscreen = true;
-      iframe.referrerPolicy = 'no-referrer';
-      iframe.style.cssText = 'display:block;flex:1;width:100%;height:100%;min-height:0;border:0;';
-    }
-    const setImage = () => {
-      const currentImage = s.images[imageIndex];
-      image.src = currentImage.src;
-      image.alt = currentImage.alt;
-      toggle.setAttribute(
-        'aria-label',
-        imageIndex < s.images.length - 1
-          ? `Show image ${imageIndex + 2} of ${s.images.length}`
-          : iframe
-          ? (s.iframeAction || 'Open presentation preview')
-          : `Continue to ${d.steps[i + 1]?.name || 'next step'}`
-      );
-    };
-
-    toggle.type = 'button';
-    toggle.className = 'demo-image-toggle';
-    toggle.style.cssText = 'display:flex;flex:1;min-width:0;min-height:0;width:100%;padding:0;border:0;background:transparent;cursor:pointer;pointer-events:auto;';
-    toggle.addEventListener('click', event => {
-      event.stopPropagation();
-      if (imageIndex < s.images.length - 1) {
-        imageIndex += 1;
-        setImage();
-      } else if (iframe) {
-        iframe.src = s.iframe;
-        body.replaceChildren(iframe);
-      } else {
-        next();
+  if (frames) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = frames[0].html ? 'demo-html-toggle' : 'demo-image-toggle';
+    btn.style.cssText = 'display:flex;flex:1;min-width:0;min-height:0;width:100%;padding:0;border:0;background:transparent;cursor:pointer;pointer-events:auto;';
+    btn.addEventListener('click', event => { event.stopPropagation(); next(); });
+    const show = k => {
+      const f = frames[k];
+      sub.k = k;
+      if (f.iframe) body.replaceChildren(makeIframe(f.iframe, s.screen));
+      else {
+        if (f.html) btn.innerHTML = `<div class="v">${f.html}</div>`;
+        else { const im = new Image(); im.src = f.img.src; im.alt = f.img.alt || ''; btn.replaceChildren(im); }
+        btn.setAttribute('aria-label', k < frames.length - 1 ? `Show screen ${k + 2} of ${frames.length}` : 'Continue');
+        body.replaceChildren(btn);
       }
-    });
-    toggle.append(image);
-    setImage();
-    body.replaceChildren(toggle);
+      $('.demo-foot', el).textContent = frames.length > 1 ? `${foot} · Screen ${k + 1} of ${frames.length}` : foot;
+    };
+    sub = { k: 0, n: frames.length, show };
+    // coming back from the next step: the last screenshot, not the live view
+    let k0 = 0;
+    if (fromEnd) { k0 = frames.length - 1; while (k0 > 0 && frames[k0].iframe) k0--; }
+    show(k0);
+  } else if (s.iframe) {
+    body.replaceChildren(makeIframe(s.iframe, s.screen));
   } else if (s.video) {
     const video = document.createElement('video');
 
@@ -1018,31 +987,8 @@
     video.play().catch((error) => {
       console.warn('Video autoplay failed:', error);
     });
-  } else if (s.html && s.clickHtml) {
-    let showingAlternate = false;
-    const toggle = document.createElement('button');
-    const render = () => {
-      toggle.innerHTML = `<div class="v">${showingAlternate ? s.clickHtml : s.html}</div>`;
-      toggle.setAttribute(
-        'aria-label',
-        showingAlternate ? `Continue to ${d.rail[(s.rail ?? i) + 1] || 'next step'}` : 'Show second screen'
-      );
-    };
-
-    toggle.type = 'button';
-    toggle.className = 'demo-html-toggle';
-    render();
-    toggle.addEventListener('click', event => {
-      event.stopPropagation();
-      if (showingAlternate) {
-        next();
-        return;
-      }
-      showingAlternate = true;
-      render();
-    });
-    body.replaceChildren(toggle);
   } else if (s.html) {
+    // a visual built in content.js (Discover's search and Alliance views)
     body.innerHTML = `<div class="v">${s.html}</div>`;
   } else if (s.img) {
     body.innerHTML =
@@ -1052,20 +998,19 @@
     body.innerHTML =
       `<div class="ph">[${still ? 'Still' : 'Screen'}: ${esc((s.screen || '').replace(/^Still: /, ''))}]</div>`;
   }
-
-  $('.demo-foot', el).textContent =
-    s.foot || `${d.kicker} · Step ${r + 1} of ${(d.rail || d.steps).length}`;
 }
+  let swapping = false;       // a demo step is fading in; its frames aren't ready yet
   function setDemo(el, i, animate) {
     const main = $('.demo-main', el);
     if (!animate || RM) { fillDemo(el, i); return; }
-    main.classList.add('is-swapping');
-    setTimeout(() => { fillDemo(el, i); main.classList.remove('is-swapping'); }, 230);
+    main.classList.add('is-swapping'); swapping = true;
+    setTimeout(() => { fillDemo(el, i); main.classList.remove('is-swapping'); swapping = false; }, 230);
   }
 
   function go(i, animate) {
     i = Math.max(0, Math.min(STEPS.length - 1, i));
     finishAll();
+    sub = null;                                  // the new step sets its own, if it has frames
     const prev = current, fromCam = { ...S.cam }, fromPan = { ...S.pan };
     index = i; current = STEPS[i];
     show(current);
@@ -1088,8 +1033,23 @@
     }
     history.replaceState(null, '', '#' + (i + 1));
   }
-  function next() { if (running.length) { finishAll(); return; } if (index < STEPS.length - 1) go(index + 1, true); }
-  function prev() { if (running.length) finishAll(); go(index - 1, false); }
+  // Within a click-through, the keys move one screen at a time; at either end
+  // they move the deck. A step's frames only count while its slide is showing.
+  const onDemo = () => sub && current.slide.startsWith('s-demo');
+  function next() {
+    if (swapping) return;
+    if (running.length) { finishAll(); return; }
+    if (onDemo() && sub.k < sub.n - 1) { sub.show(sub.k + 1); return; }
+    if (index < STEPS.length - 1) go(index + 1, true);
+  }
+  function prev() {
+    if (swapping) return;
+    if (running.length) finishAll();
+    if (onDemo() && sub.k > 0) { sub.show(sub.k - 1); return; }
+    if (index === 0) return;
+    subFromEnd = STEPS[index - 1].slide.startsWith('s-demo');
+    go(index - 1, false);
+  }
 
   document.addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;

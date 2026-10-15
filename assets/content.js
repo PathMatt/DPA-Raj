@@ -378,7 +378,7 @@ window.CONTENT = {
         // {
         //   quote: 'Before I teach, I want to know what they know.',
         //   screen: "A question built on the whole-slide image with four options (Ewing sarcoma, alveolar rhabdomyosarcoma, CIC-rearranged sarcoma, DSRCT), the learner's view, then the baseline results",
-        //   notes: 'Junya, beat 3 (1:30 to 2:05). "Before I teach, I want to know what they know. I build the question on the slide itself: here is the H&E, what is your diagnosis? This is where my learners start." The room\'s own vote 1 is the same question; point back to it.'
+        //   notes: 'Junya, beat 3 (1:30 to 2:05). "Before I teach, I want to know what they know. I build the question on the slide itself: here is the H&E, what is your diagnosis? This is where my learners start." It is the same differential Raj showed at the start; point back to it, but don\'t show the answer.'
         // },
         {
           quote: 'Before I teach, I want to know what they know.',
@@ -389,7 +389,7 @@ window.CONTENT = {
           ],
           iframe: 'https://pathpresenter.net/public/takeAssessment?token=9a3149d0',
           iframeAction: 'Open post-assessment',
-          notes: 'Junya, beat 3 (1:30 to 2:05). "Before I teach, I want to know what they know. I build the question on the slide itself: here is the H&E, what is your diagnosis? This is where my learners start." The room\'s own vote 1 is the same question; point back to it.'
+          notes: 'Junya, beat 3 (1:30 to 2:05). "Before I teach, I want to know what they know. I build the question on the slide itself: here is the H&E, what is your diagnosis? This is where my learners start." It is the same differential Raj showed at the start; point back to it, but don\'t show the answer.'
         },
         {
           quote: 'I want my learners to explore the whole slide, just as they would sitting next to me at the microscope.',

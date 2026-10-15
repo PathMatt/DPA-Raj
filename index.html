@@ -20,7 +20,7 @@
       --muted: #6b6b64;
       --faint: #b0b0a8;
       --line: rgba(22, 22, 22, .14);
-      --rust: #9c423c;
+      --rust: #1575AC;
       --veil: 1;
     }
 
@@ -706,15 +706,27 @@
     .ws-heading {
       position: absolute;
       left: 4%;
-      top: 5.5%;
+      top: 15px;
     }
 
     .ws-frame {
       position: absolute;
       left: 4%;
       right: 4%;
-      top: 15%;
-      bottom: 5%;
+      top: auto;
+      bottom: 0%;
+      border: 1.5px solid var(--ink);
+      background: var(--paper);
+      transform-origin: 0 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .cus-frame{
+       position: absolute;
+      left: 4%;
+      right: 4%;
+      top: auto;
+      bottom: 0;
       border: 1.5px solid var(--ink);
       background: var(--paper);
       transform-origin: 0 0;
@@ -2044,7 +2056,6 @@
       margin: 3cqw 0 0;
       border: 1.5px solid var(--ink);
       background: #fff;
-      padding: 1.6cqw;
     }
 
     .infographic img {
@@ -2052,7 +2063,7 @@
       width: 100%;
       height: auto;
       max-height: 52cqh;
-      object-fit: contain;
+      object-fit: cover;
     }
 
     .versus {
@@ -3317,7 +3328,7 @@
 
     <section class="slide" id="s-workspace" aria-label="The whole case">
       <h2 class="h-m ws-heading">The whole case, in one place</h2>
-      <div class="ws-frame">
+      <div class="ws-frame ">
         <div class="ws-bar"><span>PV26-001 · The Ohio State University</span></div>
         <img class="workspace-viewer" src="assets/wsi/select-H&Eagain.png"
           alt="PathPresenter slide viewer showing the H&amp;E slide and viewer tools">

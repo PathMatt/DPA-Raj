@@ -74,8 +74,8 @@ window.CONTENT = {
           images: [
             { src: 'assets/wsi/final-view-prior.png', alt: 'The case with the prior' },
             { src: 'assets/wsi/close-fellow.png', alt: 'The fellow\'s annotations' },
+            { src: 'assets/wsi/fellow-chat-noregion.png', alt: 'A question from the fellow' },
             { src: 'assets/wsi/fellow-chat-single.png', alt: 'A question from the fellow' },
-            { src: 'assets/wsi/fellow-chat.png', alt: 'Reply to the fellow on the slide' },
             { src: 'assets/wsi/fellow-final-screen.png', alt: 'The fellow\'s questions answered' },
           ],
           notes: 'Swati, beat 3 (1:20 to 2:10). "My fellow previewed this case before I got to it. Each annotation is pinned to the exact spot, with a question. Both are fair questions, and the teaching point is that morphology alone won\'t settle a round cell sarcoma. I answer right here on the slide, and the teaching stays with the case instead of disappearing after sign-out."'
@@ -302,6 +302,7 @@ window.CONTENT = {
             { src: `${WSI}/research/preview-ecrf.png`, alt: 'Preview the electronic case report form' },
             { src: `${WSI}/research/dataset.png`, alt: 'The cohort dataset' },
             { src: `${WSI}/research/assign-dataset.png`, alt: 'Assign the dataset' },
+            { src: `${WSI}/research/assign-data-complete.png`, alt: 'Assign the dataset' },
             { src: `${WSI}/research/project-launch.png`, alt: 'Launch the project' },
           ],
           notes: 'Matt, beat 6 (4:05 to 4:45). "Now I can ask a real question: every round cell sarcoma with a CD99 result, across all 35 sites. Seconds, not months of chart review. And there\'s our case, the one Swati sent and Archana signed out, alongside the look-alikes the image search found." If the travelling case cannot be in the Alliance data, say "cases like ours".'
@@ -313,100 +314,133 @@ window.CONTENT = {
             { src: `${WSI}/research/assign-project-screen.png`, alt: 'Assign pathologists to an annotation project' },
             { src: `${WSI}/research/assign-project-list.png`, alt: 'Annotation assignments' },
             { src: `${WSI}/research/open-project.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation1.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation2.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation3.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation5.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation6.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation7.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation8.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation9.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation10.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation11.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation11A.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation11B.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation12.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation13.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation14.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation16.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation17.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation17a.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation18.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation19.png`, alt: 'Open the annotation project' },
+             { src: `${WSI}/research/annotation18.png`, alt: 'Open the annotation project' }, 
+            { src: `${WSI}/research/annotation20.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation21.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/annotation22.png`, alt: 'Open the annotation project' },
+            
           ],
           notes: 'Matt, beat 8 (5:15 to 5:55). "Models need ground truth, and ground truth means pathologists annotating. The tools are built for that: regions, labels, assignments across sites, and a record of who annotated what."'
         },
         {
           rail: 7, quote: 'Ground truth means pathologists annotating, and every label is attributed.',
           screen: 'The data export workflow',
+           images: [
+            { src: `${WSI}/research/assign-project-screen.png`, alt: 'Assign pathologists to an annotation project' },
+            { src: `${WSI}/research/result2.png`, alt: 'Annotation assignments' },
+            { src: `${WSI}/research/result3.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/result4.png`, alt: 'Open the annotation project' },
+            { src: `${WSI}/research/result5.png`, alt: 'Open the annotation project' },
+            
+            
+          ],
           notes: 'Matt. Show the data export workflow, then hand to Junya.'
         },
       ],
     },
 
-    teach: {
+     teach: {
       kicker: '04 · Teach', who: 'Junya Fukuoka · Nagasaki University', chrome: 'PathPresenter Education · Nagasaki University',
-      rail: ['Live-slide lecture', 'Share for preview', 'Pre-assessment', 'Teach it live', 'Post-assessment', 'High-yield set', 'Course and conference'],
+      rail: ['Share for preview', 'Pre-assessment', 'Live-slide lecture', 'High-yield set', 'Conference', 'Course'],
       steps: [
-        {
-          quote: 'I want my learners to explore the whole slide, just as they would sitting next to me at the microscope.',
-          screen: "Import an existing PowerPoint, place the case's whole-slide images into the slides, then zoom inside one",
-          previewImage: { src: 'assets/wsi/education/share-presentation.png', alt: 'The lecture in PathPresenter' },
-          iframe: 'https://pathpresenter.net/public/presentation/display?token=bf91ed49',
-          notes: 'Junya, beat 1 (0:20 to 1:00). "I start with what every teacher already has: a PowerPoint. I bring it in as it is, and where I used to paste a photo, I put the whole slide. Now the learner doesn\'t see my picture of the tumor. They see the tumor, and they can go anywhere on the slide."'
-        },
+
         {
           quote: 'Attendees get to preview cases from anywhere in the world. Nothing to install.',
           screen: 'Create a share link, then open it on a phone or a second browser',
           images: [
-            { src: 'assets/wsi/education/share-presentation.png', alt: 'Presentation sharing options' },
-            { src: 'assets/wsi/education/share-presentation-dialog.png', alt: 'Sharing settings' },
-            { src: 'assets/wsi/education/share-presentation-link.png', alt: 'The share link' },
+            { src: 'assets/wsi/education/share-presentation.png', alt: 'Open the presentation sharing options' },
+            { src: 'assets/wsi/education/share-presentation-dialog.png', alt: 'Choose presentation sharing settings' },
+            { src: 'assets/wsi/education/share-presentation-link.png', alt: 'Copy the presentation share link' },
           ],
           iframe: 'https://pathpresenter.net/public/presentation/display?token=b060332b',
           notes: 'Junya, beat 2 (1:00 to 1:30). "Before the session, I send one link. Learners preview the presentation and the whole slides on any device, with nothing to install. They come to class having already looked."'
         },
+        // {
+        //   quote: 'Before I teach, I want to know what they know.',
+        //   screen: "A question built on the whole-slide image with four options (Ewing sarcoma, alveolar rhabdomyosarcoma, CIC-rearranged sarcoma, DSRCT), the learner's view, then the baseline results",
+        //   notes: 'Junya, beat 3 (1:30 to 2:05). "Before I teach, I want to know what they know. I build the question on the slide itself: here is the H&E, what is your diagnosis? This is where my learners start." The room\'s own vote 1 is the same question; point back to it.'
+        // },
         {
           quote: 'Before I teach, I want to know what they know.',
-          screen: "A question built on the whole-slide image with four options (Ewing sarcoma, alveolar rhabdomyosarcoma, CIC-rearranged sarcoma, DSRCT), the learner's view, then the baseline results",
+          screen: 'The same question after the session, then the pre-versus-post comparison',
           images: [
-            { src: 'assets/wsi/education/dashboard.png', alt: 'The education dashboard' },
-            { src: 'assets/wsi/education/assessment-list.png', alt: 'The assessment list' },
+            { src: 'assets/wsi/education/dashboard.png', alt: 'Open the education dashboard' },
+            { src: 'assets/wsi/education/assessment-list.png', alt: 'Choose an assessment from the assessment list' },
           ],
           iframe: 'https://pathpresenter.net/public/takeAssessment?token=9a3149d0',
-          iframeAction: 'Open the assessment',
-          notes: 'Junya, beat 3 (1:30 to 2:05). "Before I teach, I want to know what they know. I build the question on the slide itself: here is the H&E, what is your diagnosis? This is where my learners start." It is the same differential Raj showed at the start; point back to it, but don\'t show the answer.'
+          iframeAction: 'Open post-assessment',
+          notes: 'Junya, beat 3 (1:30 to 2:05). "Before I teach, I want to know what they know. I build the question on the slide itself: here is the H&E, what is your diagnosis? This is where my learners start." The room\'s own vote 1 is the same question; point back to it.'
         },
         {
-          quote: 'Before I teach, I want to know what they know.',
-          screen: 'The PowerPoint presentation, taught live',
+          quote: 'I want my learners to explore the whole slide, just as they would sitting next to me at the microscope.',
+          screen: "Import an existing PowerPoint, place the case's whole slide images into the slides, then zoom inside one",
+          previewImage: {
+            src: 'assets/wsi/education/share-presentation.png',
+            alt: 'Preview of a whole-slide viewer'
+          },
           iframe: 'https://pathpresenter.net/public/presentation/display?token=bf91ed49',
-          notes: 'Junya. Teach it live: show the PowerPoint presentation, with the whole slides inside it.'
-        },
-        {
-          quote: 'After teaching, I can ask the question again and see what my learners understood.',
-          screen: 'The same question after the session, then the pre-versus-post comparison',
-          notes: 'Junya, beat 5 (2:40 to 3:15). "Afterward, the same question. Now I know whether I taught anything. That is evidence, not a feeling." Use labeled demo data unless real learner data is cleared.'
+          notes: 'Junya, beat 1 (0:20 to 1:00). "I start with what every teacher already has: a PowerPoint. I bring it in as it is, and where I used to paste a photo, I put the whole slide. Now the learner doesn\'t see my picture of the tumor. They see the tumor, and they can go anywhere on the slide."'
         },
         {
           quote: 'I can build a collection of cases that learners can revisit whenever they need to.',
-          screen: 'A high-yield set of six small round cell tumors in self-study mode: Ewing sarcoma, CIC-rearranged sarcoma, BCOR-altered sarcoma, alveolar rhabdomyosarcoma, DSRCT and lymphoblastic lymphoma, each with its key stains',
+         screen: 'A high-yield set of six small round cell tumors in self-study mode: Ewing sarcoma, CIC-rearranged sarcoma, BCOR-altered sarcoma, alveolar rhabdomyosarcoma, DSRCT and lymphoblastic lymphoma, each with its key stains',
           images: [
-            { src: 'assets/wsi/education/dashboard.png', alt: 'The education dashboard' },
-            { src: 'assets/wsi/education/highyield-list.png', alt: 'The high-yield case list' },
+            { src: 'assets/wsi/education/dashboard.png', alt: 'Open the education dashboard' },
+            { src: 'assets/wsi/education/highyield-list.png', alt: 'View the high-yield case list' },
             { src: 'assets/wsi/education/highyiled-manage.png', alt: 'Manage the high-yield set' },
-            { src: 'assets/wsi/education/highyiled-manage-inner.png', alt: 'High-yield set details' },
+            { src: 'assets/wsi/education/highyiled-manage-inner.png', alt: 'View high-yield set details' },
           ],
           iframe: 'https://pathpresenter.net/public/case?token=86ad3aca',
           iframeAction: 'Open high-yield case',
-          notes: 'Junya, beat 6 (3:15 to 3:55). "One case is a lesson. A set is a skill. I build a high-yield set of small round cell tumors, each with its key stains side by side. A resident can work through it alone, at night, as many times as they need." Look-alike pairs: Ewing sarcoma (diffuse membranous CD99, NKX2.2) against CIC-rearranged sarcoma (patchy CD99, nuclear WT1 and ETV4); BCOR-altered sarcoma (BCOR, SATB2, cyclin D1) against DSRCT (keratin, dot-like desmin, C-terminal WT1); alveolar rhabdomyosarcoma (desmin, myogenin, MyoD1) against lymphoblastic lymphoma (TdT, and CD99-positive, the classic pitfall).'
+          notes: 'Junya, beat 6 (3:15 to 3:55). "One case is a lesson. A set is a skill. I build a high-yield set of small round cell tumors, each with its key stains side by side. A resident can work through it alone, at night, as many times as they need."'
         },
         {
-          rail: 6, quote: 'The same teaching material can become a lecture, a self-study exercise, or part of a larger course.',
+          quote: 'The same conference material can become a live presentation, an interactive case discussion, or part of a collaborative learning experience with experts and peers.',
+         screen: 'A conference view with an in-room and online audience on one slide',
+          images: [
+            { src: 'assets/wsi/education/conference-dashboard.png', alt: 'Open the conference dashboard' },
+             { src: 'assets/wsi/education/conference-list.png', alt: 'Open the conference dashboard' },
+            { src: 'assets/wsi/education/conference-mainscreen.png', alt: 'View the main conference screen' },
+            { src: 'assets/wsi/education/conference-lacture.png', alt: 'Conference lecture view' },
+            { src: 'assets/wsi/education/conference-lacture-preview.png', alt: 'Conference lecture preview' },
+            { src: 'assets/wsi/education/conference-preassessment.png', alt: 'Conference pre-assessment screen' },
+            { src: 'assets/wsi/education/conference-poster.png', alt: 'Conference poster workspace' },
+            { src: 'assets/wsi/education/conference-poster-list.png', alt: 'Conference poster list' },
+            { src: 'assets/wsi/education/conferencce-poster-view.png', alt: 'Conference poster detail view' }
+          ],
+          notes: 'Junya, beat 6 (3:15 to 3:55). "One case is a lesson. A set is a skill. I build a high-yield set of small round cell tumors, each with its key stains side by side. A resident can work through it alone, at night, as many times as they need."'
+        },
+        {
+          quote: 'The same teaching material can become a lecture, a self-study exercise, or part of a larger course.',
           screen: 'The same material inside a course with modules',
           images: [
-            { src: 'assets/wsi/education/course-dashboard.png', alt: 'The course dashboard' },
-            { src: 'assets/wsi/education/course-list.png', alt: 'The course list' },
-            { src: 'assets/wsi/education/couse-preview.png', alt: 'Course preview' },
-            { src: 'assets/wsi/education/course-view.png', alt: 'Course content' },
-            { src: 'assets/wsi/education/course-assessment.png', alt: 'The course assessment' },
+            { src: 'assets/wsi/education/course-dashboard.png', alt: 'Open the course dashboard' },
+            { src: 'assets/wsi/education/course-list.png', alt: 'View the course list' },
+            { src: 'assets/wsi/education/couse-preview.png', alt: 'Preview a course' },
+            { src: 'assets/wsi/education/course-view.png', alt: 'View course content' },
+            { src: 'assets/wsi/education/course-assessment.png', alt: 'View the course assessment' },
           ],
           notes: 'Junya, beat 7 (3:55 to 4:30). "The same material goes into a course, with modules learners take at their own pace. Or into a conference, with the room and the online audience on the same slide. I build it once and use it everywhere."'
-        },
-        {
-          rail: 6, quote: 'The same teaching material can become a lecture, a self-study exercise, or part of a larger course.',
-          screen: 'A conference view with an in-room and online audience on one slide',
-          images: [
-            { src: 'assets/wsi/education/conference-dashboard.png', alt: 'The conference dashboard' },
-            { src: 'assets/wsi/education/conference-mainscreen.png', alt: 'The main conference screen' },
-            { src: 'assets/wsi/education/conference-lacture.png', alt: 'Conference lecture' },
-            { src: 'assets/wsi/education/conference-lacture-preview.png', alt: 'Conference lecture preview' },
-            { src: 'assets/wsi/education/conference-preassessment.png', alt: 'Conference pre-assessment' },
-            { src: 'assets/wsi/education/conference-poster.png', alt: 'Conference posters' },
-            { src: 'assets/wsi/education/conference-poster-list.png', alt: 'Conference poster list' },
-            { src: 'assets/wsi/education/conferencce-poster-view.png', alt: 'A conference poster' }
-          ],
-          notes: 'Junya. The conference: the room and the online audience on the same slide. Then the journey slide.'
         },
       ],
     },

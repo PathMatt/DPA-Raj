@@ -811,8 +811,7 @@
     { slide: 's-send3', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true, route: 'r3', enter: send('r3', 'nagasaki', 9000, 1.5) },
     // 04 · Teach
     { slide: 's-card4', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true },
-    ...demo('teach', 'nagasaki'),
-    // Junya's education model, as its own section after the Teach demo
+    // 04 · Teach is Junya's education model
     ...demo('edu', 'nagasaki'),
     // close: the whole journey, back to the same field, then the platform story
     { slide: 's-world', veil: 0, view: 'globe', at: 'nagasaki', scale: true, learners: true,

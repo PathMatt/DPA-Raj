@@ -112,7 +112,7 @@ window.CONTENT = {
           screen: "Switch on de-identification mode and share with Archana at Cincinnati Children's",
           images: [
             { src: 'assets/wsi/d-ID-on.png', alt: 'De-identification mode on' },
-            { src: 'assets/wsi/d-ID-off.png', alt: 'De-identification mode off' },
+            { src: 'assets/wsi/dIDOFF.png', alt: 'De-identification mode off' },
           ],
           notes: 'Swati, beat 7 (4:05 to 4:40). "This isn\'t a case I want to sign out alone. CD99 is positive, but lymphoblastic lymphoma can be CD99-positive too, so I want our hematopathologist to look. I share it with my annotations and a note. No Zoom, no walking glass down the hall. Here\'s the reply, inside the case, on the region I asked about. And when I want a colleague outside our institution to look, de-identification mode removes the patient\'s identifiers before the case leaves." The outside colleague on screen should be Archana, which sets up her opening.'
         },

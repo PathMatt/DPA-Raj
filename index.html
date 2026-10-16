@@ -3063,6 +3063,119 @@
       text-transform: uppercase;
       color: var(--rust);
     }
+    /* Junya's education model */
+    .v-edu-lecture {
+      display: grid;
+      grid-template-columns: 1.9fr 1fr;
+      gap: 1.8cqw;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .v-edu-lecture video,
+    .v-edu-advocacy img {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: contain;
+      background: #111;
+      display: block;
+    }
+
+    .v-edu-points {
+      display: flex;
+      flex-direction: column;
+      gap: .7cqw;
+      font-size: 1.05cqw;
+      line-height: 1.45;
+      color: var(--muted);
+      min-width: 0;
+    }
+
+    .v-edu-points .v-label {
+      margin-top: .6cqw;
+      color: var(--rust);
+    }
+
+    .v-edu-points ul {
+      margin: 0;
+      padding-left: 1.1cqw;
+      color: var(--ink);
+      display: grid;
+      gap: .5cqw;
+    }
+
+    .demo-body img.v-edu-chart {
+      max-width: 82%;
+      max-height: 90%;
+      margin: auto;
+      background: #fff;
+    }
+
+    .v-edu-advocacy {
+      display: grid;
+      grid-template-columns: 2.4fr 1fr;
+      gap: 1.8cqw;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .v-edu-advocacy figure {
+      margin: 0;
+      min-height: 0;
+    }
+
+    .v-edu-advocacy figure img {
+      object-fit: cover;
+    }
+
+    .v-edu-qr .v-label {
+      margin: 0;
+    }
+
+    .v-edu-qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1cqw;
+    }
+
+    .v-edu-advocacy .v-edu-qr img {
+      flex: none;
+      width: 100%;
+      max-width: 15cqw;
+      height: auto;
+      object-fit: contain;
+      background: #fff;
+      image-rendering: pixelated;
+    }
+
+    .v-edu-why {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-content: center;
+      gap: 3cqw 2cqw;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .v-edu-why div {
+      border-top: 1.5px solid var(--ink);
+      padding-top: 1cqw;
+    }
+
+    .v-edu-why b {
+      font-size: 1.8cqw;
+      font-weight: 500;
+    }
+
+    .v-edu-why p {
+      margin-top: .6cqw;
+      font-size: 1.3cqw;
+      line-height: 1.45;
+      color: var(--muted);
+    }
   </style>
 </head>
 
@@ -3509,6 +3622,8 @@
 
     <section class="slide demo" id="s-demo-teach" data-demo="teach" data-stage="0" aria-label="Teach demo"></section>
 
+    <section class="slide demo" id="s-demo-edu" data-demo="edu" data-stage="0" aria-label="Education model"></section>
+
     <!-- ============ Close ============ -->
     <section class="slide" id="s-world" aria-label="The whole journey">
       <div class="panel ledger">
@@ -3821,10 +3936,10 @@
   <script src="assets/vendor/topojson-client.min.js"></script>
   <script src="assets/vendor/qrcode.js"></script>
   <script src="assets/vendor/openseadragon.min.js"></script>
-  <script src="assets/geo/data.js?v=20261016d"></script>
-  <script src="assets/content.js?v=20261016d"></script>
-  <script src="assets/tissue.js?v=20261016d"></script>
-  <script src="assets/app.js?v=20261016d"></script>
+  <script src="assets/geo/data.js?v=20261016e"></script>
+  <script src="assets/content.js?v=20261016e"></script>
+  <script src="assets/tissue.js?v=20261016e"></script>
+  <script src="assets/app.js?v=20261016e"></script>
 </body>
 
 </html>

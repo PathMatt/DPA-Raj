@@ -16,6 +16,7 @@
 //   notes  speaker notes (N)
 
 const WSI = 'assets/wsi';
+const EDU = 'assets/wsi/education/model';
 // look-alike cases from other sources, for the image-search matches
 const match = (n, label, extra = '') =>
   `<figure class="v-tile"><div style="background-image:url(assets/img/matches/match-${n}.jpg)"></div><figcaption>${label}${extra}</figcaption></figure>`;
@@ -459,6 +460,63 @@ window.CONTENT = {
             { src: 'assets/wsi/education/course-assessment.png', alt: 'View the course assessment' },
           ],
           notes: 'Junya, beat 7 (3:55 to 4:30). "The same material goes into a course, with modules learners take at their own pace. Or into a conference, with the room and the online audience on the same slide. I build it once and use it everywhere."'
+        },
+      ],
+    },
+
+    // Junya's education model, from "Education model_PathPresenter_Fukuoka_20261016"
+    edu: {
+      kicker: '04 · Teach · Education model', who: 'Junya Fukuoka · Nagasaki University', chrome: 'Education model · Nagasaki University',
+      rail: ['Lectures for students', 'Student feedback', 'QR slide seminars', 'Patient advocacy', 'Why PathPresenter'],
+      steps: [
+        {
+          quote: 'Sharing presentations with medical students.',
+          html: `<div class="v-edu-lecture">
+            <video src="${EDU}/lectures.mp4" poster="${EDU}/lectures-poster.jpg" autoplay muted loop playsinline aria-label="Sharing a lecture presentation in PathPresenter"></video>
+            <div class="v-edu-points">
+              <p class="v-label">Today</p>
+              <p>Students have access to lecture content through shared links.</p>
+              <p>Each professor usually uploads PDF versions of their PowerPoint slides.</p>
+              <p class="v-label">Using PathPresenter is easy</p>
+              <ul><li>Embed a link to the lecture presentation.</li><li>Key WSIs are embedded in the PowerPoint file.</li><li>Comparing slides helps students understand the findings.</li><li>Annotations help students understand difficult cases.</li></ul>
+            </div></div>`,
+          notes: 'Junya. Education model, part 1: sharing presentations with medical students. Lecture content usually reaches students as PDFs of the slides; with PathPresenter the lecture is a link, the key whole-slide images sit inside the PowerPoint, and students can compare slides and follow annotations on difficult cases.'
+        },
+        {
+          quote: 'Well accepted by the students.',
+          img: `${EDU}/feedback.png`, imageClass: 'v-edu-chart',
+          screen: 'Students rated the lecture from 1 to 10 (89 responses): 36 gave it 10, 11 gave 9 and 24 gave 8',
+          notes: 'Junya. Student feedback: 89 responses rating the lecture from 1 to 10; 36 (40.4%) gave it 10, 11 gave 9 and 24 gave 8.'
+        },
+        {
+          quote: 'Using QR codes for slide seminars.',
+          video: `${EDU}/seminar.mp4`, poster: `${EDU}/seminar-poster.jpg`, videoTitle: 'Using QR codes for slide seminars',
+          notes: 'Junya. Education model, part 2: QR codes for slide seminars. The case is presented with a QR code on the slide; attendees open the whole-slide image on their own phone or laptop and explore it while the seminar runs.'
+        },
+        {
+          quote: 'QR code share for patient advocacy.',
+          html: `<div class="v-edu-advocacy">
+            <figure><img src="${EDU}/advocacy-event.jpg" alt="Audience at a patient advocacy event scanning a QR code on the screen"></figure>
+            <div class="v-edu-qr"><img src="${EDU}/advocacy-qr.png" alt="QR code shared at the event"><p class="v-label">Scan to view</p></div>
+            </div>`,
+          notes: 'Junya. Education model, part 3: QR code sharing for patient advocacy. At public and patient events the audience scans a QR code and sees the actual slides on their own phones.'
+        },
+        {
+          rail: 3, quote: 'Easy sharing of WSI slides by QR code.',
+          video: `${EDU}/qr-sharing.mp4`, poster: `${EDU}/qr-sharing-poster.jpg`, videoTitle: 'Easy sharing of WSI slides by QR code',
+          notes: 'Junya. Making the QR code: select the slides in PathPresenter and share; the QR code opens them on any device, without downloading files.'
+        },
+        {
+          rail: 4, quote: 'From passive viewing to active learning.', chrome: 'Why PathPresenter for Education?',
+          html: `<div class="v-edu-why">
+            <div><b>Simple &amp; accessible</b><p>Easy to use on any device.</p></div>
+            <div><b>Interactive learning</b><p>Explore WSIs independently while following the lecture.</p></div>
+            <div><b>Easy sharing</b><p>Share via links or QR codes for anytime review.</p></div>
+            <div><b>Secure access</b><p>View slides without downloading files.</p></div>
+            <div><b>Privacy protection</b><p>Share de-identified slides without sensitive metadata.</p></div>
+            <div><b>Excellent feedback</b><p>Highly appreciated by students and other learners.</p></div>
+            </div>`,
+          notes: 'Junya. Why PathPresenter for education: simple and accessible on any device; interactive, with learners exploring the slides themselves while following the lecture; easy sharing by link or QR code; secure, with no files to download; de-identified slides without sensitive metadata; and well received by students. From passive viewing to active learning.'
         },
       ],
     },

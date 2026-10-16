@@ -812,6 +812,8 @@
     // 04 · Teach
     { slide: 's-card4', veil: 0, view: 'nagasaki', at: 'nagasaki', scale: true },
     ...demo('teach', 'nagasaki'),
+    // Junya's education model, as its own section after the Teach demo
+    ...demo('edu', 'nagasaki'),
     // close: the whole journey, back to the same field, then the platform story
     { slide: 's-world', veil: 0, view: 'globe', at: 'nagasaki', scale: true, learners: true,
       enter: () => { S.spin = false; S.learners = 0; flight(VIEWS.globe, 4200, { rho: 1.3, done: startSpin }); tween(3200, 5000, t => { S.learners = t; }); countTotal(); } },
@@ -979,6 +981,7 @@
     const video = document.createElement('video');
 
     video.src = s.video;
+    if (s.poster) video.poster = s.poster;
     video.title = s.videoTitle || s.screen || s.video;
     video.setAttribute('aria-label', video.title);
     video.autoplay = true;

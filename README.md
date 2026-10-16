@@ -63,7 +63,13 @@ editing so browsers reload.
    LIS-integrated portal
 5. Leg 2, 414 km to Pittsburgh. 03 · Discover: Matt's ten-step rail, ending
    with the Build Model video and Predict Outcomes image after "Export data"
-6. Leg 3, 11,317 km across the Pacific. 04 · Teach: Junya's seven steps
+6. Leg 3, 11,317 km across the Pacific. 04 · Teach: Junya's seven steps; then his
+   education model as its own section (lectures for students with the
+   lecture video, student feedback, QR slide seminars, patient advocacy and
+   QR sharing, why PathPresenter). Videos and images are in
+   `assets/wsi/education/model/`, compressed from "Education
+   model_PathPresenter_Fukuoka_20261016"; the lecture video starts 4 s in,
+   after the university sign-in screen
 7. The whole journey (11,890 km), and the dive back
    to the same 40x field at Ohio State with all four sites' annotations
 8. The diagnosis (CIC-rearranged sarcoma), how it was built, the case never

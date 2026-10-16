@@ -212,7 +212,7 @@ window.CONTENT = {
 
     discover: {
       kicker: '03 · Discover', who: 'Matthew Hanna · UPMC, Pittsburgh', chrome: 'PathPresenter Research · ADC Alliance',
-      rail: ['Find similar cases', 'The ADC Alliance', 'Data from 35 sites', 'Searchable lists', 'Folders, permissions', 'Build a cohort', 'Annotate', 'Export data'],
+      rail: ['Find similar cases', 'The ADC Alliance', 'Data from 35 sites', 'Searchable lists', 'Folders, permissions', 'Build a Study', 'Annotate', 'Export data', 'Build Model', 'Predict Outcomes'],
       steps: [
         {
           rail: 0, notes: 'Matt, beat 1 (0:20 to 1:05). "Before I write a single query, I start with the image. I draw a region on our case and ask the Alliance the question every pathologist asks: have we seen this before? The search runs on the pixels, not the words. The region becomes an image embedding, and it is compared against every slide this project is permitted to see. Back come the closest matches, from different sites, different scanners, different staining labs. Each one is a real case with a report, IHC, molecular results, treatment and follow-up behind it. For the pathologist, that\'s a reference library. For the researcher, it\'s the first glimpse of a cohort. But to search 35 institutions at once, you first need 35 institutions willing to work together." Site numbers, scanners and similarity scores are placeholders, not results.',
@@ -355,6 +355,20 @@ window.CONTENT = {
             
           ],
           notes: 'Matt. Show the data export workflow, then hand to Junya.'
+        },
+        {
+          rail: 8, quote: 'Build Model', chrome: 'PathPresenter Research · Build Model', tag: 'Final slide A',
+          screen: 'Final slide A | Build Model',
+          video: `${WSI}/research/WSI_Video.mp4`,
+          videoTitle: 'WSI_Genie_CIC_Sarcoma_Demo_v2.mp4',
+          notes: 'Final slide A · Build Model. Play the WSI_Genie_CIC_Sarcoma_Demo_v2.mp4 video.'
+        },
+        {
+          rail: 9, quote: 'Overall Survival in Pediatric CIC-Rearranged Sarcoma Stratified by Nuclear Atypia and Mitotic Index (Fictitious Cohort).', chrome: 'PathPresenter Research · Predict Outcomes',
+          screen: 'Overall Survival in Pediatric CIC-Rearranged Sarcoma Stratified by Nuclear Atypia and Mitotic Index (Fictitious Cohort)',
+          img: `${WSI}/research/graphcis-chart.png`,
+          imageClass: 'predict-outcomes-image',
+          notes: 'Predict Outcomes · Overall Survival in Pediatric CIC-Rearranged Sarcoma Stratified by Nuclear Atypia and Mitotic Index (Fictitious Cohort).'
         },
       ],
     },

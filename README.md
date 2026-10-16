@@ -61,9 +61,8 @@ editing so browsers reload.
 4. Leg 1, 159 km to Cincinnati Children's. 02 · Consult: glass vs digital
    consult, Archana's seven steps, then days to under an hour and the
    LIS-integrated portal
-5. Leg 2, 414 km to Pittsburgh. 03 · Discover: Matt's eight-step rail, with
-   built visuals for search by image and the ADC Alliance, the contributing
-   datasets, and the cohort grid after "Build a cohort"
+5. Leg 2, 414 km to Pittsburgh. 03 · Discover: Matt's ten-step rail, ending
+   with the Build Model video and Predict Outcomes image after "Export data"
 6. Leg 3, 11,317 km across the Pacific. 04 · Teach: Junya's seven steps
 7. The whole journey (11,890 km), and the dive back
    to the same 40x field at Ohio State with all four sites' annotations
@@ -75,6 +74,12 @@ Each demo step shows the site's step rail, the speaker's line and a screen
 frame. A step can carry `images` (clicked through in order), an `iframe` to a
 live PathPresenter link, a single `img`, a built `html` visual, or nothing, in
 which case the frame shows the `screen` text as a placeholder.
+
+The Discover demo's final Build Model step expects
+`assets/wsi/research/WSI_Video.mp4` (titled
+`WSI_Genie_CIC_Sarcoma_Demo_v2.mp4` in the presentation).
+Its final Predict Outcomes step expects one image at
+`assets/wsi/research/graphcis-chart.png`.
 
 ## Placeholders
 

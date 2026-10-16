@@ -972,6 +972,8 @@
     const video = document.createElement('video');
 
     video.src = s.video;
+    video.title = s.videoTitle || s.screen || s.video;
+    video.setAttribute('aria-label', video.title);
     video.autoplay = true;
     video.muted = true;
     video.loop = true;
@@ -984,6 +986,14 @@
 
     body.replaceChildren(video);
 
+    video.addEventListener('error', () => {
+      console.error(`Unable to load demo video "${video.title}" from "${video.currentSrc || video.src}".`, video.error);
+      const message = document.createElement('div');
+      message.className = 'ph';
+      message.textContent = `Video unavailable: ${video.title}`;
+      body.replaceChildren(message);
+    });
+
     video.play().catch((error) => {
       console.warn('Video autoplay failed:', error);
     });
@@ -991,8 +1001,19 @@
     // a visual built in content.js (Discover's search and Alliance views)
     body.innerHTML = `<div class="v">${s.html}</div>`;
   } else if (s.img) {
-    body.innerHTML =
-      `<img src="${esc(s.img)}" alt="${esc(s.screen || '')}">`;
+    const image = new Image();
+    image.className = s.imageClass || '';
+    image.src = s.img;
+    image.alt = s.screen || '';
+    image.style.cssText = 'display:block;width:100%;height:100%;object-fit:contain;';
+    image.addEventListener('error', () => {
+      console.error(`Unable to load demo image "${image.alt}" from "${image.currentSrc || image.src}".`);
+      const message = document.createElement('div');
+      message.className = 'ph';
+      message.textContent = `Image unavailable: ${image.alt || image.src}`;
+      body.replaceChildren(message);
+    });
+    body.replaceChildren(image);
   } else {
     const still = s.tag && /still/i.test(s.tag);
     body.innerHTML =

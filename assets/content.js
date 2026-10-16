@@ -7,7 +7,7 @@
 //   chrome the title bar of the screen frame (defaults to the demo's)
 //   tag    a flag in the title bar, e.g. "Research concept · not validated"
 //   screen what the live demo shows (the placeholder text when there is no media)
-//   images screenshots, clicked through in order; then the iframe, if there is one
+//   images screenshots, clicked through in order (each can set a background); then the iframe, if there is one
 //   iframe a live PathPresenter link (iframeAction labels the click that opens it)
 //   previewImage  a still shown before the iframe loads
 //   img    a single screenshot
@@ -30,8 +30,8 @@ window.CONTENT = {
           quote: 'Before I start signing out, can I see which cases need my attention first?',
           screen: 'The worklist, with AI',
           images: [
-            { src: 'assets/wsi/clinical-dashboard.png', alt: 'The clinical dashboard' },
-            { src: 'assets/wsi/in_worklist.png', alt: 'The case in the worklist' }
+            { src: 'assets/wsi/clinical-dashboard.png', alt: 'The clinical dashboard', background: '#fff' },
+            { src: 'assets/wsi/in_worklist.png', alt: 'The case in the worklist', background: '#fff' }
           ],
           iframe: 'https://pathpresenter.net/public/display?token=b4e0dff7',
           iframeAction: 'Open the case',
@@ -44,7 +44,9 @@ window.CONTENT = {
             { src: 'assets/wsi/clinical-context.png', alt: 'Clinical context in the case' },
             { src: 'assets/wsi/clinical-context-info.png', alt: 'Clinical history and patient information' },
             { src: 'assets/wsi/slide-tray-select.png', alt: 'Select the slide tray' },
-            { src: 'assets/wsi/slidetray-open.png', alt: 'The slide tray, open' },
+             { src: 'assets/wsi/radiology.png', alt: 'Select the slide tray' },
+             { src: 'assets/wsi/radiology2.png', alt: 'Select the slide tray' },
+            { src: 'assets/wsi/slidetrayexpand.png', alt: 'The slide tray, open' },
             { src: 'assets/wsi/gross-dialog-open.png', alt: 'Add a gross image' },
             { src: 'assets/wsi/add-gross-img.png', alt: 'Choose the gross image' },
             { src: 'assets/wsi/gross-img-check.png', alt: 'Gross image added to the case' },
@@ -137,7 +139,7 @@ window.CONTENT = {
           quote: "It's already in my LIS worklist. No separate login, no separate portal.", chrome: 'Mail · New consult from The Ohio State University',
           screen: 'The email notification. Click the view link',
           images: [
-            { src: 'assets/wsi/consult/email-notfication.png', alt: 'Email notification for a new consult' },
+            { src: 'assets/wsi/consult/email-notfication.png', alt: 'Email notification for a new consult', background: '#fff' },
           ],
           notes: 'Archana, beat 1 (0:20 to 0:55). "The consult is in my worklist, next to my own cases. No courier, no glass in the mail, no separate portal to log into. Swati\'s lab scans on a different scanner than ours, and I shouldn\'t have to care. It opens like any of my slides, and it\'s already accessioned in our LIS."'
         },
@@ -181,7 +183,8 @@ window.CONTENT = {
             { src: 'assets/wsi/consult/order-stain-dropdown.png', alt: 'Choose a stain' },
             { src: 'assets/wsi/consult/open-dropdown.png', alt: 'The stain list' },
             { src: 'assets/wsi/consult/Order-stain-more.png', alt: 'Additional stain selected' },
-            { src: 'assets/wsi/consult/more-order-stain.png', alt: 'Stain ordered' },
+            { src: 'assets/wsi/consult/duxStain.png', alt: 'DUX4 stain ordered', background: '#fff' },
+
           ],
           notes: 'Archana, beat 4 (2:05 to 2:40). Request DUX4. "These will tell me which way this goes. They\'re cut, scanned, and they land in this case with everything else, whichever lab cut them and whichever scanner they came off. I\'m notified when they\'re ready." Don\'t name the diagnosis yet; it is revealed at the end.'
         },
@@ -189,10 +192,11 @@ window.CONTENT = {
           quote: 'Can I mark the tumor, assess adequacy, and request the molecular testing needed to resolve the diagnosis?', chrome: "Beaker · Cincinnati Children's Hospital · PV26-001",
           screen: 'EWSR1::FLI1 FISH ordered',
           images: [
-            { src: 'assets/wsi/consult/more-order-stain.png', alt: 'Order options' },
-            { src: 'assets/wsi/consult/order-stain-dropdown.png', alt: 'The order list' },
-            { src: 'assets/wsi/consult/molicular-dropdown.png', alt: 'Choose the molecular test' },
-            { src: 'assets/wsi/consult/molicular.png', alt: 'Molecular test ordered' },
+            { src: 'assets/wsi/consult/duxStain.png', alt: 'DUX4 stain ordered', background: '#fff' },
+            { src: 'assets/wsi/consult/ordermol2.png', alt: 'The order list' },
+            { src: 'assets/wsi/consult/ordermol3.png', alt: 'Choose the molecular test' },
+            { src: 'assets/wsi/consult/ordermol4.png', alt: 'Molecular test ordered' },
+             { src: 'assets/wsi/consult/ordermol5.png', alt: 'Molecular test ordered result' },
           ],
           notes: 'Archana. Mark the tumor, assess adequacy, and order the molecular test from the case: EWSR1::FLI1 FISH.'
         },
@@ -200,7 +204,7 @@ window.CONTENT = {
           quote: 'My completed consultation goes back to the referring team, where they need it.', chrome: "Beaker · Cincinnati Children's Hospital · PV26-001",
           screen: 'The report as uploaded. From the email, open the expanded PDF report',
           images: [
-            { src: 'assets/wsi/consult/final-report-mail.png', alt: 'The completed report by email' },
+            { src: 'assets/wsi/consult/final-report-mail.png', alt: 'The completed report by email', background: '#fff' },
             { src: 'assets/wsi/consult/again-move-report.png', alt: 'The report back in the referring case' },
           ],
           iframe: 'assets/wsi/consult/final-report.pdf',
@@ -265,8 +269,8 @@ window.CONTENT = {
           rail: 2, quote: 'Ensuring the diversity of data.', chrome: 'AI Data Commons (ADC) Alliance · What it is',
           screen: 'Datasets in the ADC Alliance, each with an access request',
           images: [
-            { src: `${WSI}/research/data-from-35-grpahics.png`, alt: 'Datasets from contributing institutions' },
-            { src: `${WSI}/research/data-from-35-grpahics-search.png`, alt: 'Searching across the contributed datasets' },
+            { src: `${WSI}/research/data-from-35-grpahics.png`, alt: 'Datasets from contributing institutions', background: '#fff' },
+            { src: `${WSI}/research/data-from-35-grpahics-search.png`, alt: 'Searching across the contributed datasets', background: '#fff' },
           ],
           notes: 'Matt. The datasets contributing sites have shared into the Alliance, each with its own metadata and its own access request.'
         },
@@ -274,10 +278,10 @@ window.CONTENT = {
           rail: 3, quote: 'Free text becomes fields I can search, and I can ask for more.',
           screen: 'Construct the query age < 18 and CIC-rearranged sarcoma, find a few slides per site, then the request-access workflow',
           images: [
-            { src: `${WSI}/research/searchable-list.png`, alt: 'Searchable list of available cases' },
+            { src: `${WSI}/research/searchable-list.png`, alt: 'Searchable list of available cases', background: '#fff' },
             { src: `${WSI}/research/request-access.png`, alt: 'Request access to a dataset' },
             { src: `${WSI}/research/request-metadata.png`, alt: 'Request another metadata field' },
-            { src: `${WSI}/research/searchable-list.png`, alt: 'The updated searchable list' },
+            { src: `${WSI}/research/searchable-list.png`, alt: 'The updated searchable list', background: '#fff' },
             { src: `${WSI}/research/approved-access.png`, alt: 'Access approved' },
             { src: `${WSI}/research/request-for-research.png`, alt: 'Research request' },
           ],
@@ -293,17 +297,17 @@ window.CONTENT = {
           rail: 5, quote: 'Every round cell sarcoma with a CD99 result, across 35 sites.',
           screen: 'Build a study: click through each screen',
           images: [
-            { src: `${WSI}/research/buid-cohort.png`, alt: 'Build a cohort' },
-            { src: `${WSI}/research/project-details.png`, alt: 'Project details' },
-            { src: `${WSI}/research/document.png`, alt: 'Project documents' },
-            { src: `${WSI}/research/roi.png`, alt: 'Regions of interest' },
-            { src: `${WSI}/research/label.png`, alt: 'Labels' },
-            { src: `${WSI}/research/case-report.png`, alt: 'Case reports' },
-            { src: `${WSI}/research/preview-ecrf.png`, alt: 'Preview the electronic case report form' },
-            { src: `${WSI}/research/dataset.png`, alt: 'The cohort dataset' },
-            { src: `${WSI}/research/assign-dataset.png`, alt: 'Assign the dataset' },
-            { src: `${WSI}/research/assign-data-complete.png`, alt: 'Assign the dataset' },
-            { src: `${WSI}/research/project-launch.png`, alt: 'Launch the project' },
+            { src: `${WSI}/research/buid-cohort.png`, alt: 'Build a cohort', background: '#fff' },
+            { src: `${WSI}/research/project-details.png`, alt: 'Project details', background: '#fff' },
+            { src: `${WSI}/research/document.png`, alt: 'Project documents', background: '#fff' },
+            { src: `${WSI}/research/roi.png`, alt: 'Regions of interest', background: '#fff' },
+            { src: `${WSI}/research/label.png`, alt: 'Labels', background: '#fff' },
+            { src: `${WSI}/research/case-report.png`, alt: 'Case reports', background: '#fff' },
+            { src: `${WSI}/research/preview-ecrf.png`, alt: 'Preview the electronic case report form', background: '#fff' },
+            { src: `${WSI}/research/dataset.png`, alt: 'The cohort dataset', background: '#fff' },
+            { src: `${WSI}/research/assign-dataset.png`, alt: 'Assign the dataset', background: '#fff' },
+            { src: `${WSI}/research/assign-data-complete.png`, alt: 'Assign the dataset', background: '#fff' },
+            { src: `${WSI}/research/project-launch.png`, alt: 'Launch the project', background: '#fff' },
           ],
           notes: 'Matt, beat 6 (4:05 to 4:45). "Now I can ask a real question: every round cell sarcoma with a CD99 result, across all 35 sites. Seconds, not months of chart review. And there\'s our case, the one Swati sent and Archana signed out, alongside the look-alikes the image search found." If the travelling case cannot be in the Alliance data, say "cases like ours".'
         },

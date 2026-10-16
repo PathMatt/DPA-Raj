@@ -955,7 +955,13 @@
       if (f.iframe) body.replaceChildren(makeIframe(f.iframe, s.screen));
       else {
         if (f.html) btn.innerHTML = `<div class="v">${f.html}</div>`;
-        else { const im = new Image(); im.src = f.img.src; im.alt = f.img.alt || ''; btn.replaceChildren(im); }
+        else {
+          const im = new Image();
+          im.src = f.img.src;
+          im.alt = f.img.alt || '';
+          im.style.backgroundColor = f.img.background || '';
+          btn.replaceChildren(im);
+        }
         btn.setAttribute('aria-label', k < frames.length - 1 ? `Show screen ${k + 2} of ${frames.length}` : 'Continue');
         body.replaceChildren(btn);
       }

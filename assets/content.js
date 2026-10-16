@@ -471,7 +471,7 @@ window.CONTENT = {
       rail: ['Lectures for students', 'Student feedback', 'QR slide seminars', 'Patient advocacy', 'Why PathPresenter'],
       steps: [
         {
-          quote: 'Sharing presentations with medical students.',
+          quote: 'Sharing presentations with medical students.', wide: true,
           html: `<div class="v-edu-lecture">
             <video src="${EDU}/lectures.mp4" poster="${EDU}/lectures-poster.jpg" autoplay muted loop playsinline aria-label="Sharing a lecture presentation in PathPresenter"></video>
             <div class="v-edu-points">

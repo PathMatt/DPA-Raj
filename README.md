@@ -87,6 +87,15 @@ The Discover demo's final Build Model step expects
 Its final Predict Outcomes step expects one image at
 `assets/wsi/research/graphcis-chart.png`.
 
+## PDF backup
+
+`assets/backup/Better-Together-PV2026-backup.pdf` is a static copy of the
+whole deck for when there is no internet: one page per slide and one per
+screen of each click-through (videos and live views as stills). Download it
+from the link in the speaker-notes panel (press `N`). Rebuild it after big
+changes: step through the deck with `DECK.go(i, false)` and screenshot
+each state at 1920x1080.
+
 ## Placeholders
 
 - Inline text in rust brackets, for example `[feature]`, is content to fill in.

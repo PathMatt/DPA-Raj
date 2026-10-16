@@ -2943,6 +2943,13 @@
     }
 
     /* speaker notes */
+    .notes-pdf {
+      margin-left: 1.6cqw;
+      color: #f2f2ed;
+      text-decoration: underline;
+      text-underline-offset: .2em;
+    }
+
     .notes {
       position: absolute;
       left: 0;
@@ -3066,13 +3073,22 @@
     /* Junya's education model */
     .v-edu-lecture {
       display: grid;
-      grid-template-columns: 1.9fr 1fr;
+      grid-template-columns: 3fr 1fr;
       gap: 1.8cqw;
       flex: 1;
       min-height: 0;
+      align-items: center;
     }
 
-    .v-edu-lecture video,
+    /* the video at its own 16:9 shape, as large as the space allows, no bars */
+    .v-edu-lecture video {
+      width: 100%;
+      max-height: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      display: block;
+    }
+
     .v-edu-advocacy img {
       width: 100%;
       height: 100%;
@@ -3080,6 +3096,27 @@
       object-fit: contain;
       background: #111;
       display: block;
+    }
+
+    /* video steps: the step list steps aside and the screen takes the width */
+    .slide.demo .demo-rail,
+    .slide.demo .demo-main {
+      transition: opacity 260ms ease, left 320ms ease;
+    }
+
+    .slide.demo.is-wide .demo-rail {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .slide.demo.is-wide .demo-main {
+      left: 4%;
+      right: 4%;
+      bottom: 5.5%;
+    }
+
+    .slide.demo.is-wide .demo-foot {
+      bottom: 1.8% !important;
     }
 
     .v-edu-points {
@@ -3924,7 +3961,8 @@
     </section>
 
     <aside class="notes" id="notes" hidden>
-      <p class="kicker" style="margin:0 0 .5cqw">Speaker notes · N to hide</p>
+      <p class="kicker" style="margin:0 0 .5cqw">Speaker notes · N to hide <a class="notes-pdf"
+          href="assets/backup/Better-Together-PV2026-backup.pdf" download>Download PDF backup</a></p>
       <p id="notes-text"></p>
     </aside>
   </main>
@@ -3934,10 +3972,10 @@
   <script src="assets/vendor/topojson-client.min.js"></script>
   <script src="assets/vendor/qrcode.js"></script>
   <script src="assets/vendor/openseadragon.min.js"></script>
-  <script src="assets/geo/data.js?v=20261016f"></script>
-  <script src="assets/content.js?v=20261016f"></script>
-  <script src="assets/tissue.js?v=20261016f"></script>
-  <script src="assets/app.js?v=20261016f"></script>
+  <script src="assets/geo/data.js?v=20261016h"></script>
+  <script src="assets/content.js?v=20261016h"></script>
+  <script src="assets/tissue.js?v=20261016h"></script>
+  <script src="assets/app.js?v=20261016h"></script>
 </body>
 
 </html>

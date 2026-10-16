@@ -933,6 +933,8 @@
   $('.demo-chrome span', el).textContent = s.chrome || d.chrome;
   $('.demo-chrome em', el).textContent = s.tag || '';
 
+  // video steps get the full width of the slide: the step list steps aside
+  el.classList.toggle('is-wide', !!(s.video || s.wide));
   const body = $('.demo-body', el);
   body.style.cssText = 'flex:1;min-height:0;display:flex;overflow:hidden;';
   const foot = s.foot || `${d.kicker} · Step ${r + 1} of ${(d.rail || d.steps).length}`;
@@ -1169,5 +1171,5 @@
   go(Number.isFinite(start) ? start - 1 : 0, !Number.isFinite(start));
   (function loop(now) { tick(now); render(now); requestAnimationFrame(loop); })(performance.now());
 
-  window.DECK = { go: i => go(i, true), STEPS, S, VIEWS };
+  window.DECK = { go: (i, animate = true) => go(i, animate), STEPS, S, VIEWS };   // DECK.go(i, false) jumps to the finished state
 })();
